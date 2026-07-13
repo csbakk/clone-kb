@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: 🔴 가동 중 (RUN5 — 2h 무인: W-E 비디오블록 검수→비디오 RIP 실물대조→갤러리 --relative→P3-4) · 마지막 갱신: 2026-07-13 밤
+**런 상태**: ⚪ 대기 중 (RUN5 완주 — 동영상 블록+RIP 2층 대조+스코어러 v2) · 마지막 갱신: 2026-07-13 밤
 
 ## 현재 페이즈
 ```mermaid
@@ -19,8 +19,11 @@ flowchart LR
 ## 가동 중 에이전트
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
-| 오케스트레이터(Fable) | RUN5 판정·게이트 검수 | 21:0x | 🔴 |
-| W-E(sonnet) | 동영상 블록 파리티(업로드·플레이어·툴바·리사이즈) | 20:1x | ✅ 완료 (게이트 27/27, 오케 스샷 눈검증 통과, click_audit 재검 중) |
+| 오케스트레이터(Fable) | RUN5 판정·게이트 검수 | 21:0x | 마감 회귀 대기 |
+| W-E(sonnet) | 동영상 블록 파리티 | 20:1x | ✅ 게이트 27/27·click_audit 508/508 |
+| W-G(sonnet) | 비디오 RIP 2층 실물대조 | 21:2x | ✅ G2 2건 수복·G1 3건 오너대기 |
+| W-H(sonnet) | 갤러리 --relative 재검 | 21:5x | ✅ 가설 기각·원인 3갈래 규명(정직 보고) |
+| W-I(sonnet) | rip_align --match-v2 | 22:1x | ✅ 11상태 스윕 개선5/악화0 |
 
 ## 티켓 보드
 | 상태 | 티켓 |
@@ -38,3 +41,4 @@ flowchart LR
 - 2026-07-13 18:3x RUN4 마감: click_audit 508/508(100%) · tsc/build 클린 · RIP-PIPELINE/HANDOFF/_WORKLOG/ledger/cases 결산 완료
 - 2026-07-13 19:0x 후속(W-C): 오너 피드백 "G1 텍스트만으론 판단불가" → rip_repair.py visual(오버레이+크롭+정체설명 시트) 당일 구현 · 게이트 4검증 PASS · 신기법 visual-triage-sheet(experimental) 등록
 - 2026-07-13 20:0x 후속(W-D): 오너 결정 original-first → **ADR-0008** 채택 · view_gallery G1 17건 수복(hover 액션쌍·대형 add-tile·커버 wrapper·hiddenProps 설정갭) · **구조 델타 30→5(-83%)** · t_wishlist 템플릿 회귀 무결 · click_audit 508/508 재통과 · 커밋 4c85089
+- 2026-07-13 밤 RUN5 완주(2h 무인, W-E~W-I 4워커): **동영상 블록 신설**(네이티브 플레이어·DnD 업로드·툴바·⋯메뉴·리사이즈·캡션, 게이트 27/27, 브릿지 Range 결함 발견·수정, 커밋 2802f43·bc4533a) · **RIP 2층 실물대조**(G2 2건 수복 bb30e39, G1 3건 오너대기) · **rip_align --match-v2**(11상태 스윕 개선5/악화0, 갤러리 5→2) · 마감 click_audit **508/508**·tsc/build 클린
