@@ -20,7 +20,8 @@ flowchart LR
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
 | 오케스트레이터(Fable) | 판정·라우팅·게이트 검수 | 16:20 | 🔴 |
-| W-A(sonnet) | P3-1 mutation 분류기 계층화 | 대기 | ⬜ 투입 예정 |
+| W-A(sonnet) | P3-1 mutation 분류기 계층화 | 17:38 | ✅ 완료 (게이트 6/6 PASS, 오케 독립 재실행 확인) |
+| W-B(sonnet) | P3-3 수복 루프 자동 체인 + 파일럿 1사이클 | 17:5x | 🔴 가동 |
 
 ## 티켓 보드
 | 상태 | 티켓 |
@@ -33,3 +34,4 @@ flowchart LR
 - 2026-07-13 RUN3 완주: RIP P0~P2 · click_audit 501/501 · 커밋 6
 - 2026-07-13 오후: 사용자 결정 5건 실행 · devotion 채널 3종(페이지 영속·선택추출·ops v1) 개통 · clone-kb 주입
 - 2026-07-13 16:2x RUN4 개시: 진입 의식 완료(카드=rip-repair-loop·rip-crawler) · devotion 수거함 fz 수신확인 annotate(seq7) · 환경 3종 UP(9224/5185/8770) · P3 착수
+- 2026-07-13 17:5x P3-1 완료: classify_layered(레벨0 반응유무→레벨2 엄격→레벨1 구조완화, --layered opt-in) · 반응다름 8→2(닫기/Escape/여백클릭×2/다음페이지/작업메뉴 6건 [기능일치-모양차이] 승격, 진짜델타 9건 비승격 보존) · test_rip_classify.py 6/6 PASS · delta_v3.md 생성
