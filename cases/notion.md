@@ -14,6 +14,7 @@ owner: 박춘순
 # 캠페인 사례 — Notion 클론
 
 **외부 작업폴더**: `~/Documents/project/260622_notion-clone/` (실물 앱: Notion, app.notion.com)
+**프로젝트 repo**: https://github.com/csbakk/devotion (private, 2026-07-14 root 단일 repo로 이관 — clone/ 구 히스토리=`clone-history` 브랜치, 원 해시 보존)
 
 ## 현재 상태 (2026-07-13 저녁, "RUN4" 기준)
 - **dev 서버**: `localhost:5185` (Vite, strictPort) · **CDP 포트**: 9224, 프로필 `~/.chrome-notion-clone`
