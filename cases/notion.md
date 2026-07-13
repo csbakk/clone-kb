@@ -32,6 +32,18 @@ owner: 박춘순
 - [[techniques.state-spec-json]] — `ref/rip/states/*.json` 10종
 - [[techniques.dom-first-measurement]], [[techniques.pixel-screenshot-as-primary-oracle]] 은퇴 — 2026-07-10 채택 원 출처 중 하나
 
+## 현재 캠페인 루프 (도식 — 결산 시 갱신)
+
+```mermaid
+flowchart LR
+    RAW["실물 정찰<br/>peek·ci_agent·RIP P0"] --> DELTA["델타 리포트<br/>rip_align"]
+    DELTA --> FIX["수복 워커"] --> RERIP["재립 → diff 수렴"]
+    RERIP -->|"잔여"| FIX
+    RERIP -->|"수렴"| NEXT["P1 상태 확장 → P2 크롤러 → P3 수복 통합"]
+```
+
+**진행 단계 (RIP 로드맵)**: P0 파일럿 ✅(부분 성공) → P1 상태 확장 ⬜ → P2 크롤러 ⬜(캔버스에서 선행 실증됨) → P3 수복 루프 통합 ⬜
+
 ## 잔여 티켓 / 남은 일
 - P3 자동수복 루프 + mutation-Jaccard 분류기 정밀도(과잉분류 문제).
 - R4 템플릿-페어링 잔여 4쌍.

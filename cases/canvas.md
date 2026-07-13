@@ -31,6 +31,32 @@ owner: 박춘순
 - [[techniques.orchestrator-model-routing]] — 빌더(sonnet)≠검증자(opus/fable) 규칙의 원 출처
 - [[pipelines.99-percent]] — 6축 판정식 정의 원 출처
 
+## 현재 캠페인 루프 (도식 — 결산 시 갱신)
+
+```mermaid
+flowchart LR
+    subgraph LOOP["운영 루프 (오케=Fable · 빌더=sonnet · 검증=opus)"]
+        REC["정찰/립<br/>rip_dump·crawl (실물, 스크립트)"] --> GAP["델타/갭 매트릭스<br/>= 작업 큐"]
+        GAP --> BUILD["빌더 서브에이전트<br/>실측값만, 추측 금지"]
+        BUILD --> VER["적대 검증자<br/>자가선언 불신·재측정"]
+        VER -->|"결함"| BUILD
+        VER -->|"통과"| GATE["게이트 선언 + 커밋"]
+        GATE --> RETRO["결산: 원장 append<br/>+ 대시보드 재생성"]
+        RETRO --> REC
+    end
+    USER["사용자 실사용 리포트<br/>(영상·도그푸딩)"] -->|"사각 발견"| GAP
+    RETRO -.->|"기법 승격/은퇴 Issue"| KB["clone-kb 무기고"]
+```
+
+**진행 단계 (99% 로드맵 — [[pipelines.99-percent]])**:
+| 단계 | 상태 |
+|---|---|
+| 게이트 8종 (셸~크롤러) | ✅ 통과 |
+| P1 크로스-페이스트 | ⬜ 미착수 (다음) |
+| P2 탐사기+델타 소탕 | ⬜ |
+| P3 애니메이션 립→쌍둥이 미러 | ⬜ |
+| P4 픽셀 지문→99% 판정식 | ⬜ |
+
 ## 잔여 티켓 / 남은 일
 - RIP 잔여 델타: 커서 불일치(740), fontWeight(620), 색상 근사(#fff↔#f7f7f8, ~3,400), display/position(~1,600) — 시스템 토큰으로 안 잡히는 컴포넌트별 케이스워크로 분류.
 - 모델피커 Featured 카피 시각 diff — T-E 원 범위, 아직 미해결.
