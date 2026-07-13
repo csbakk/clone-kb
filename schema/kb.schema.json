@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "clone-kb frontmatter schema",
+  "description": "frontmatter contract for every card under techniques/, pipelines/, cases/. Adapted from the team KB Git spec (팀 KB Git 운영 규격 v1) §4, specialized for the clone-campaign knowledge domain.",
+  "type": "object",
+  "required": ["id", "title", "doctype", "status", "updated"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique id, MUST match the file path: techniques/rip-dump.md -> techniques.rip-dump",
+      "pattern": "^(techniques|pipelines|cases)\\.[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable title, Korean OK."
+    },
+    "doctype": {
+      "type": "string",
+      "enum": ["technique", "pipeline", "case"],
+      "description": "technique = single reusable method card. pipeline = ordered assembly of techniques. case = campaign progress record."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["experimental", "verified", "standard", "retired"],
+      "description": "experimental = tried once/aspirational, not yet cross-validated. verified = worked in >=1 real campaign with evidence. standard = cross-validated in >=2 independent campaigns, safe to skill-package. retired = superseded, kept for history only."
+    },
+    "proven_in": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["canvas", "notion", "akiflow", "kit"] },
+      "description": "Which campaigns actually exercised this technique with evidence (not just documented intent)."
+    },
+    "superseded_by": {
+      "type": "string",
+      "description": "id of the replacement card. Required when status=retired."
+    },
+    "related": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "ids of related cards -- these become graph edges."
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Pointers to real proof: file paths, worklog lines, numbers. Not URLs to nowhere -- must be checkable against the source project."
+    },
+    "updated": {
+      "type": "string",
+      "format": "date",
+      "description": "YYYY-MM-DD, bump on every substantive edit."
+    },
+    "owner": {
+      "type": "string",
+      "default": "박춘순"
+    }
+  },
+  "additionalProperties": false,
+  "x-sync-rule": "status=standard 인 기법만 skills/ 에 스킬로 존재할 수 있다. 카드가 강등(standard->verified 이하)되거나 은퇴되면 대응하는 skills/*/SKILL.md 도 함께 업그레이드하거나 제거하고 ledger/ 에 그 사실을 기록한다. 승격/은퇴는 GitHub Issue로 제안 후 오너 승인.",
+  "x-lifecycle": "날것(raw 관찰) -> experimental(1회 시도) -> verified(실증 1회+근거) -> standard(2개 이상 캠페인 교차검증) -> [반례 발견 시 강등] / [대체기법 등장 시 retired]"
+}
