@@ -55,3 +55,6 @@ flowchart TD
 - **병목/실패**: ① click_audit(508건)이 마감 회귀의 wall-clock 지배 항목(~15분) — 상태별 스팟 모드가 있으면 사이클 짧아짐. ② 시스템 python3에 playwright 없어 게이트 재실행 1회 헛발( .venv 강제 명시가 브리프에 필요). ③ W-B의 transition 델타 판단 보류처럼 "G2 자동분류를 사람이 뒤집는" 케이스가 곧 triage 휴리스틱의 다음 정제 지점.
 - **다음 런에서 바꿀 것**: ① P3-4 — R4 페어를 RIP 상태 spec으로 흡수해 rip_repair 체인에 태우기(별도 풀루프 폐지 검토). ② 워커 브리프에 `.venv/bin/python` 강제 문구 표준화. ③ triage에 transition/애니메이션 계열 자동 G1 강등 규칙 추가.
 - **ledger 반영**: rip-repair-loop 성과 / rip-crawler 성과 / orchestrator-model-routing 성과 / night-run-sop 성과 (ledger/2026-07.md 2026-07-13 notion 4행).
+
+## 5. 후속 (같은 날 저녁, 사용자 피드백 즉시 반영)
+- 오너 보고 "G1이 텍스트뿐이라 판단 불가" → W-C(sonnet) 투입, `rip_repair.py visual` 신설(클론 실캡처+실물 덤프 와이어프레임 오버레이+크롭+정체설명 시트). 게이트 4검증 PASS+오케 눈검증. **신기법 [[techniques.visual-triage-sheet]] experimental 등록** — "판단을 요구하는 자동화는 판단 가능한 형식으로 증거를 내야 한다"는 원칙의 첫 코드화. 위 "병목/실패 ③"의 G1 병목이 시트로 해소되는지 다음 런에서 평가.

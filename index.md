@@ -32,6 +32,7 @@
 - [서브에이전트 병렬화 규칙 (독립·무충돌만 병렬)](techniques/subagent-fanout-rules.md) — standard
 - [트윈 미러 하네스 (실물·클론 동시 재생 비교)](techniques/twin-mirror-harness.md) — experimental
 - [URL 이탈 가드 (크롤러 실수 네비게이션 방어)](techniques/url-escape-guard.md) — verified
+- [G1 비주얼 판정 시트 (bbox 오버레이 + 크롭)](techniques/visual-triage-sheet.md) — experimental
 
 ## pipelines/
 - [99% 파리티 판정식 (v2 — 6축 게이트)](pipelines/99-percent.md) — verified
