@@ -35,3 +35,5 @@ flowchart LR
 - 2026-07-13 17:5x P3-1 완료: classify_layered(레벨0 반응유무→레벨2 엄격→레벨1 구조완화, --layered opt-in) · 반응다름 8→2(닫기/Escape/여백클릭×2/다음페이지/작업메뉴 6건 [기능일치-모양차이] 승격, 진짜델타 9건 비승격 보존) · test_rip_classify.py 6/6 PASS · delta_v3.md 생성
 - 2026-07-13 18:0x P3-3 완료: rip_repair.py(triage/rerip/verify+history) · view_gallery 파일럿 triage G1=17/G2=45/G3=22/G4=0 → 고신뢰 G2 수정(커밋 2aa2157) → 델타 282→237(-16%) · view_board 스팟 903→903 회귀 0 · parity_exceptions 무결
 - 2026-07-13 18:3x RUN4 마감: click_audit 508/508(100%) · tsc/build 클린 · RIP-PIPELINE/HANDOFF/_WORKLOG/ledger/cases 결산 완료
+- 2026-07-13 19:0x 후속(W-C): 오너 피드백 "G1 텍스트만으론 판단불가" → rip_repair.py visual(오버레이+크롭+정체설명 시트) 당일 구현 · 게이트 4검증 PASS · 신기법 visual-triage-sheet(experimental) 등록
+- 2026-07-13 20:0x 후속(W-D): 오너 결정 original-first → **ADR-0008** 채택 · view_gallery G1 17건 수복(hover 액션쌍·대형 add-tile·커버 wrapper·hiddenProps 설정갭) · **구조 델타 30→5(-83%)** · t_wishlist 템플릿 회귀 무결 · click_audit 508/508 재통과 · 커밋 4c85089
