@@ -3,7 +3,7 @@
 > 어떤 클론 프로젝트든 이 문서 하나로 무기고 시스템에 접속한다. **정본은 이 파일 — 프로젝트에는 포인터만 복사.**
 
 ## 0. 이 시스템이 뭔가
-- **무기고**: `techniques/`(기법 카드 30+, status: experimental→verified→standard→retired) · `pipelines/`(조립도) · `ledger/`(평가 원장) · `cases/`(캠페인별 진행+루프 도식) · `status/`(무인 런 라이브 상태판)
+- **무기고**: `techniques/`(기법 카드 30+, status: experimental→verified→standard→retired) · `pipelines/`(조립도) · `ledger/`(평가 원장) · `cases/`(캠페인별 진행+루프 도식) · `status/`(무인 런 라이브 상태판 — 덮어쓰기·휘발) · `runs/`(**세션별 런 매니페스트 — append-only 축적.** 로딩 기법+세션 로직 도식+로직 평가. 런끼리 diff=하네스 진화 기록)
 - 원칙: 대시보드=파생물(직접 편집 금지, `scripts/gen_dashboard.py`) · 승격/은퇴=Issue 제안→오너 승인 · standard만 skills/ 보유(강등 시 스킬도 제거)
 
 ## 1. 주입 절차 (프로젝트당 1회)
@@ -21,9 +21,9 @@
 ## 2. 운영 의식 (매 세션 — 오케스트레이터 의무)
 | 시점 | 할 일 |
 |---|---|
-| **캠페인 시작** | clone-kb `index.md` → 이번 작업 관련 카드만 로드. 프로젝트 상황에 맞는 기법 선택 근거를 한 줄 기록 |
+| **캠페인 시작** | clone-kb `index.md` → 이번 작업 관련 카드만 로드 + **`runs/<날짜>-<캠페인>-<주제>.md` 런 매니페스트 생성**(로딩 기법+선택 근거 표·세션 로직 mermaid 도식·안전경계) — "이번 세션은 이 로직으로 돈다"를 시작 시점에 고정 |
 | **무인 런 중** | 이벤트(에이전트 투입/완료·게이트·티켓)마다 `status/<프로젝트>.md` 갱신+push — 헤더 🔴 가동/⚪ 대기, 페이즈 mermaid·가동 에이전트 표·티켓 보드·이벤트 타임라인 |
-| **세션 결산** | ①`ledger/`에 사용 기법 판정 append(성과/실패/중립+증거 링크) ②`cases/<프로젝트>.md` 진행·도식 갱신 ③`gen_dashboard.py` 재생성 ④push |
+| **세션 결산** | ①`ledger/`에 사용 기법 판정 append(성과/실패/중립+증거 링크) ②**런 매니페스트 §4 로직 평가 채움**(작동한 것/병목/다음 런에서 바꿀 것 — 세션 '로직 자체'의 평가, ledger·승격의 근거) + status:running→done ③`cases/<프로젝트>.md` 진행·도식 갱신 ④`gen_dashboard.py` 재생성 ⑤push |
 | **새 기법 탄생** | experimental 카드 등록 → 2프로젝트 실증 시 verified → **Issue로 standard 승격 제안**(오너 승인) |
 | **기법이 배신** | 반례를 ledger에 기록, 반복되면 강등/은퇴 Issue (retired는 `superseded_by` 필수) |
 

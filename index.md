@@ -39,6 +39,9 @@
 - [RIP 파이프라인 v1 (전수 리핑 3단 조립도)](pipelines/rip-v1.md) — standard
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
+## runs/
+- [2026-07-13 canvas 세션10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) — running
+
 ## cases/
 - [캠페인 사례 — Akiflow 클론 (260622_akiflow-clone)](cases/akiflow.md) — verified
 - [캠페인 사례 — Higgsfield Canvas 클론 (260615_canvas-clone)](cases/canvas.md) — verified

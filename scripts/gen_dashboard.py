@@ -32,6 +32,7 @@ def load(doctype_dir):
     return out
 
 techs = load("techniques")
+runs = load("runs")
 cases = load("cases")
 pipes = load("pipelines")
 
@@ -57,6 +58,14 @@ L.append("")
 L.append("## 🔴 라이브 상태판 (무인 런 추적)")
 L.append("")
 L.append("- [canvas 캠페인](status/canvas.md) — 무인 런 중 이벤트마다 자동 갱신")
+L.append("")
+L.append("## 런 매니페스트 (runs/ — 세션 로직의 축적)")
+L.append("")
+L.append("| 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |")
+L.append("|---|---|---|---|---|")
+for r in sorted(runs, key=lambda x: x.get("date",""), reverse=True)[:15]:
+    n_t = len(r.get("techniques_loaded", []))
+    L.append(f"| {r.get('date','—')} | [{r.get('title', r.get('id'))}]({r['_file']}) | {r.get('campaign','—')} | {r.get('status','—')} | {n_t} |")
 L.append("")
 L.append("## 기법 상태 분포")
 L.append("")
