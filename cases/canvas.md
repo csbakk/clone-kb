@@ -17,9 +17,9 @@ owner: 박춘순
 
 ## 현재 상태 (2026-07-13 기준)
 - **dev 서버**: `localhost:5175` (`npm run dev`) · **CDP 포트**: 9223, 프로필 `~/.chrome-canvas-clone`
-- **파리티 게이트**: 8종 통과 (셸·노드·인터랙션·모델/업로드·상태/서피스/도구·크롤러)
+- **파리티 게이트**: 9종 통과 (셸·노드·인터랙션·모델/업로드·상태/서피스/도구·크롤러·**크로스-페이스트**) — 99% 판정식 항목④ 달성(2026-07-13 세션 10)
 - **RIP 레이어① 상태**: 19/19 전수 덤프, 0 스킵. attribute-diff 38,476 → 30,580 (**-20.5%**, 글로벌 CSS 리셋 배치 1회 후)
-- **테스트**: `npx vitest run` — 37/37, 상시 GitHub Actions CI
+- **테스트**: `npx vitest run` — 73/73(실측 JSON 픽스처 기반 클립보드 테스트 36개 포함), 상시 GitHub Actions CI
 - **브랜치**: `polish-effects`(구 데모 레이어, 2026-07-13 철거) vs `parity`(활성 캠페인 브랜치)
 
 ## 이 캠페인이 낳은 기법
@@ -30,6 +30,7 @@ owner: 박춘순
 - [[techniques.url-escape-guard]] — 크롤러가 실제로 유발한 네비게이션 사고에서 신설
 - [[techniques.orchestrator-model-routing]] — 빌더(sonnet)≠검증자(opus/fable) 규칙의 원 출처
 - [[pipelines.99-percent]] — 6축 판정식 정의 원 출처
+- [[techniques.cross-paste-parity]] — P1 파일럿(세션 10)으로 verified 승격: 실물 직렬화 계약(마커+localStorage) 채택, 왕복 4/4 diff 0. [[techniques.clipboard-source-of-truth]]의 "클립보드에 JSON 직접" 서술을 교정한 재실측(r2)도 이 라운드의 산물
 
 ## 현재 캠페인 루프 (도식 — 결산 시 갱신)
 

@@ -10,7 +10,7 @@
 - [CDP 비파괴 정찰 (peek 패턴, 리로드 금지)](techniques/cdp-nondestructive-recon.md) — standard
 - [CDP Raw 드라이버 (좀비 탭 우회)](techniques/cdp-raw-driver.md) — verified
 - [클립보드 JSON을 정본으로 (노드캔버스 앱)](techniques/clipboard-source-of-truth.md) — standard
-- [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — experimental
+- [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
 - [DOM 기반 측정 (픽셀 스샷 대체)](techniques/dom-first-measurement.md) — standard
 - [모델 매트릭스 diff (카탈로그 전수 검증, GENERATE 비용 0)](techniques/model-matrix-diff.md) — verified
@@ -41,7 +41,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
-- [2026-07-13 canvas 세션10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) — running
+- [2026-07-13 canvas 세션10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) — done: P1 게이트 통과(왕복 diff 0)
 
 ## cases/
 - [캠페인 사례 — Akiflow 클론 (260622_akiflow-clone)](cases/akiflow.md) — verified

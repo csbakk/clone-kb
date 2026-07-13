@@ -6,6 +6,7 @@ status: standard
 proven_in: [canvas]
 related: [techniques.cross-paste-parity, techniques.dom-first-measurement]
 evidence:
+  - "260615_canvas-clone ref/_RECON_clipboard_r2.md (2026-07-13) — 재실측: 클립보드=마커, 페이로드=localStorage 2단 구조로 교정. 원칙 코어는 유효 재확인(P1 파일럿이 이 계약 채택으로 왕복 diff 0 달성)"
   - "__obsidian/wiki/concepts/노드캔버스앱-복제-실전기법.md (2026-06-09) — Cmd+C→OS클립보드 JSON({nodes,edges})이 DOM/React-fiber 파싱보다 정확, 적용 사례 _tmp/hf_canvas_학습/"
   - "260615_canvas-clone/docs/2026-07-11-parity-campaign-strategy.md §4-② — '노드 데이터: 실물 노드 선택→Cmd+C 클립보드 JSON(정본). DOM 파싱·fiber보다 정확. stale 함정 → id·타입 교차검증'"
 updated: 2026-07-13
@@ -14,7 +15,9 @@ owner: 박춘순
 
 # 클립보드 JSON을 정본으로 (노드캔버스 앱)
 
-**한 줄**: React Flow류 노드캔버스 앱에서 노드/엣지 데이터의 정본은 DOM이 아니라 **Cmd+C가 OS 클립보드에 쓰는 JSON**(`{nodes, edges}`)이다.
+**한 줄**: React Flow류 노드캔버스 앱에서 노드/엣지 데이터의 정본은 DOM이 아니라 **Cmd+C가 만드는 직렬화 페이로드**다.
+
+> ⚠ **2026-07-13 재실측 교정(canvas r2)**: "OS 클립보드에 `{nodes,edges}` JSON이 직접 들어간다"는 초기 서술은 현재 Higgsfield Canvas에서 **사실이 아니다** — OS 클립보드엔 마커 문자열(`higgsfield-canvas-clipboard:<uuid>`)만 쓰이고 실제 페이로드는 `localStorage['higgsfield-canvas-clipboard']`={marker,payload}에 저장된다(2단 구조, ref/_RECON_clipboard_r2.md §0). **원칙 코어(복사 경로가 앱이 스스로 선언한 직렬화 계약 = 정본)는 그대로 유효**하나, "어디에 저장되는가"는 앱·버전마다 재실측하라.
 
 ## 언제 쓰나
 Higgsfield Canvas 같은 노드캔버스 앱을 클론할 때 노드 스키마(필드명, 타입, 좌표계)를 파악해야 하는 모든 순간. React DevTools로 fiber를 파싱하는 것보다 이 방법이 항상 더 정확하고 빠르다.
