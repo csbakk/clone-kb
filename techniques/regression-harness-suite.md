@@ -9,7 +9,7 @@ evidence:
   - "260615_canvas-clone/harness/_b1_verify.py ... _b11_verify.py, _bug1/_bug2_verify.py, _na_verify.py, _s2fix_verify.py — 기능/버그 단위 번호매김 검증 스크립트 다수, npx vitest run 37 tests 병행"
   - "260622_notion-clone/harness/*_gate.py — colresize_gate, columnedit_gate, columns_gate, date_gate, dragmenu_gate, dragselect_gate, editor_fixes_gate, formula_datemath_gate 등, click_audit.py 501/501 PASS"
   - "260622_akiflow-clone/harness/gate.py — 'GATE PASS 3/3'(parity 24/24 · flow 56/56 · glyph mismatch 0), tsc 0 errors"
-updated: 2026-07-13
+updated: 2026-07-14
 owner: 박춘순
 ---
 
@@ -31,6 +31,10 @@ owner: 박춘순
 ## 함정
 - 검증 스크립트가 빌더 자신이 짠 것이면 빌더의 맹점을 그대로 물려받는다 → 가능하면 [[techniques.adversarial-verification]] 원칙과 결합(검증 스크립트는 "빌더의 주장"이 아니라 "독립 재측정"이어야 함).
 - 스크립트 개수가 늘어나면 전체 실행 시간이 길어진다 — akiflow의 `gate.py`처럼 상위 통합 게이트로 묶어 한 번에 PASS/FAIL 요약을 내는 게 확장성에 좋다.
+
+## 함정 (2026-07-14 notion 실전 추가)
+- **합성 이벤트 거짓 양성**: JS `dispatchEvent(new DragEvent('drop',…))`는 dragover-preventDefault 수용 요건과 브라우저 드래그 파이프라인을 우회한다 — 게이트 27/27이 통과해도 실제 파인더 드롭은 무반응이었던 사례(.editor-trailer 핸들러 부재). 네이티브 경로 검증은 **CDP `Input.dispatchDragEvent`**로. 입력 이벤트류(드래그·클립보드·IME) 게이트는 "합성이 우회하는 브라우저 게이트가 뭔가"를 먼저 물을 것.
+- **절대좌표 픽스처 취약성**: 게이트에 하드코딩된 viewport 절대좌표(x=6)가 UI 상태(사이드바 접힘 여부)에 따라 다른 요소에 떨어져 시점차 FAIL/PASS — 좌표는 항상 **기준 요소 bounding_box 상대**로 계산(elementFromPoint 사전검증 포함).
 
 ## 관련
 - [[techniques.append-only-logging]] — 검증 통과/실패 이력을 남기는 짝 기법

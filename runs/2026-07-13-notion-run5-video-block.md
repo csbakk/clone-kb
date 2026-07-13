@@ -50,3 +50,8 @@ flowchart TD
 - **병목/실패**: ① 실물 라이브 페이지의 호버 전용 UI는 read-only 제약과 충돌(비디오 툴바 실물 확인 불가로 G1 잔존) — 스크래치 존에 비디오 블록을 만들어두면 해소 가능(다음 런). ② click_audit 전체(508)가 여전히 마감 지배 항목 — 상태별 스팟 모드 미착수.
 - **다음 런에서 바꿀 것**: ① 실물 스크래치 페이지에 비디오 블록 추가(오너 1회 업로드 필요)→호버 툴바·핸들 실측으로 G1 해소 ② P3-4는 사용자 입회 세션으로 ③ visual-triage-sheet 2회 실증 완료 — verified 승격 Issue 검토.
 - **ledger 반영**: rip-css-dump 성과 / visual-triage-sheet 성과(2회차) / night-run-sop 중립(DevTools 마찰) — ledger/2026-07.md.
+
+## 5. 후속 (2026-07-14 새벽 — 사용자 버그 리포트 대응, W-J·W-K)
+- **오너 실사용이 게이트 27/27을 뚫은 버그를 발견**(dogfooding): 파인더 드래그 업로드 무반응. 근본원인=.editor-trailer(빈 영역) drag/drop 핸들러 부재 — W-E 게이트의 JS 합성 DragEvent가 dragover 수용 요건을 우회해 거짓 양성. CDP `Input.dispatchDragEvent` 계측으로 확정, 수정(580da51), 게이트를 네이티브 경로로 교체+trailer mp4/mov 케이스 → 29/29.
+- parity_exceptions_gate FAIL 추적(W-K): 제품 회귀 아님 — 게이트 하드코딩 절대좌표(x=6)가 사이드바에 명중하던 픽스처 결함(오후 PASS는 사이드바 접힘 우연). 요소 상대좌표로 수리, 게이트 3종 PASS.
+- **로직 평가 추가**: ①"게이트 통과"≠"실사용 검증" — 입력 이벤트류는 합성이 우회하는 브라우저 게이트를 먼저 물어야(카드 함정 2건 추가) ②오너의 재현 영상(capture-draw events+timeline)이 원인 격리를 크게 가속 — 재현 영상 제공을 버그 리포트 표준으로.
