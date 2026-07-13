@@ -2,10 +2,11 @@
 id: techniques.visual-triage-sheet
 title: G1 비주얼 판정 시트 (bbox 오버레이 + 크롭)
 doctype: technique
-status: experimental
-proven_in: [notion]
+status: verified
+proven_in: [notion, canvas]
 related: [techniques.rip-repair-loop, techniques.rip-css-dump, techniques.dom-first-measurement]
 evidence:
+  - "260615_canvas-clone ref/rip/p2/triage_ambiguous.html (2026-07-14) — 2번째 캠페인 실증: 모호 78티켓→13클러스터·34크롭, 최대 클러스터(3,014 diffs)가 CSS 갭이 아닌 aligner 1:N 오매칭임을 크롭으로 직접 증명"
   - "260622_notion-clone/harness/rip_repair.py `visual` 서브커맨드 + harness/test_triage_visual.py (4검증 PASS)"
   - "260622_notion-clone/ref/rip/repair_view_gallery_triage_visual.md — G1 17건 첫 실전 시트"
 updated: 2026-07-13

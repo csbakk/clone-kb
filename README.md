@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-14 00:33). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-14 05:39). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -11,6 +11,7 @@
 
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
+| 2026-07-14 | [canvas 세션 11 — P2 델타 소탕 + 탐사기 승격 (무인 10h)](runs/2026-07-14-canvas-p2-deltasweep-explorer.md) | canvas | done | 10 |
 | 2026-07-13 | [canvas 세션 10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) | canvas | done | 6 |
 | 2026-07-13 | [notion RUN4 — P3 수복 자동체인 (분류기 계층화 + rip_repair)](runs/2026-07-13-notion-p3-repair-chain.md) | notion | done | 5 |
 | 2026-07-13 | [notion RUN5 — 동영상 블록 파리티 + RIP 2층 대조 + 정렬기 매칭 v2](runs/2026-07-13-notion-run5-video-block.md) | notion | done | 6 |
@@ -21,8 +22,8 @@
 pie showData
     title 기법 31장
     "정식 (standard)" : 11
-    "검증 (verified)" : 11
-    "실험 (experimental)" : 8
+    "검증 (verified)" : 13
+    "실험 (experimental)" : 6
     "은퇴 (retired)" : 1
 ```
 
@@ -44,7 +45,7 @@ pie showData
 | RIP 레이어① CSS/DOM 전수 덤프 | canvas, notion | [techniques/rip-css-dump.md](techniques/rip-css-dump.md) |
 | 서브에이전트 병렬화 규칙 (독립·무충돌만 병렬) | kit, canvas, notion | [techniques/subagent-fanout-rules.md](techniques/subagent-fanout-rules.md) |
 
-### 검증 (verified) — 11
+### 검증 (verified) — 13
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -57,10 +58,12 @@ pie showData
 | 호버 중 레코딩 (Clone Inspector + ci_agent) | notion | [techniques/record-during-hover.md](techniques/record-during-hover.md) |
 | RIP 레이어② 인터랙션 크롤러 | canvas, notion | [techniques/rip-crawler.md](techniques/rip-crawler.md) |
 | RIP 레이어③ 자동 수복 루프 | canvas, notion | [techniques/rip-repair-loop.md](techniques/rip-repair-loop.md) |
+| 상태 탐색기 (커버리지 % 자동 측정) | canvas | [techniques/state-explorer.md](techniques/state-explorer.md) |
 | 상태 명세 JSON (URL + 도달 절차 재현) | notion | [techniques/state-spec-json.md](techniques/state-spec-json.md) |
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
+| G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 8
+### 실험 (experimental) — 6
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -69,9 +72,7 @@ pie showData
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
 | 픽셀 지문 게이트 (≥99% 점수 재현성) | — | [techniques/pixel-fingerprint-gate.md](techniques/pixel-fingerprint-gate.md) |
-| 상태 탐색기 (커버리지 % 자동 측정) | — | [techniques/state-explorer.md](techniques/state-explorer.md) |
 | 트윈 미러 하네스 (실물·클론 동시 재생 비교) | — | [techniques/twin-mirror-harness.md](techniques/twin-mirror-harness.md) |
-| G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
 ### 은퇴 (retired) — 1
 

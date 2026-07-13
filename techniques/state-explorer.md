@@ -2,10 +2,11 @@
 id: techniques.state-explorer
 title: 상태 탐색기 (커버리지 % 자동 측정)
 doctype: technique
-status: experimental
-proven_in: []
+status: verified
+proven_in: [canvas]
 related: [techniques.rip-crawler, techniques.state-spec-json, pipelines.99-percent]
 evidence:
+  - "260615_canvas-clone ref/_RIP_EXPLORE_PILOT.md (2026-07-14) — 프론티어 큐 BFS 파일럿: 사람 미열거 신규 상태 자동 발견(opus 보정 후 6패밀리, 기준 ≥5)·커버리지 % 산출(실물 8.7%/클론 7.2%)·안전 무사고. ⚠조건부: novelty 분류기 실물측 맹점(AA-D1) 보강이 필수 후속(ref/_VERIFY_r1.md §AA)"
   - "260615_canvas-clone/docs/2026-07-13-99-percent-plan.md §4, §6 — 판정식 항목①(상태 커버리지 ≥95%), 파일럿 승격 기준: '사람이 열거 안 한 신규 상태 ≥5개 자동 발견'"
 updated: 2026-07-13
 owner: 박춘순
