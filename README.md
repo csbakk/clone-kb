@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-13 17:57). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-13 18:23). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -102,6 +102,9 @@ pie showData
 | 2026-07-13 | canvas | adversarial-verification | 성과 — 캠페인 누적 결함 29건 중 빌더 자가선언 오류 다수 적발 | canvas ref/_VERIFY_r1.md §X |
 | 2026-07-13 | canvas | pixel-screenshot-as-primary-oracle | 실패(확정) — retina 드리프트·우측 요소 누락, dom-first로 대체·은퇴 | notion CLONE-METHOD.md §측정 |
 | 2026-07-13 | (운영) | night-run-sop | 중립 — 서브에이전트 'Monitor 통지 대기' 정지 3회: 브리프에 '통지 대기 금지·bounded 폴링' 명문화로 해소 | canvas _WORKLOG 세션5 |
+| 2026-07-13 | notion | rip-repair-loop | 성과 — 체인 스크립트화(rip_repair.py triage/rerip/verify), view_gallery 파일럿 -16%·회귀 0, "클론만 재덤프" 원칙 코드 고정 | notion ref/rip/repair_view_gallery_cycle1.md |
+| 2026-07-13 | notion | rip-crawler | 성과 — §함정(Jaccard 과잉분류)을 classify_layered 3계층으로 해소, 반응다름 8→2·진짜델타 비승격 보존, 게이트 6/6 | notion ref/rip/crawl_peek_open_delta_v3.md |
+| 2026-07-13 | notion | orchestrator-model-routing | 성과 — fable 오케(코드 0줄)+sonnet 빌더 2기 직렬, 양쪽 다 게이트 1발 통과·오케 독립 재검증으로 자가선언 리스크 차단 | notion _WORKLOG 2026-07-13 RUN4 |
 
 ## 소비 방법 (에이전트)
 

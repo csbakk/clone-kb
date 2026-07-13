@@ -15,11 +15,11 @@ owner: 박춘순
 
 **외부 작업폴더**: `~/Documents/project/260622_notion-clone/` (실물 앱: Notion, app.notion.com)
 
-## 현재 상태 (2026-07-13, "무인 런3" 기준)
+## 현재 상태 (2026-07-13 저녁, "RUN4" 기준)
 - **dev 서버**: `localhost:5185` (Vite, strictPort) · **CDP 포트**: 9224, 프로필 `~/.chrome-notion-clone`
-- **RIP 파이프라인**: 구조 CSS diff + 인터랙션 크롤러 P0~P2 완료, P3(자동수복+분류기 정밀도) 미착수. 정렬기 상대좌표 모드(T46에서 구현)·parity_exceptions.json 보호 레지스트리 가동
+- **RIP 파이프라인**: P0~P3 완료(P3-4 R4흡수 검토만 잔여). P3-1 분류기 계층화(`classify_layered` 3단 라벨, `--layered` opt-in, 반응다름 8→2) + P3-3 수복 자동체인(`rip_repair.py` triage/rerip/verify, view_gallery 파일럿 -16%·회귀 0). 정렬기 상대좌표 모드(T46)·parity_exceptions.json 보호 레지스트리 가동
 - **devotion 채널** (2026-07-13 오후): 클론=AI 통신 채널화 — ①페이지 실시간 파일 영속(pages/*.md+json) ②멀티셀렉 "⤓ AI로 보내기"(selections/*.json) ③**ops API v1**(POST /op→열린 탭 실시간 적용·presence-lite·annotate.py) — 동시편집 게이트 9/9. 3단계 Yjs 전환은 T51 설계서 완비
-- **회귀**: click_audit **501/501 PASS (100%)**, tsc/build 클린
+- **회귀**: click_audit **508/508 PASS (100%)** (501→508=devotion 테스트 페이지 추가), tsc/build 클린
 - **RIP 델타 축소**: 전체 1539→1083(-30%), 캘린더 157→18(**-88.5%**, 최대폭), 타임라인 348→324→60(T46 상대좌표 수정 후 -81.5%), date popup 152→27(-82.2%), title_hover 29→**0**(완전 수렴)
 - **무인 10시간 런**: 명시적 번호매김 2회(RUN2 0712, RUN3 0713), 그 전 5H/무번호 10H 런 3회
 - **클론 규모**: 페이지 191(rowdoc +86 포함), DB 58, row 418
@@ -43,13 +43,14 @@ flowchart LR
     RERIP -->|"수렴"| NEXT["P1 상태 확장 → P2 크롤러 → P3 수복 통합"]
 ```
 
-**진행 단계 (RIP 로드맵)**: P0 파일럿 ✅ → P1 상태 9종 수렴 ✅(F1~F5+T34) → P2 크롤러 ✅(peek_open 파일럿) → P3 수복 루프 통합 ⬜(상대좌표 정규화는 선행 완료)
+**진행 단계 (RIP 로드맵)**: P0 파일럿 ✅ → P1 상태 9종 수렴 ✅(F1~F5+T34) → P2 크롤러 ✅(peek_open 파일럿) → P3 수복 루프 통합 ✅(분류기 계층화+rip_repair 체인, P3-4 R4흡수 검토만 잔여)
 
 ## 잔여 티켓 / 남은 일
-- P3 자동수복 체인 + mutation-Jaccard 분류기 정밀도(과잉분류 문제).
-- R4 템플릿-페어링 잔여 4쌍 · T47 타임라인 툴바 잔여 · 크롤러 깊이 확장(depth 1→2+).
+- P3-4: R4 템플릿-페어 4쌍을 RIP 상태 spec으로 흡수(rip_repair 체인에 태우기).
+- 갤러리 G1 판단 2건(속성칩 표시설정 갭·add-tile) · triage transition 휴리스틱 정제.
+- T47 타임라인 툴바 잔여 · 크롤러 깊이 확장(depth 1→2+).
 - T51 Yjs 멀티유저 전환(설계서 완비, 배포 시점) — `ref/design/T51_yjs_migration.md`.
 - ~~사용자 확인 대기~~ → 2026-07-13 결정 5건 전부 실행 완료(아이콘 원복·즉시랜덤 동일화·과잉구현 무반응화·T46 -81.5%·채널 개통). B20도 해소.
 
 ## 최근 세션
-2026-07-13 (RUN3: RIP P0~P2 완주 · 사용자 결정 5건 실행 · devotion 채널 3종 개통 · clone-kb 주입).
+2026-07-13 저녁 (RUN4: P3 완주 — 분류기 계층화 6/6 PASS·rip_repair 체인 파일럿 -16%·회귀 0 · 세션시작 포인터 체인 첫 실전 · click_audit 508/508). 직전: RUN3(RIP P0~P2 완주 · 결정 5건 · devotion 채널 3종 · clone-kb 주입).
