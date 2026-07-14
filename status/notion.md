@@ -42,6 +42,7 @@ flowchart LR
 - 2026-07-13 19:0x 후속(W-C): 오너 피드백 "G1 텍스트만으론 판단불가" → rip_repair.py visual(오버레이+크롭+정체설명 시트) 당일 구현 · 게이트 4검증 PASS · 신기법 visual-triage-sheet(experimental) 등록
 - 2026-07-13 20:0x 후속(W-D): 오너 결정 original-first → **ADR-0008** 채택 · view_gallery G1 17건 수복(hover 액션쌍·대형 add-tile·커버 wrapper·hiddenProps 설정갭) · **구조 델타 30→5(-83%)** · t_wishlist 템플릿 회귀 무결 · click_audit 508/508 재통과 · 커밋 4c85089
 - 2026-07-13 밤 RUN5 완주(2h 무인, W-E~W-I 4워커): **동영상 블록 신설**(네이티브 플레이어·DnD 업로드·툴바·⋯메뉴·리사이즈·캡션, 게이트 27/27, 브릿지 Range 결함 발견·수정, 커밋 2802f43·bc4533a) · **RIP 2층 실물대조**(G2 2건 수복 bb30e39, G1 3건 오너대기) · **rip_align --match-v2**(11상태 스윕 개선5/악화0, 갤러리 5→2) · 마감 click_audit **508/508**·tsc/build 클린
+- 2026-07-14 오후(W-Q): **미디어 컬럼 split 파리티**(오너 체크리스트 4항) — 이미지↔영상 split·컬럼 내 거터 핸들·컬럼 하단 입력·gap 46px 실측 적용 · 근본원인=드래그 중 hover 미갱신+video 히트테스트 이탈 · column_media_gate 16/16 신설 · 전 게이트 회귀 그린 · click_audit 508/508
 - 2026-07-14 오후(W-N~W-P): 오너 델타 리포트 3건 수복(정렬 팝오버·⋯메뉴 앵커 실측 ±2px 게이트, 아이콘 10종 실측 SVG) · **asset-provenance-gate 신설**(자작 자산 자동 적발, 부채 12 발굴→전량 해소, 등록 106) · **실물 조작 규칙 개정**(read-only 도그마 소거 — R&D 개방, 원상복구 원칙) · 게이트 37/37
 - 2026-07-14 오전(W-M): 오너 협조 실측으로 비디오 G1 3건 전부 해소(핸들·툴바·pointerEvents) · CLONE_ONLY 구조델타 0 달성 · 게이트 29/29 · 커밋 e50f773
 - 2026-07-14 새벽(오너 버그 리포트 대응, W-J·W-K): **DnD 무반응 근본수정**(.editor-trailer 핸들러 부재, 커밋 580da51) — 합성 DragEvent 거짓 양성을 CDP Input.dispatchDragEvent 네이티브 게이트로 교체(29/29) · 오너 페이지에 수정 증거 드롭 · parity_exceptions_gate FAIL=픽스처 절대좌표 결함 판정·수리(제품 무죄, 게이트 3종 PASS) · regression-harness-suite 카드 §함정 2건 추가
