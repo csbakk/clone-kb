@@ -42,6 +42,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-14 canvas 세션13 — 생성 동작 파리티 파일럿 + 델타 소탕 (무인 3h)](runs/2026-07-14-canvas-s13-gen-parity.md) — running
 - [2026-07-14 canvas 세션12 — 오너 트리아지 판정 소비 (오케=opus)](runs/2026-07-14-canvas-s12-triage-consume.md) — done: -880(누적 -9.2%)
 - [2026-07-14 canvas 세션11 — P2 델타 소탕+탐사기 승격 (무인 10h)](runs/2026-07-14-canvas-p2-deltasweep-explorer.md) — done: 델타 -14.6%·탐사기 파일럿 성공(게이트 §AA)
 - [2026-07-13 canvas 세션10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) — done: P1 게이트 통과(왕복 diff 0)
