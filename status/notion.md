@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: 🔴 가동 중 (RUN8 — 10h 무인: 트리 리팩터 + 실물검증 + 누락블록) · 마지막 갱신: 2026-07-15 새벽
+**런 상태**: ⚪ 대기 (RUN8 완주 — 트리 리팩터 phase-1b·블록5종·실물검증, T2 508/508) · 마지막 갱신: 2026-07-15 아침
 
 ## 현재 페이즈
 ```mermaid
@@ -33,6 +33,7 @@ flowchart LR
 | ⬜ 대기 | P3-4 R4흡수 · 갤러리 G1 판단 2건 · T47 툴바 잔여 · T51 Yjs(배포 시점) · 크롤러 depth |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-15 RUN8 마감(10h 무인): **트리 리팩터 phase-1b 완주**(store 전 변이 트리화, columns.ts 화해배관 제거) · 신규 블록 bookmark·embed·file·link_preview + status DB컬럼 · #1 실물검증(255p/32DB, teardown 확증) · **T2 508/508** · 아침 HTML보고. 다음=SoT 승격(입회)·phase-2 렌더재귀화(입회)
 - 2026-07-15 새벽 RUN8: **트리 phase-1b 완료**(store 전 변이 트리화, moveBlocks까지, 8게이트 그린 유지) · bookmark 블록(실물66회) · SoT 승격은 persist포맷 변경이라 입회 결정 보류 · 다음=status 컬럼·추가 누락블록
 - 2026-07-15 새벽 RUN8 진행: 트리 phase-1a(변환기)·1b-1(delete/dup/move)·1b-2(insert류) 트리화 완료·push, 전 게이트 그린 유지 · 구코드 잠복버그(depth점프 고아) 트리버전이 수정 · bookmark 블록(실물66회) 착수 · moveBlocks만 미전환(predecessor 프리미티브 필요)
 - 2026-07-15 새벽 RUN8 개시(10h 무인): 안전망·데일리분리·quick wins·트리변환기(phase-1a) 토대 완료 → 실물검증(255p/32DB/depth8, teardown 확증·bookmark 최다) → 트리 phase-1b(store 트리화) 착수
