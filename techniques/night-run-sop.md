@@ -36,10 +36,11 @@ owner: 박춘순
 3. 사람 5분 (아침): `_BLOCKED.md` + 커밋 로그만 훑고 다음 지시.
 
 ## 안전경계 (반드시 지키는 것)
-- **쓰기 범위**: `clone/` 디렉토리만. 실물 앱은 read-only(peek, 비파괴 — [[techniques.cdp-nondestructive-recon]]).
+- **쓰기 범위**: 코드는 클론 repo. **실물 앱 조작은 개방**(2026-07-14 오너: R&D는 redo 가능이라 파괴적 동작·GENERATE 허용) — read-only 아님. peek 정찰은 여전히 유효하나 "read-only라 실측 불가"는 도그마([[techniques.cdp-nondestructive-recon]]).
 - **롤백**: 태스크 단위 git commit — 문제 생기면 그 커밋만 되돌리면 됨.
 - **토큰/시간/비용 상한** 설정.
-- **금지행위**: 무맹목 삭제, 실데이터 변경(mutation), CDP 브라우저 강제 종료, 파괴적 shell 명령.
+- **금지행위(비가역·외부유출만)**: 외부 전송·게시/공유·결제 확정·계정 영구 설정 변경·휴지통 영구삭제, CDP 브라우저 강제 종료, 파괴적 shell 명령. (실데이터 mutation·GENERATE는 **더 이상 금지 아님** — redo 가능 R&D. 조작 후 Cmd+Z/재생성 복원 확인)
+- **무인 런 GENERATE**: 기본 테스트에 생성 동작 포함(동작 파리티) — **저크레딧 우선**(최저가 모델·batch 1·최저 해상도/duration) + bounded(무한/고크레딧 생성 루프 금지, 크레딧 잔량 주기 확인).
 - **완료 판단은 디스크 산출물로만** — 워커의 자가보고를 신뢰하지 않는다(→ [[techniques.adversarial-verification]]와 동일 뿌리). `pgrep -f <script>.py`로 생존 확인(`.py` 없이 grep하면 오탐).
 - **막힘 카운트 기본 5회 초과 시** 부분 결과 저장하고 정지 — 무한 재시도 금지.
 - Chrome은 CDP 포트당 동시 1워커로 직렬화(→ [[techniques.port-profile-isolation]]). git/localStorage 쓰기도 직렬화.
