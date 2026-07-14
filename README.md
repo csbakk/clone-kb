@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-14 14:54). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-14 15:02). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -12,6 +12,7 @@
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
 | 2026-07-14 | [canvas 세션 11 — P2 델타 소탕 + 탐사기 승격 (무인 10h)](runs/2026-07-14-canvas-p2-deltasweep-explorer.md) | canvas | done | 10 |
+| 2026-07-14 | [canvas 세션 12 — 오너 트리아지 판정 소비 (오케=opus)](runs/2026-07-14-canvas-s12-triage-consume.md) | canvas | done | 7 |
 | 2026-07-13 | [canvas 세션 10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) | canvas | done | 6 |
 | 2026-07-13 | [notion RUN4 — P3 수복 자동체인 (분류기 계층화 + rip_repair)](runs/2026-07-13-notion-p3-repair-chain.md) | notion | done | 5 |
 | 2026-07-13 | [notion RUN5 — 동영상 블록 파리티 + RIP 2층 대조 + 정렬기 매칭 v2](runs/2026-07-13-notion-run5-video-block.md) | notion | done | 6 |
