@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-15 00:33). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-15 01:03). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -23,10 +23,10 @@
 
 ```mermaid
 pie showData
-    title 기법 32장
+    title 기법 33장
     "정식 (standard)" : 11
     "검증 (verified)" : 13
-    "실험 (experimental)" : 7
+    "실험 (experimental)" : 8
     "은퇴 (retired)" : 1
 ```
 
@@ -66,7 +66,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 7
+### 실험 (experimental) — 8
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -75,6 +75,7 @@ pie showData
 | 블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인) | — | [techniques/blind-ab-test.md](techniques/blind-ab-test.md) |
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
+| 스키마 마이그레이션 안전망 (버전·백업·invariant·게이트) | notion | [techniques/persist-migration-safety-net.md](techniques/persist-migration-safety-net.md) |
 | 픽셀 지문 게이트 (≥99% 점수 재현성) | — | [techniques/pixel-fingerprint-gate.md](techniques/pixel-fingerprint-gate.md) |
 | 트윈 미러 하네스 (실물·클론 동시 재생 비교) | — | [techniques/twin-mirror-harness.md](techniques/twin-mirror-harness.md) |
 

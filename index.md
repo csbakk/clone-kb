@@ -15,6 +15,7 @@
 - [DOM 기반 측정 (픽셀 스샷 대체)](techniques/dom-first-measurement.md) — standard
 - [모델 매트릭스 diff (카탈로그 전수 검증, GENERATE 비용 0)](techniques/model-matrix-diff.md) — verified
 - [야간 무인 런 SOP (graceful skip · 안전경계 · 큐)](techniques/night-run-sop.md) — standard
+- [스키마 마이그레이션 안전망 (버전·백업·invariant·게이트)](techniques/persist-migration-safety-net.md) — experimental
 - [오케스트레이터 모델 라우팅 (fable 오케 / sonnet 빌더 / opus 검증)](techniques/orchestrator-model-routing.md) — standard
 - [osascript 트러스티드 입력 하이브리드 (한글 IME 우회)](techniques/osascript-trusted-hybrid.md) — verified
 - [파리티 CI (교차앱 자동 회귀 파이프라인)](techniques/parity-ci.md) — experimental
