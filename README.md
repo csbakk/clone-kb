@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-15 01:03). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-15 01:52). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -11,6 +11,7 @@
 
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
+| 2026-07-15 | [canvas 세션 15 — 계정 라우팅 + 브리지 end-to-end + 유령티켓 정정 + 델타](runs/2026-07-15-canvas-s15-account-e2e.md) | canvas | done | 5 |
 | 2026-07-14 | [canvas 세션 11 — P2 델타 소탕 + 탐사기 승격 (무인 10h)](runs/2026-07-14-canvas-p2-deltasweep-explorer.md) | canvas | done | 10 |
 | 2026-07-14 | [canvas 세션 12 — 오너 트리아지 판정 소비 (오케=opus)](runs/2026-07-14-canvas-s12-triage-consume.md) | canvas | done | 7 |
 | 2026-07-14 | [canvas 세션 13 — 생성 동작 파리티 파일럿 + 델타 소탕 (무인 3h)](runs/2026-07-14-canvas-s13-gen-parity.md) | canvas | done | 8 |
