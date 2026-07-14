@@ -33,6 +33,7 @@ flowchart LR
 | ⬜ 대기 | P3-4 R4흡수 · 갤러리 G1 판단 2건 · T47 툴바 잔여 · T51 Yjs(배포 시점) · 크롤러 depth |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-15 새벽 RUN8 진행: 트리 phase-1a(변환기)·1b-1(delete/dup/move)·1b-2(insert류) 트리화 완료·push, 전 게이트 그린 유지 · 구코드 잠복버그(depth점프 고아) 트리버전이 수정 · bookmark 블록(실물66회) 착수 · moveBlocks만 미전환(predecessor 프리미티브 필요)
 - 2026-07-15 새벽 RUN8 개시(10h 무인): 안전망·데일리분리·quick wins·트리변환기(phase-1a) 토대 완료 → 실물검증(255p/32DB/depth8, teardown 확증·bookmark 최다) → 트리 phase-1b(store 트리화) 착수
 - 2026-07-14 밤 RUN7(유인): **devotion "AI 보내기" 첫 실전 왕복** 성공 · 영상 ⋮⋮ 핸들 메뉴 회귀 수복(W-R 과통일 → 타입인지 MediaHandleMenu, video_block_gate 42/42) · 사이드바 닫기 버튼 신규(실측) · 토글 아이콘 글리프→실측 SVG 교체(재열기=햄버거 규명, 부채0) · 티어링 준수(T2 미실행)
 - 2026-07-14 저녁 RUN6 완주(1h 무인): W-R 회귀 3건 수복(컬럼 풀메뉴·마퀴 존·선택추적+selectRange 실버그) · **검증 티어링 T0/T1/T2**(smoke_flows 15체크/23초, 검출력 증명 6FAIL→15/15) · W-T **예외 설정 패널**(테마 3택+예외 6종 토글, settings_gate 23/23) · T2 마감 click_audit **508/508**
