@@ -9,7 +9,8 @@ evidence:
   - "260615_canvas-clone/ref/_RIP_MASTER_DELTA.md §4 — 티켓 그룹 4분류(판단필요/구현명확/시각확인필요/하네스자체버그), harness/rip_resweep_clone.py로 클론만 재덤프해 재검증"
   - "260615_canvas-clone/ref/_RIP_MASTER_DELTA.md §8 RIP-T-E — --radius-btn/--radius-pill 토큰 분리 사례 (1차 과잉교정 → 재측정 → 수정)"
   - "260622_notion-clone/RIP-PIPELINE.md — 델타 리포트가 티켓 배치로 이어짐, 재수렴 확인"
-updated: 2026-07-13
+  - "260615_canvas-clone 세션17(2026-07-16) — 측정 전 window-size 정합 선행(→ [[techniques.dom-first-measurement]])이 22,626 중 −3,558을 하네스 노이즈로 분리, 남은 진짜갭 3건(줌바·Share·ref-add)만 수복해 17,490 확정. '노이즈 분리 후 수복'이 새 표준 절차로 굳어짐"
+updated: 2026-07-16
 owner: 박춘순
 ---
 

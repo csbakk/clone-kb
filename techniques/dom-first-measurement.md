@@ -10,7 +10,8 @@ evidence:
   - "260615_canvas-clone/docs/2026-07-11-parity-campaign-strategy.md §4 — '픽셀 스샷 대신 DOM(2026-07-10 채택) — 추측 0'"
   - "260622_notion-clone/CLONE-METHOD.md 헤더 — '★측정은 DOM 기반으로 (픽셀 스샷 대체 — 2026-07-10 채택, 모든 웹 클론 재사용)'"
   - "260622_notion-clone/harness/dom_recorder.py 헤더 — '왜: 픽셀 측정은 부정확·retina 드리프트에 취약'"
-updated: 2026-07-13
+  - "260615_canvas-clone 커밋 60e0311(2026-07-16, 세션17) — isolated 재측정 전 클론창 window-size를 실물 캡처 규격(1512x862→1556x895)에 정합, 22,626 중 −3,558을 순수 하네스 노이즈로 규명·분리"
+updated: 2026-07-16
 owner: 박춘순
 ---
 
@@ -34,6 +35,7 @@ owner: 박춘순
 ## 함정
 - 관찰 루트를 너무 넓게 잡으면(예: `body` 전체 + mutation마다 `getBoundingClientRect`) CPU 스파이크 → 발열/행 걸림. 좁은 root + 개수 캡(canvas는 600개) 필수.
 - 스크린샷을 완전히 버리는 게 아니다 — 연속 스텝 동작(애니메이션 프레임 등)은 AI가 영상을 못 보므로 스텝별 스크린샷이 여전히 필요(→ [[techniques.animation-ripper]] 참고). "1차 수치 오라클"에서만 제외.
+- **window-size 미정합 = 가짜 bbox 델타 (2026-07-16 세션17)**: DOM box 측정(`getBoundingClientRect`)은 뷰포트 크기에 그대로 좌우된다. 클론창을 실물 캡처 당시 창 크기에 맞추지 않은 채(canvas 사례: 실물 1512x862, 클론 1556x895) isolated diff를 돌리면, 모든 엘리먼트 좌표·크기가 계통적으로 어긋나 **코드는 안 바뀌었는데 델타가 대량 발생**한다(canvas 실측: 22,626건 중 −3,558건, 15.7%가 이 노이즈였음). **규칙**: 측정 스크립트 시작 시 클론창을 실물 캡처 규격에 먼저 정합(리사이즈)한 뒤에만 diff를 신뢰한다 — "정합 선행"이 측정 파이프라인의 0단계.
 
 ## 관련
 - [[techniques.pixel-screenshot-as-primary-oracle]] — 이 기법이 대체한 구방식 (retired)

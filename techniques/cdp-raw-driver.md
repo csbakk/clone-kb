@@ -8,7 +8,8 @@ related: [techniques.cdp-nondestructive-recon, techniques.rip-css-dump]
 evidence:
   - "260615_canvas-clone/harness/cdp_raw.py — CdpSession(url_substr, cdp_http) 단일 healthy 타겟에만 raw websocket attach, Page.bringToFront 매 init마다 호출"
   - "2026-07-13 REC-G 세션 도입 — '이 세션 최대 시간 소모 버그'로 기록"
-updated: 2026-07-13
+  - "260615_canvas-clone 커밋 7b0e950(2026-07-16, 세션17) — CdpSession 다중탭 매칭 모호성 → 시끄럽게 실패하도록 가드 신설. 계기: 동일 dev포트(5175) 2탭에서 substring이 비결정적으로 엉뚱한 탭에 attach해 클론 자율생성 프로젝트 doc.json이 오토세이브로 2회 빈 채 덮어써짐(백업 복원, 데이터 유실 0)"
+updated: 2026-07-16
 owner: 박춘순
 ---
 
@@ -31,6 +32,7 @@ canvas-clone 세션에서 특정 탭(`766028e1-...`)이 `Runtime.enable`/`Page.e
 
 ## 함정
 - `bringToFront`를 남용하면 사람이 다른 작업 중일 때 포커스를 뺏을 수 있다 — 반드시 자기 소유 클론/샌드박스 탭에만 한정.
+- **멀티탭 substring 비결정성 (2026-07-16 세션17, 실제 데이터 손상 유발)**: `url_substr` 매칭이 "부분 문자열 포함하는 첫 healthy 타겟"을 잡는 방식이라, 같은 dev 포트(예: `localhost:5175`)에 탭이 2개 이상 열려 있으면 **어느 탭에 붙을지 비결정적**이다. canvas-clone에서 이 때문에 빌더 세션이 오래된/다른 프로젝트 탭에 attach해 클론 자율생성 프로젝트(`canvas-projects/cb30b89ae3d4/doc.json`)를 빈 상태로 2번 오토세이브해 덮어씀 — 백업에서 즉시 복원해 데이터 유실은 없었으나, 발견이 늦었으면 산출물이 조용히 사라질 뻔했다. **근본수정**: 다중 매칭 시 조용히 첫 번째를 고르지 않고 **즉시 시끄럽게 실패**(에러 raise, 후보 목록 출력)하도록 `CdpSession` 초기화 로직에 가드 추가. **운용 규칙**: 무인 런에서는 탭당 1빌더·canvas-id를 고정해 애초에 모호성이 생길 상황을 피한다.
 
 ## 관련
 - [[techniques.cdp-nondestructive-recon]] — 이 드라이버가 뒷받침하는 상위 정찰 원칙
