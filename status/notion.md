@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 새벽 **⑤렌더 일치율 자동화 완료**(W-BV, push 3550e9c): 콘텐츠영역 픽셀 diff(`pixel_diff.py`) — 12문서 **평균 91.4%**(리치텍스트 92.6~94.8·DB 92.8~94.3·풀블록 95.1·REL 96.4), 188만 62.7%=콘텐츠 컬럼폭 비율차 구조원인 규명. 갤러리에 파랑 "렌더N%" 배지+🌡히트맵. **이제 렌더 축도 육안 아닌 수치 기준선** — 오너 캡처지적 루프를 배지로 대체. 다음=⑥T2+아침보고+결산
 - 2026-07-17 새벽 **④풀블록 시각 실측 완료**(W-BU, push 9f57677): 8블록 실측 → 5건 포팅(이미지 radius 2px·북마크 패딩/제목17px/URL회색·TOC secondary색·파일칩 16/22px·synced idle 테두리 hover-reveal). simpletable·컬럼gap·quote는 이미 일치. 다크 무회귀. 다음=⑤렌더 일치율 자동화(픽셀 diff 배지)
 - 2026-07-17 새벽 **③잔여 시각갭 5건 소탕**(W-BT, push c429cb6 등 6커밋): 블록 세로간격 실측 보정(p↔p 12·heading↔p 6·리스트연속 2px) · 코드라벨=lang↔language 죽은키 규명·수복("Python" 표시) · DB 인라인 제목 contenteditable · **아웃라인 공식 오측 판명**(첫헤딩 비례 아니라 고정 0.256, 6문서 교차실측) · 콜아웃 색변형=이미 동작(기록 오측 정정)+테두리 투명. 환경: Chrome 2회 크래시→launch_chrome.sh 재기동(실물 탭 소실). 다음=④풀블록 시각 실측
 - 2026-07-17 새벽 **②DB 테이블뷰 CSS 완료**(W-BS, push 3bd8403): **status 칩 = 실물이 API color 무시, 그룹 고정 3색**(todo회색·진행파랑·완료초록 — Done이 color:yellow여도 초록) 발견·전 뷰 적용 + 기존 OPTION_PALETTE가 엉뚱한 변수(IcoAccPri) 실측했던 것 8색 재실측 정정 + 행높이 37px·칩 radius 4·타이틀 📄아이콘. 다크·보드뷰 무회귀. 다음=③잔여 시각갭
