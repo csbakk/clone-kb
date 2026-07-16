@@ -1,21 +1,24 @@
-# 🔴 LIVE — canvas 캠페인 무인 런 상태판
+# ⚪ 대기 — canvas 캠페인 무인 런 상태판
 
 > 갱신 정책(오너결정 2026-07-16): **마일스톤/아크 단위 + 런 시작·종료 시** 갱신·push(이벤트마다 X — 커밋 노이즈 방지). 런 없을 때 = 마지막 런의 최종 상태.
 > 산출물(리포트·대조 갤러리·핸드오프)은 private `canvas-clone` 레포 → [산출물 대시보드](https://github.com/csbakk/canvas-clone)
 
-**런 상태**: 🔴 가동 — 세션19 무인 10h · 2트랙: (A) 실물 내러티브 AD3~5 완성 (B) 클론 isolated 파리티 델타 소탕(0크레딧) · 잔액 체크포인트 1202.74cr · 시작 2026-07-16
+**런 상태**: ⚪ 대기 — 세션19 무인 10h 종료(2026-07-16). 내러티브 파리티 실물 5/5+클론 5/5 완성 · isolated 17,490→17,425(진짜갭만·역행0) · Track C 버그 트리아지(유령2·진짜1) · 잔액 **1067.74cr**(세션 시작 1202.74, −135) · 오너결정 대기 2건(영상 통일 재생성 여부·디버그 부산물 정리)
 
-## 🆕 세션 18 (2026-07-16, 진행 중→잠자기 중단)
-- **브리지 아키텍처 분리(오너결정 b, `22c08fb`)** — 클론 지속성이 creative-hub 8765 stale 프로세스 의존하던 것 해소. `_gen_test/bridge_copy.py`(8766)에 canvas-project CRUD 이식 + 프론트 리포인트. 클론 자립.
-- **소갭 2건 수정** — Gap2 refslot 참조 생성포함(`5e2b142`, 실물 모듈 실측 확정), Gap3 드롭다운 API값 정합(`848f4ae`, seedance1.5pro/veo3.1lite duration).
-- **내러티브 파리티(오너 요청)** — 앵커→씬 fan-out 참조체이닝 일관성 콘텐츠. **클론 AD1~AD5 완성**(참조체이닝 20/20 검증), **실물 AD1·AD2 완성**(AD3~5 스톨로 미완). 대조갤러리 `reports/narrative-parity/`.
-- **발견 갭 7건**(클론 코드 미수정, 다음세션): 다중선택 경합·status mediaMode·minimax img2vid 브리지·Upscale 미구현·Voice 실행불가·registry cost 부정확 등.
-- **크레딧**: 1971→1209cr(−761, 내러티브 생성). ★교훈: 크레딧은 **MCP 거래내역 정본**(빌더 bridge-history 추정은 ~70cr로 크게 틀림).
-- **push**: canvas-clone(private)·clone-kb(public) 원격 동기화 완료.
-- 상세 핸드오프: `canvas-clone/reports/2026-07-16-session18-handoff.md`.
-- **남은 일**: 실물 AD3~5·디버그정리·결산·클론코드수정(갭7)·G1/G2·파리티델타.
+## 🆕 세션 19 (2026-07-16, 무인 10h, 완료)
+- **내러티브 파리티 완성(첫 5/5)** — 세션18 스톨로 미완이던 실물 AD3~5(AERO RUN 9:16·GLOW 4:5·PULSE 16:9)를 이어받아 완주. 비디오 모델을 **KLING 3.0(pro/5s)**으로 전환(실물 AD1~2는 기존 Seedance 유지). AD4는 KLING이 4:5 미지원이라 비디오만 9:16 예외. 대조갤러리 `reports/narrative-parity/index.html` = **실물 5/5 + 클론 5/5** 확정.
+- **파리티 델타 소탕** — 진짜갭 3건(folder-modal padding/swatch `b658ab9`·assets-tab min/max/gap `7409e13`·topbar chevron 0.54 `1e516b1`), isolated **17,490→17,425**(역행0·0크레딧).
+- **Track C 버그 트리아지** — 세션18 발견 갭 3건 재검증: ①kling-3.0 registry매핑·②다중선택경합=**유령**(클론 실측 결과 문제 없음, ②는 세션18 당시 빌더 하네스 스코프 문제로 재규명) / ③text/audio status idle=**진짜버그**, 수정(`b440611`).
+- **크레딧(MCP 정본)**: 1202.74→**1067.74cr**(−135). KLING v3.0 ×10=125cr(**12.5cr/클립 — seedance 17.5보다 저렴**), Nano Banana ×10=10cr, 실수 Seedream 1cr. 파리티·트리아지=0크레딧.
+- **방법론 교훈**: ★클러스터 "확신 티켓"(`rip_delta_cluster`) 위양성률 높음 재확인(~24건 조사 중 실제갭 소수) → 상태별 delta.md 직접 훑기+3분류 게이트(product/harness/캡처노이즈)로 전환 권고([[techniques.rip-repair-loop]] 함정 갱신). 모델별 지원 비율 매트릭스 미문서화(AD4류 시행착오 재발 소지, 이월).
+- **push**: 로컬 커밋만(branch `parity`), 오너 승인 대기.
+- 상세: `clone-kb runs/2026-07-16-canvas-s19.md` · 아침 보고 `canvas-clone/reports/2026-07-16-session19-morning.html`.
+- **남은 일**: 오너결정 2건(seedance↔KLING 영상 통일 재생성·디버그 부산물 정리) + 이월 갭(Upscale·Voice·kling3_0 mode·G1/G2·folder-modal/modelpicker/addmenu 아키텍처급 파리티, 각 전용 세션 필요).
 
 ---
+### (이력) 세션 18
+브리지 아키텍처 분리(자립, `22c08fb`) + 소갭 2건 + 내러티브 파리티 착수(클론 AD1~5 완성·실물 AD1~2만 완성, AD3~5 스톨로 미완 → 세션19가 완주) + 발견 갭 7건 기록(3건은 세션19 트리아지로 유령2/진짜1 판명). 크레딧 1971→1209cr(−761).
+
 ### (이력) 세션 17
 isolated 22,626→17,490(진짜갭 3건 수복, −3,558은 window-size 하네스 노이즈 규명) + 생성 자율테스트 완주(4.8cr).
 
@@ -32,6 +35,10 @@ flowchart LR
 ## 가동 중 에이전트
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
+| 오케(opus) | 세션 19 무인 10h(내러티브완주+델타+트리아지) | 세션 19 | ✅ 종료 |
+| 빌더(sonnet) | Track A 실물 AD3~5 완성(KLING 3.0) | 세션 19 | ✅ 완료(narrative-parity index.html) |
+| 빌더(sonnet) | Track B 파리티 델타 3건(folder-modal·assets-tab·topbar) | 세션 19 | ✅ 완료(b658ab9·7409e13·1e516b1) |
+| 빌더(sonnet) | Track C 버그 트리아지(kling매핑·다중선택·status idle) | 세션 19 | ✅ 완료(유령2·진짜1, b440611) |
 | 오케(opus) | 세션 17 무인 밤런(정합→진짜갭3+생성자율테스트) | 세션 17 | ✅ 종료 |
 | 빌더 T1(sonnet) | 줌바 react-flow Panel 정합(11상태) | 세션 17 | ✅ 완료(0e80ad4) |
 | 빌더 T2(sonnet) | Share 버튼 position:relative(19상태) | 세션 17 | ✅ 완료(2427fce) |
@@ -71,7 +78,10 @@ flowchart LR
 | ✅ 완료(추가) | P1 크로스-페이스트 파일럿 — 게이트 통과(왕복 4/4 diff 0), cross-paste 카드 verified 승격 |
 | ⬜ 대기 | P2 탐사기+델타 소탕(무인 적합) · 크로스-페이스트 잔여(다중노드·⇧⌘C·오버레이) · 애니메이션 리퍼 · 픽셀 지문 |
 | ✅ 완료(세션17) | 진짜갭 3건(줌바·Share·ref-add) 수복 · window-size 노이즈 규명(−3,558) · 드롭다운 하이라이트 버그 · 생성 자율테스트(4.8cr) |
-| ⬜ 오너결정 대기 | ★브리지 아키텍처 8765(결합) vs 자체브리지(분리, 권장) · refslot input_images 갭 · 드롭다운 API값 불일치 · G1+G2 인라인패널 |
+| ✅ 완료(세션18) | 브리지 아키텍처 분리(오너결정 b 반영) · refslot input_images 갭 수복 · 드롭다운 API값 정합 · 내러티브 파리티 착수(클론 5/5) |
+| ✅ 완료(세션19) | 내러티브 파리티 실물 5/5 완성(KLING 3.0 전환) · 파리티 델타 3건(-65, 17,490→17,425) · Track C 트리아지 3건(유령2·진짜1, status idle 수복) |
+| ⬜ 대기 | G1(LLM 노드)+G2(오디오/보이스 노드) 인라인패널(실물 read-only DOM 캡처 선행) · 모델별 지원비율 매트릭스 정찰(AD4류 재발방지) · 이월 갭(Upscale·Voice 실행·kling3_0 mode 파생) |
+| ⬜ 오너결정 대기 | 영상 통일 재생성 — 기존 seedance 영상(실물AD1~2·클론AD1~5)을 KLING으로 통일할지 vs 현행 혼합 유지(클론도 진짜 KLING 가능, 크레딧 추가) · 디버그 부산물(실패AD1 5개·Untitled 다수) 정리 여부 |
 
 ## 최근 이벤트
 ```
@@ -158,4 +168,10 @@ flowchart LR
 2026-07-16 세션17  생성 자율테스트 투입 — 클론이 독립적으로 soul-v2 이미지+Seedance 1.5 Pro 영상(8s/480p) 생성해 자기 프로젝트(canvas-projects/cb30b89ae3d4)에 저장. 순지출 4.8cr(실패 3회 전액환불)
 2026-07-16 세션17  ⚠사고 — 멀티탭 CDP substring 비결정성(동일 dev포트 5175 2탭)이 엉뚱한 탭에 attach → cb30b89 doc.json 빈 채 오토세이브 2회. 백업 즉시복원(데이터 유실 0) + 근본수정: cdp_raw 다중매칭 시 시끄럽게 실패하는 모호성 가드(7b0e950)
 2026-07-16 세션17  갤러리 등록(29cc50a) — 08-result-node-parity(생성 자율테스트 실측)·09-dropdown-fill-width, 총 9갭. 문서화(6011fff·c097602) 완료. 세션17 결산: 12커밋(미푸시)·크레딧 4.8cr·isolated 17,490·역행 0. 오너결정 대기: ★브리지 아키텍처(8765 결합 vs 자체브리지 분리, 권장=분리) 등 4건
+2026-07-16 세션18  브리지 분리(오너결정b, 22c08fb)·소갭2건(5e2b142·848f4ae)·내러티브 파리티 착수 — 클론 AD1~5 완성, 실물은 AD1~2만(AD3~5 빌더 스톨로 중단), 잠자기로 세션 일시중단(핸드오프 문서화). 크레딧 1971→1209cr(−761)
+2026-07-16 세션19  무인 10h 시작 — 세션18 핸드오프 인계, 2트랙(A=실물 AD3~5 완주 B=isolated 델타 소탕) 투입. 잔액 체크포인트 1202.74cr
+2026-07-16 세션19  Track A 완료 — 실물 AD3(71e7f54f)·AD4(fb52b8d0)·AD5(94661b27) KLING 3.0(pro/5s)으로 생성 완주(AD4는 4:5 미지원이라 비디오만 9:16 예외). gen_compare.py+index.html 갱신 — ★내러티브 파리티 실물 5/5+클론 5/5 첫 완성
+2026-07-16 세션19  Track B 완료(b658ab9·7409e13·1e516b1) — 진짜갭 3건(folder-modal·assets-tab·topbar chevron) isolated 17,490→17,425(-65, 역행0·0크레딧)
+2026-07-16 세션19  Track C 완료(b440611) — 세션18 발견 갭 3건 재검증: kling-3.0 registry매핑·다중선택경합=유령(실측 반증) / text·audio status idle=진짜버그 수복
+2026-07-16 세션19  결산 — 크레딧 MCP정본 1202.74→1067.74cr(−135, KLING×10=125cr@12.5cr/클립·NanoBanana×10=10cr·실수Seedream 1cr). ★방법론 교훈: rip_delta_cluster 확신티켓 위양성률 高 재확인 → 상태별 훑기+3분류 게이트로 전환 권고(techniques/rip-repair-loop.md 갱신). runs+ledger+status+아침보고 결산 완료. 오너결정 대기: 영상 통일 재생성 여부·디버그 부산물 정리
 ```

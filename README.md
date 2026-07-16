@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-16 10:41). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-16 22:11). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -12,6 +12,7 @@
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
 | 2026-07-16 | [canvas 세션 17 — 무인 밤런 (윈도우노이즈 규명 + 진짜갭 3건 수복 + 생성 자율테스트 + 브리지 아키텍처 사고)](runs/2026-07-16-canvas-s17.md) | canvas | done | 6 |
+| 2026-07-16 | [canvas 세션 19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 버그 트리아지)](runs/2026-07-16-canvas-s19.md) | canvas | done | 6 |
 | 2026-07-16 | [notion 2026-07-16 — 무인 갭채우기+버그헌트14 → Notion API 클론 + API 파리티 루프](runs/2026-07-16-notion-api-clone-parity.md) | notion | paused | 6 |
 | 2026-07-15 | [canvas 세션 15 — 계정 라우팅 + 브리지 end-to-end + 유령티켓 정정 + 델타](runs/2026-07-15-canvas-s15-account-e2e.md) | canvas | done | 5 |
 | 2026-07-15 | [canvas 세션 16 — 무인 10h (큐 정화·델타·구조갭·탐사기)](runs/2026-07-15-canvas-s16-night10h.md) | canvas | done | 7 |

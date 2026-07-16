@@ -43,6 +43,8 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-16 canvas 세션19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 트리아지)](runs/2026-07-16-canvas-s19.md) — done: 내러티브 실물5/5+클론5/5·델타 -65·유령2/진짜1
+- [2026-07-16 canvas 세션17 — 무인 밤런 (측정노이즈 분리+진짜갭3+생성 자율테스트)](runs/2026-07-16-canvas-s17.md) — done: 22,626→17,490·생성 자율테스트(4.8cr)
 - [2026-07-15 canvas 세션16 — 무인 10h (큐 정화·델타·구조갭·탐사기)](runs/2026-07-15-canvas-s16-night10h.md) — done: ★큐 근본수정·진짜총계 23,581·델타 -243
 - [2026-07-15 canvas 세션15 — 계정 라우팅+브리지 end-to-end+유령티켓 정정+델타](runs/2026-07-15-canvas-s15-account-e2e.md) — done: 계정 mine 확정·델타 -120
 - [2026-07-14 canvas 세션14 — 생성 파리티 트랙 + CLI 크레딧 계측](runs/2026-07-14-canvas-s14-gen-parity-track.md) — done: 생성 5티켓+델타 -594, 3cr
