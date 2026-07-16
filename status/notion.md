@@ -22,11 +22,12 @@ flowchart LR
 ## 티켓 보드
 | 상태 | 티켓 |
 |---|---|
-| ✅ 완료 | **Notion API 클론(v1)+파리티 루프** · 블록/컬럼 갭 종료(tab·자동값·button) · 잠복버그14 · T2 508/508 · 하네스(태그관대·tie-break) · P3 자동체인 · 결정(0716 4건) |
-| 🟡 진행 | — (일시정지) |
-| ⬜ 대기(다음) | **실물 PARITY 184중복 정리** · **클론API v2**(DB·속성·relation/rollup/formula·search·code language) · **파리티 diff 자동화** · T52 컬럼중첩 드롭힌트차단 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
+| ✅ 완료 | **Notion API 클론 v1+v2a(DB)** · **T52 컬럼중첩 드롭힌트차단** · 실물중복 정리 · 파리티 루프 · 블록/컬럼 갭 종료 · 잠복버그14 · T2 508/508 · 하네스(태그관대·tie-break) · 결정(0716 4건) |
+| 🟡 진행 | — |
+| ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-16 오전 재개 완료 2건(push): **T52(b) 컬럼/탭 내부 드래그 좌우분할 힌트 억제**(W-BF, smoke 신규⑪ 18/18) + **★클론 API v2a — DB 지원**(W-BG, `POST/GET /v1/databases`·`/query`·database_id parent 행생성, 속성 10타입 매핑, DB가 실제 테이블뷰로 렌더[상태pill·멀티셀렉chip], **notion_api_db_gate 55/55**, v1 34/34 무영향). 커밋 f6ad56e·37af878. 부수: bridge.py(8770) 미기동으로 bookmark/video 게이트 pre-existing 실패였던 것 기동해 그린화. 다음=파리티 DB스펙+자동diff·클론정크정리
 - 2026-07-16 오전 **10h 무인 재개(🔴 가동)**: 실물 PARITY 중복 189개 아카이브(distinct 00~04만 유지, 휴지통 복구가능) · 워커 2병렬 가동 **W-BF(T52 컬럼중첩 드롭힌트차단)**·**W-BG(클론API v2a DB지원)** · 큐: 파리티 심화(DB 스펙+자동diff)·클론정크정리
 - 2026-07-16 오전 일시정지(잠자기): **API 파리티 루프 184쌍 생성 후 정지**. 5스펙 순환이라 실물 Notion에 184페이지(대부분 중복, 전부 `영상>PARITY-TEST` 루트 하위 — 통째 아카이브 가능). 핸드오프 `ref/reports/SESSION-2026-07-16-handoff.md`. **다음=실물 중복정리·클론API v2(DB/속성)·T52·파리티 diff자동화**
 - 2026-07-16 오전(오너 지시 "api 규격도 클론"): **★Notion 공개 API를 클론에 복제** — `harness/notion_api_server.py`(8771, stdlib) `/v1/pages`·`/v1/blocks/{id}/children`, 블록10종 양방향 매핑·rich_text annotations·에러/헤더 계약, atomic setState 주입→5185 렌더. `notion_api_gate` **34/34**. → **API 파리티**(실물 api.notion.com ↔ 클론8771 동일요청 비교)로 전환(UI 실입력 자동화는 취약 판명 — 실물 정크·클론 빈페이지, API로 피봇). 커밋 11eff53·b747f83·ec74de1
