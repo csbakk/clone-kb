@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-16 오전 **T56 DB 풀페이지 라우팅**(W-BM, push 18c4d4c): 렌더파리티가 발견한 실제갭 수복 — database id 딥링크 시 조용히 무시되던 버그 → 풀페이지 DB뷰(DatabaseView를 PageView셸에 재사용) + "···→전체 페이지로 열기" 메뉴. embedded/인라인/페이지 무회귀. smoke 18→21. 다음=파리티 비교 갤러리(육안대조 딜리버러블)
 - 2026-07-16 오전 **렌더(DOM) 파리티 첫 측정**(W-BL, push ff71425): API 파리티 100% 문서를 실물 브라우저 DOM ↔ 클론 DOM 대조(양쪽 내용 동일 = 델타가 순수 렌더차이). 대표 4문서. 진짜 렌더갭 3건 티켓(T56 DB 풀페이지 딥링크 라우팅·T57 DB툴바 버튼갭[자동화·AI채우기]·T58 리사이즈핸들) + 크롬노이즈/매처한계 분류. **발견: 클론 DB는 독립 풀페이지 없이 항상 embedded block** → 다음 T56이 렌더 파리티 심화의 선행. 측정만(제품 무변경), rip유닛 3종 PASS
 - 2026-07-16 오전 **★v2c 완료 — API 파리티 완결(전 12문서 100%)**(W-BK, push e97f0cc): rollup 집계(9함수)+formula 평가(클론 엔진 Python 포팅)를 harness에서 독립 구현 → relation/rollup/formula DB **97.2%→100%**, **계산값까지 실물과 바이트 일치**(rollup.number=1/1/2·formula.number=2). notion_api_db 84/84. 잔여=양방향relation·rollup 24종중 15종·search·페이징(니치·이월). **API 파리티 워크스트림 완결.**
 - 2026-07-16 오전 **전 블록 커버리지 확장 완료**(W-BJ, push e54ed20): 블록 매핑 +9종(image/video/bookmark/embed/file/toc/column_list/synced_block/table) · 풀블록 문서 2종 **100%·100%** · relation/rollup/formula DB **97.2%**(잔여=계산값뿐, 계산엔진 없어 out-of-scope 정직보고). 기존 9문서 100% 무하락. notion_api 58/58·db 76/76. **핵심발견: 실물 API는 중첩 children을 type-payload 안에 둬야 함(코드 첫 경험) · link_preview·tab은 실물 공개API로 생성불가(400)**. 잔여 v2c=rollup집계·formula평가(값계산 엔진)·relation양방향·search
