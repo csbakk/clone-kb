@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 새벽 **③잔여 시각갭 5건 소탕**(W-BT, push c429cb6 등 6커밋): 블록 세로간격 실측 보정(p↔p 12·heading↔p 6·리스트연속 2px) · 코드라벨=lang↔language 죽은키 규명·수복("Python" 표시) · DB 인라인 제목 contenteditable · **아웃라인 공식 오측 판명**(첫헤딩 비례 아니라 고정 0.256, 6문서 교차실측) · 콜아웃 색변형=이미 동작(기록 오측 정정)+테두리 투명. 환경: Chrome 2회 크래시→launch_chrome.sh 재기동(실물 탭 소실). 다음=④풀블록 시각 실측
 - 2026-07-17 새벽 **②DB 테이블뷰 CSS 완료**(W-BS, push 3bd8403): **status 칩 = 실물이 API color 무시, 그룹 고정 3색**(todo회색·진행파랑·완료초록 — Done이 color:yellow여도 초록) 발견·전 뷰 적용 + 기존 OPTION_PALETTE가 엉뚱한 변수(IcoAccPri) 실측했던 것 8색 재실측 정정 + 행높이 37px·칩 radius 4·타이틀 📄아이콘. 다크·보드뷰 무회귀. 다음=③잔여 시각갭
 - 2026-07-17 새벽 **①DB 요소뜯기 완료**(W-BR, push b1dde71): 오너 지적 3축 근본수정 — 행순서(실물=최신이 위·prepend)·**컬럼순서=title+가나다 정렬**(스키마순 가설 반증, 전수 재현검증)·뷰이름 "Default view". 셀값은 원래 100%. 196 재생성으로 3축 실물 일치 확인. diff.md가 순서를 못 보는 한계 규명(구조만 비교) → 요소 대조는 DOM 실측 정본 `_DB_ELEMENT_DIFF.md`. 다음=②DB 테이블뷰 CSS(Done칩 톤·행높이·링크셀)
 - 2026-07-17 새벽 **🔴 10h 무인 루프 개시(오너 지시)**: 큐 = ①DB 요소 뜯기(오너 187/195 지적 — 행순서 반대·컬럼순서·뷰이름 "Default view"·셀값 전수대조, W-BR 가동) → ②DB 테이블뷰 CSS 실측 → ③잔여 시각갭 소탕 → ④풀블록 시각 실측 → ⑤렌더 일치율 자동화(픽셀 diff 배지) → ⑥T2+결산. 갤러리에 문서별 실물/클론/diff 링크 추가(push 1b8b7c4)
