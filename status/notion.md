@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⏸ 일시정지(잠자기, 2026-07-16 오전) — **Notion API를 클론에 복제 + API 파리티 루프 가동**(실물↔클론 동일요청 PARITY-NN 184쌍) · 그 전 무인 런: 블록/컬럼 갭 종료·잠복버그14·최종 T2 508/508 · 마지막 갱신: 2026-07-16 오전
+**런 상태**: 🔴 가동(2026-07-16 오전 10h 무인) — **Notion API 클론 v2b 완료: API 파리티 일치율 richtext·DB 전 문서 100%**(실물↔클론 응답 구조 완전일치, 속성 19종·엔벨로프 완결) · 그 전: T52·블록/컬럼 갭·잠복버그14·T2 508/508 · 마지막 갱신: 2026-07-16 오전
 
 ## 현재 페이즈
 ```mermaid
@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-16 오전 **★클론 API v2b 완료 — 파리티 100% 달성**(W-BI, push 63eb794): 자동 diff가 지목한 엔벨로프 갭(블록 parent·children 인라인폐지·DB description/icon/is_inline·property description) 전부 닫음 + 속성 **19종**(v2a 10 + relation/rollup/formula/people/files/created·edited time·by/button). **일치율 richtext 92%→100%·DB 97%→100%(전 문서)**. notion_api 40/40·db 72/72. 잔여 v2c=rollup집계·formula평가·relation양방향·table/column블록·search(구조는 100%, 값계산이 다음). 클론소스 무변경
 - 2026-07-16 오전 **파리티 심화 완료**(W-BH, push f0ec1fd·7f2476a): DB 문서 4종(작업트래커·콘텐츠캘린더·CRM·버그트래커, 속성10타입) + **자동 diff 리포트**(`ref/parity-live/_PARITY_REPORT.md` — real↔clone 응답 구조 일치율). **일치율 richtext ~92%·DB ~97%.** 잔여 불일치=엔벨로프(블록 parent.page_id/type, DB description/icon/is_inline)+status 로케일 → **v2b 백로그로 정밀 지목됨.** 부수 하네스버그 2건 수정(콜아웃 rich_text GET소실·DB url스킴). 다음=v2b(엔벨로프완결+relation/rollup/formula)로 일치율↑
 - 2026-07-16 오전 재개 완료 2건(push): **T52(b) 컬럼/탭 내부 드래그 좌우분할 힌트 억제**(W-BF, smoke 신규⑪ 18/18) + **★클론 API v2a — DB 지원**(W-BG, `POST/GET /v1/databases`·`/query`·database_id parent 행생성, 속성 10타입 매핑, DB가 실제 테이블뷰로 렌더[상태pill·멀티셀렉chip], **notion_api_db_gate 55/55**, v1 34/34 무영향). 커밋 f6ad56e·37af878. 부수: bridge.py(8770) 미기동으로 bookmark/video 게이트 pre-existing 실패였던 것 기동해 그린화. 다음=파리티 DB스펙+자동diff·클론정크정리
 - 2026-07-16 오전 **10h 무인 재개(🔴 가동)**: 실물 PARITY 중복 189개 아카이브(distinct 00~04만 유지, 휴지통 복구가능) · 워커 2병렬 가동 **W-BF(T52 컬럼중첩 드롭힌트차단)**·**W-BG(클론API v2a DB지원)** · 큐: 파리티 심화(DB 스펙+자동diff)·클론정크정리
