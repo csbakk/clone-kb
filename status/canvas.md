@@ -2,7 +2,21 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⚪ 대기 — 세션17 완료: isolated 22,626→17,490(진짜갭 3건 수복, −3,558은 window-size 하네스 노이즈 규명) + 생성 자율테스트 완주(4.8cr) · 마지막 갱신: 2026-07-16
+**런 상태**: ⏸ 세션18 일시중단(컴퓨터 잠자기) · 마지막 갱신: 2026-07-16
+
+## 🆕 세션 18 (2026-07-16, 진행 중→잠자기 중단)
+- **브리지 아키텍처 분리(오너결정 b, `22c08fb`)** — 클론 지속성이 creative-hub 8765 stale 프로세스 의존하던 것 해소. `_gen_test/bridge_copy.py`(8766)에 canvas-project CRUD 이식 + 프론트 리포인트. 클론 자립.
+- **소갭 2건 수정** — Gap2 refslot 참조 생성포함(`5e2b142`, 실물 모듈 실측 확정), Gap3 드롭다운 API값 정합(`848f4ae`, seedance1.5pro/veo3.1lite duration).
+- **내러티브 파리티(오너 요청)** — 앵커→씬 fan-out 참조체이닝 일관성 콘텐츠. **클론 AD1~AD5 완성**(참조체이닝 20/20 검증), **실물 AD1·AD2 완성**(AD3~5 스톨로 미완). 대조갤러리 `reports/narrative-parity/`.
+- **발견 갭 7건**(클론 코드 미수정, 다음세션): 다중선택 경합·status mediaMode·minimax img2vid 브리지·Upscale 미구현·Voice 실행불가·registry cost 부정확 등.
+- **크레딧**: 1971→1209cr(−761, 내러티브 생성). ★교훈: 크레딧은 **MCP 거래내역 정본**(빌더 bridge-history 추정은 ~70cr로 크게 틀림).
+- **push**: canvas-clone(private)·clone-kb(public) 원격 동기화 완료.
+- 상세 핸드오프: `canvas-clone/reports/2026-07-16-session18-handoff.md`.
+- **남은 일**: 실물 AD3~5·디버그정리·결산·클론코드수정(갭7)·G1/G2·파리티델타.
+
+---
+### (이력) 세션 17
+isolated 22,626→17,490(진짜갭 3건 수복, −3,558은 window-size 하네스 노이즈 규명) + 생성 자율테스트 완주(4.8cr).
 
 ## 현재 페이즈
 ```mermaid
