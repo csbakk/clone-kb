@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 새벽 **🔴 10h 무인 루프 개시(오너 지시)**: 큐 = ①DB 요소 뜯기(오너 187/195 지적 — 행순서 반대·컬럼순서·뷰이름 "Default view"·셀값 전수대조, W-BR 가동) → ②DB 테이블뷰 CSS 실측 → ③잔여 시각갭 소탕 → ④풀블록 시각 실측 → ⑤렌더 일치율 자동화(픽셀 diff 배지) → ⑥T2+결산. 갤러리에 문서별 실물/클론/diff 링크 추가(push 1b8b7c4)
 - 2026-07-17 새벽 **오너 8개 지적 전체 마감**(W-BQ, push 4c493a7): 아이콘 = 정렬버그(flex stretch+button 중앙정렬) 규명 → 실측 78px·본문컬럼 좌측정렬 · 우측 아웃라인 = 실측 포팅(오프셋 23px·틱은 활성상태 기반 12/16px·첫헤딩 비례 top). 다크·커버 무회귀. **이로써 오너 육안 지적 1~8 전부 처리**(제목wrap T59·콜아웃·폰트·DB stale·툴바 T57·핸들 T58동등·아이콘·우측인디케이터). 실측 정본 `_RENDER_CSS_DIFF.md` §1~7
 - 2026-07-17 새벽 **T59 제목 wrap 완료**(W-BP, push 94dce6a): 제목 `<input>`→`<h1 contentEditable=plaintext-only>` 구조 전환(블록 편집 패턴 재사용) — **긴 제목 4줄 wrap, 잘림 해소**(오너 지적 2/4번). Enter→본문 포커스 실물동작 추가. 전 게이트 그린. 리치텍스트·풀블록 클론 재캡처 → 갤러리 갱신됨(제목wrap·콜아웃 개선 확인). 잔여: 아이콘 정렬·DB 인라인 제목(input 유지)
 - 2026-07-17 새벽 **CSS 실측 포팅 완료**(W-BN, push 176a540): 실물 computed 실측 결과 — **콜아웃 스타일 반전 발견·수정**(실물=투명bg+테두리, 클론=회색채움), 폰트스택 정정, 구분선색 통일. 헤딩·문단·자간은 이미 일치. **제목 잘림 = CSS 아닌 구조 갭**(클론 `<input>` vs 실물 `<h1 contenteditable>` — input은 줄바꿈 불가) → **T59 티켓**. 다크모드 무회귀. diff 정본 `_RENDER_CSS_DIFF.md`
