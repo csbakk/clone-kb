@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: 🔴 가동(2026-07-16 오전 10h 무인) — **Notion API 클론 v2b 완료: API 파리티 일치율 richtext·DB 전 문서 100%**(실물↔클론 응답 구조 완전일치, 속성 19종·엔벨로프 완결) · 그 전: T52·블록/컬럼 갭·잠복버그14·T2 508/508 · 마지막 갱신: 2026-07-16 오전
+**런 상태**: 🔴 가동(2026-07-16 오전 10h 무인) — **★API 파리티 완결: 전 12문서 100%**(리치텍스트·DB·풀블록·relation/rollup/formula, 계산값까지 실물과 바이트 일치). 클론이 Notion 공개 API를 로컬에서 말함(엔드포인트·블록 20+종·속성 19종·rollup9함수·formula엔진). 그 전: T52·블록/컬럼 갭·잠복버그14·T2 508/508 · 마지막 갱신: 2026-07-16 오전
 
 ## 현재 페이즈
 ```mermaid
@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-16 오전 **★v2c 완료 — API 파리티 완결(전 12문서 100%)**(W-BK, push e97f0cc): rollup 집계(9함수)+formula 평가(클론 엔진 Python 포팅)를 harness에서 독립 구현 → relation/rollup/formula DB **97.2%→100%**, **계산값까지 실물과 바이트 일치**(rollup.number=1/1/2·formula.number=2). notion_api_db 84/84. 잔여=양방향relation·rollup 24종중 15종·search·페이징(니치·이월). **API 파리티 워크스트림 완결.**
 - 2026-07-16 오전 **전 블록 커버리지 확장 완료**(W-BJ, push e54ed20): 블록 매핑 +9종(image/video/bookmark/embed/file/toc/column_list/synced_block/table) · 풀블록 문서 2종 **100%·100%** · relation/rollup/formula DB **97.2%**(잔여=계산값뿐, 계산엔진 없어 out-of-scope 정직보고). 기존 9문서 100% 무하락. notion_api 58/58·db 76/76. **핵심발견: 실물 API는 중첩 children을 type-payload 안에 둬야 함(코드 첫 경험) · link_preview·tab은 실물 공개API로 생성불가(400)**. 잔여 v2c=rollup집계·formula평가(값계산 엔진)·relation양방향·search
 - 2026-07-16 오전 **★클론 API v2b 완료 — 파리티 100% 달성**(W-BI, push 63eb794): 자동 diff가 지목한 엔벨로프 갭(블록 parent·children 인라인폐지·DB description/icon/is_inline·property description) 전부 닫음 + 속성 **19종**(v2a 10 + relation/rollup/formula/people/files/created·edited time·by/button). **일치율 richtext 92%→100%·DB 97%→100%(전 문서)**. notion_api 40/40·db 72/72. 잔여 v2c=rollup집계·formula평가·relation양방향·table/column블록·search(구조는 100%, 값계산이 다음). 클론소스 무변경
 - 2026-07-16 오전 **파리티 심화 완료**(W-BH, push f0ec1fd·7f2476a): DB 문서 4종(작업트래커·콘텐츠캘린더·CRM·버그트래커, 속성10타입) + **자동 diff 리포트**(`ref/parity-live/_PARITY_REPORT.md` — real↔clone 응답 구조 일치율). **일치율 richtext ~92%·DB ~97%.** 잔여 불일치=엔벨로프(블록 parent.page_id/type, DB description/icon/is_inline)+status 로케일 → **v2b 백로그로 정밀 지목됨.** 부수 하네스버그 2건 수정(콜아웃 rich_text GET소실·DB url스킴). 다음=v2b(엔벨로프완결+relation/rollup/formula)로 일치율↑
