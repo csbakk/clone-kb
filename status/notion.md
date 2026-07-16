@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 새벽 **오너 육안 피드백 대응(렌더/CSS 축)**: DB "서로 다른 페이지"=T56 전 stale 스샷 진단→재캡처 완료 · **T57 툴바 실물 정렬**(필터→정렬→⚡→✨→🔍→설정→새로만들기 스플릿버튼, W-BO push ec7ebf3) · **T58=매처 오분류 판정, 티켓 닫음**(핸들 이미 동등) · **W-BN 병렬 가동중**: 실물 computed style 실측→클론 CSS 포팅(제목 줄바꿈·콜아웃·폰트·줄간격·컬럼폭 — 오너 지적 갭). audit 정책 조정: T2는 mutation-heavy 경계만
 - 2026-07-16 오전 **파리티 비교 갤러리 딜리버러블**(push 67b0962): 사용자 목표 "노드 생김새·목적대로 비교" 직결 — 큐레이션 12문서(리치텍스트5·DB4·풀블록2·REL1, 전부 API구조 100%)의 실물Notion↔클론 스크린샷 side-by-side + 일치율 배지 + 툴팁. `ref/reports/PARITY-gallery.html`(로컬 열람, `gen_gallery.py` 재생성). 헤드리스 검증 24/24 이미지·툴팁. 다음=파리티-live 중복정리(옛 루프 165폴더)·최종결산
 - 2026-07-16 오전 **T56 DB 풀페이지 라우팅**(W-BM, push 18c4d4c): 렌더파리티가 발견한 실제갭 수복 — database id 딥링크 시 조용히 무시되던 버그 → 풀페이지 DB뷰(DatabaseView를 PageView셸에 재사용) + "···→전체 페이지로 열기" 메뉴. embedded/인라인/페이지 무회귀. smoke 18→21. 다음=파리티 비교 갤러리(육안대조 딜리버러블)
 - 2026-07-16 오전 **렌더(DOM) 파리티 첫 측정**(W-BL, push ff71425): API 파리티 100% 문서를 실물 브라우저 DOM ↔ 클론 DOM 대조(양쪽 내용 동일 = 델타가 순수 렌더차이). 대표 4문서. 진짜 렌더갭 3건 티켓(T56 DB 풀페이지 딥링크 라우팅·T57 DB툴바 버튼갭[자동화·AI채우기]·T58 리사이즈핸들) + 크롬노이즈/매처한계 분류. **발견: 클론 DB는 독립 풀페이지 없이 항상 embedded block** → 다음 T56이 렌더 파리티 심화의 선행. 측정만(제품 무변경), rip유닛 3종 PASS
