@@ -9,6 +9,8 @@
 - [블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인)](techniques/blind-ab-test.md) — experimental
 - [CDP 비파괴 정찰 (peek 패턴, 리로드 금지)](techniques/cdp-nondestructive-recon.md) — standard
 - [CDP Raw 드라이버 (좀비 탭 우회)](techniques/cdp-raw-driver.md) — verified
+- [캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설)](techniques/canvas-clipboard-localstorage.md) — experimental
+- [복사→좌표수정→주입 재배치 (프로그램적 격자정렬)](techniques/canvas-coord-inject-rearrange.md) — experimental
 - [클립보드 JSON을 정본으로 (노드캔버스 앱)](techniques/clipboard-source-of-truth.md) — standard
 - [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
