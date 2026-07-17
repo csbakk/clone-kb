@@ -10,7 +10,7 @@
 - [CDP 비파괴 정찰 (peek 패턴, 리로드 금지)](techniques/cdp-nondestructive-recon.md) — standard
 - [CDP Raw 드라이버 (좀비 탭 우회)](techniques/cdp-raw-driver.md) — verified
 - [캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설)](techniques/canvas-clipboard-localstorage.md) — experimental
-- [복사→좌표수정→주입 재배치 (프로그램적 격자정렬)](techniques/canvas-coord-inject-rearrange.md) — experimental
+- [복사→좌표수정→주입 재배치 (프로그램적 격자정렬)](techniques/canvas-coord-inject-rearrange.md) — verified
 - [클립보드 JSON을 정본으로 (노드캔버스 앱)](techniques/clipboard-source-of-truth.md) — standard
 - [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
@@ -45,6 +45,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-17 canvas 세션20 — 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) — done: 5/5 양쪽 15노드 매칭·좌표재배치 verified 승격·크레딧 375.43cr
 - [2026-07-16 canvas 세션19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 트리아지)](runs/2026-07-16-canvas-s19.md) — done: 내러티브 실물5/5+클론5/5·델타 -65·유령2/진짜1
 - [2026-07-16 canvas 세션17 — 무인 밤런 (측정노이즈 분리+진짜갭3+생성 자율테스트)](runs/2026-07-16-canvas-s17.md) — done: 22,626→17,490·생성 자율테스트(4.8cr)
 - [2026-07-15 canvas 세션16 — 무인 10h (큐 정화·델타·구조갭·탐사기)](runs/2026-07-15-canvas-s16-night10h.md) — done: ★큐 근본수정·진짜총계 23,581·델타 -243

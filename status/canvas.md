@@ -3,9 +3,22 @@
 > 갱신 정책(오너결정 2026-07-16): **마일스톤/아크 단위 + 런 시작·종료 시** 갱신·push(이벤트마다 X — 커밋 노이즈 방지). 런 없을 때 = 마지막 런의 최종 상태.
 > 산출물(리포트·대조 갤러리·핸드오프)은 private `canvas-clone` 레포 → [산출물 대시보드](https://github.com/csbakk/canvas-clone)
 
-**런 상태**: ⚪ 대기 — 세션19 무인 10h 종료(2026-07-16). 내러티브 파리티 실물 5/5+클론 5/5 완성 · isolated 17,490→17,425(진짜갭만·역행0) · Track C 버그 트리아지(유령2·진짜1) · 잔액 **1067.74cr**(세션 시작 1202.74, −135) · 오너결정 대기 2건(영상 통일 재생성 여부·디버그 부산물 정리)
+**런 상태**: ⚪ 대기 — 세션20 종료(2026-07-17). 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성(각 15노드·7타입) · 대조갤러리 `reports/complex-workflows/index.html` · [[techniques.canvas-coord-inject-rearrange]] verified 승격 · 파리티 발견 3건(Upscale엣지divergence·T2 NSFW오탐·구성매칭) · 잔액 **692.31cr**(세션 시작 1067.74, −375.43 — MCP 전수재계산, 브리핑 276cr 정정) · 이월: Upscale 엣지 메커니즘 규명·NSFW 재현성 확인
 
-## 🆕 세션 19 (2026-07-16, 무인 10h, 완료)
+## 🆕 세션 20 (2026-07-17, 완료)
+- **복잡 노드 연결 워크플로우 5주제 매칭** — 오너 지시(모든 노드타입 총동원·프롬프트노드 인라인 금지·크로스타입 연결)로 T1커피·T2느와르·T3러닝·T4스킨케어·T5전기차 5개 주제를 실물·클론 **동일 프로젝트 이름·동일 15노드 구성**으로 완성. 노드타입 7종(Prompt·Image·Video·Upscale·LLM·Voice·Reference엣지), 앵커→씬 ref fan-out, neat 좌→우 정렬.
+- **클론 인에이블(선행)** — LLM/오디오 인라인 패널(G1/G2)·Voice 배선(text2speech_v2)·Upscale 노드 타입 신규(`3167e9a`)·이미지젠 `input_images` 핸들 렌더 복원(`c02bfe5`, 앵커 fan-out 4엣지 갭 수복) — 세션19 이월 과제 완료.
+- **[[techniques.canvas-coord-inject-rearrange]] verified 승격** — "TODO 실증대기" 카드가 실물 T1(패턴검증 패스)→T2~T5(패턴 재사용) 5/5 성공으로 확정. 핵심 quirk: Cmd+V 키다운 합성 무반응 → `dispatchEvent(new ClipboardEvent('paste'))` 직접 트리거+`Browser.grantPermissions(clipboardReadWrite)`로 우회. 엣지 재연결은 "Run pipeline" 정상 동작으로 무결 확인.
+- **실물 클립보드 "서버 참조 ID" 가설 기각** — 오너가 관측한 마커를 신규 스크래치 탭에서 3중 증거로 재검증, 4일 전(세션10) 확정 구조(OS마커+localStorage payload) 그대로임을 재확인(`ref/_RECON_CLIPBOARD_API.md`).
+- **파리티 발견 3건**: ①Upscale 엣지 divergence — 클론=img→Upscale 그래프엣지 연결(16엣지), 실물=Upscale DOM 핸들 미렌더로 엣지 연결 불가(15엣지, idle) — 메커니즘 이월 ②T2 NSFW 오탐 — 씬1(느와르 담배연기 프롬프트) 크레딧 자동환불, idle ③노드 컴포지션은 15노드·7타입·프롬프트노드 fan-out·neat 정렬로 5주제 전부 매칭.
+- **크레딧(MCP 정본, 전수 재계산)**: 1067.74→**692.31cr**(−375.43). Kling v3.0 34건 −297.50cr · Nano Banana 49건 −47.00cr(순액) · Bytedance Upscale 12건 −20.00cr(순액) · Seed Audio 8건 −9.70cr · Voiceover 5건 −0.75cr · Soul V2(인에이블 테스트) 4건 −0.48cr. GPT Image 2 0건. ★오케 브리핑 수치("968→692≈276cr")는 T1~T3 완료(resume) 중간 체크포인트를 시작값으로 오인한 부분합이었음을 MCP 전수 재계산으로 적발·정정(-99.43cr 과소평가) — adversarial-verification 원칙을 크레딧 계측에도 예외 없이 적용해야 한다는 교훈.
+- **대조 갤러리**: `reports/complex-workflows/gen_compare.py`(narrative-parity 패턴 재사용) 신규 작성 → `index.html`(5주제 좌=실물/우=클론, 파리티 발견 3건 상단 고정).
+- **push**: 로컬 커밋만, 오너 승인 대기.
+- 상세: `clone-kb runs/2026-07-17-canvas-complexwf.md` · 갤러리 `canvas-clone/reports/complex-workflows/index.html`.
+- **남은 일**: Upscale 엣지 메커니즘 근본 규명(실물이 그래프엣지 대신 무엇으로 upscale 참조를 연결하는지) · T2 NSFW 오탐 재현성 확인(결정론적/랜덤) · 세션19 이월 갭(kling3_0 mode 파생·folder-modal/modelpicker/addmenu 아키텍처급 파리티) · 오너결정 대기 2건(영상 통일 재생성 여부·디버그 부산물 정리, 세션19부터 이월).
+
+---
+### (이력) 세션 19
 - **내러티브 파리티 완성(첫 5/5)** — 세션18 스톨로 미완이던 실물 AD3~5(AERO RUN 9:16·GLOW 4:5·PULSE 16:9)를 이어받아 완주. 비디오 모델을 **KLING 3.0(pro/5s)**으로 전환(실물 AD1~2는 기존 Seedance 유지). AD4는 KLING이 4:5 미지원이라 비디오만 9:16 예외. 대조갤러리 `reports/narrative-parity/index.html` = **실물 5/5 + 클론 5/5** 확정.
 - **파리티 델타 소탕** — 진짜갭 3건(folder-modal padding/swatch `b658ab9`·assets-tab min/max/gap `7409e13`·topbar chevron 0.54 `1e516b1`), isolated **17,490→17,425**(역행0·0크레딧).
 - **Track C 버그 트리아지** — 세션18 발견 갭 3건 재검증: ①kling-3.0 registry매핑·②다중선택경합=**유령**(클론 실측 결과 문제 없음, ②는 세션18 당시 빌더 하네스 스코프 문제로 재규명) / ③text/audio status idle=**진짜버그**, 수정(`b440611`).
@@ -35,6 +48,11 @@ flowchart LR
 ## 가동 중 에이전트
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
+| 빌더(sonnet) | 클론 인에이블(G1/G2 인라인패널·Voice배선·Upscale노드타입·input_images핸들복원) | 세션 20 | ✅ 완료(3167e9a·c02bfe5) |
+| 빌더(sonnet) | 실물 클립보드 "서버참조ID" 가설 재검증(신규 스크래치탭) | 세션 20 | ✅ 기각(ref/_RECON_CLIPBOARD_API.md) |
+| 빌더(sonnet) | T1 패턴검증 패스(실물 좌표재배치 실측+클론 빌드) | 세션 20 | ✅ 완료(67796b9) |
+| 빌더(sonnet) | T2~T5 패턴 재사용 빌드(실물+클론 양쪽) | 세션 20 | ✅ 완료(67796b9) |
+| 오케(opus) | 갤러리+결산(gen_compare.py·크레딧 재계산·기법카드 verified) | 세션 20 | ✅ 완료 |
 | 오케(opus) | 세션 19 무인 10h(내러티브완주+델타+트리아지) | 세션 19 | ✅ 종료 |
 | 빌더(sonnet) | Track A 실물 AD3~5 완성(KLING 3.0) | 세션 19 | ✅ 완료(narrative-parity index.html) |
 | 빌더(sonnet) | Track B 파리티 델타 3건(folder-modal·assets-tab·topbar) | 세션 19 | ✅ 완료(b658ab9·7409e13·1e516b1) |
@@ -73,6 +91,8 @@ flowchart LR
 ## 티켓 보드
 | 상태 | 티켓 |
 |---|---|
+| ✅ 완료(세션20) | 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 15노드 완성 · G1/G2+Voice+Upscale 클론 인에이블 · canvas-coord-inject-rearrange verified 승격 · 대조갤러리 index.html · 크레딧 재계산(브리핑 276cr→정본 375.43cr 정정) |
+| ⬜ 대기(세션20 이월) | Upscale 엣지 실물 메커니즘 근본 규명 · T2 NSFW 오탐 재현성 확인 |
 | ✅ 완료 | 게이트 8종 · GitHub 이관 · clone-kb 부트스트랩 |
 | 🟡 진행 | — |
 | ✅ 완료(추가) | P1 크로스-페이스트 파일럿 — 게이트 통과(왕복 4/4 diff 0), cross-paste 카드 verified 승격 |
@@ -174,4 +194,11 @@ flowchart LR
 2026-07-16 세션19  Track B 완료(b658ab9·7409e13·1e516b1) — 진짜갭 3건(folder-modal·assets-tab·topbar chevron) isolated 17,490→17,425(-65, 역행0·0크레딧)
 2026-07-16 세션19  Track C 완료(b440611) — 세션18 발견 갭 3건 재검증: kling-3.0 registry매핑·다중선택경합=유령(실측 반증) / text·audio status idle=진짜버그 수복
 2026-07-16 세션19  결산 — 크레딧 MCP정본 1202.74→1067.74cr(−135, KLING×10=125cr@12.5cr/클립·NanoBanana×10=10cr·실수Seedream 1cr). ★방법론 교훈: rip_delta_cluster 확신티켓 위양성률 高 재확인 → 상태별 훑기+3분류 게이트로 전환 권고(techniques/rip-repair-loop.md 갱신). runs+ledger+status+아침보고 결산 완료. 오너결정 대기: 영상 통일 재생성 여부·디버그 부산물 정리
+2026-07-17 세션20  시작 — 오너 지시: 복잡 노드 연결 워크플로우(전 노드타입 총동원·크로스타입 연결)를 5주제(T1커피~T5전기차) 매칭으로 실물·클론 동일 구성 구축. 잔액 체크포인트 1067.74cr(세션19 종료값과 일치)
+2026-07-17 세션20  클론 인에이블 완료 — LLM/오디오 인라인패널(G1/G2)·Voice 배선(text2speech_v2)·Upscale 노드타입 신규(3167e9a)·이미지젠 input_images 핸들 렌더 복원(c02bfe5, 앵커 fan-out 4엣지 갭 수복)
+2026-07-17 세션20  실물 클립보드 "서버참조ID" 가설 조사 — 오너 관측 마커를 신규 스크래치탭(939cf33d)에서 3중 증거(라이브재현·정적소스grep·negative control) 재검증 → 가설 기각, 세션10 r2 확정 구조(OS마커+localStorage) 4일 후에도 불변 재확인(ref/_RECON_CLIPBOARD_API.md)
+2026-07-17 세션20  T1 패턴검증 패스 — 실물에서 canvas-coord-inject-rearrange 최초 라이브 실측. Cmd+V 키다운 무반응 재확인 → dispatchEvent(ClipboardEvent('paste'))+Browser.grantPermissions로 우회 성공. 15노드/15엣지 neat 정렬 확정(탐색 스크린샷 ~40장)
+2026-07-17 세션20  T2~T5 패턴 재사용 — T1 확정 절차 그대로 적용, 4주제 전부 실물 15노드/15엣지 완주(탐색 스크린샷 대폭 축소, 재현성 확인). T2 씬1 이미지 NSFW 오탐(크레딧 자동환불, idle) 관측(파리티 발견②)
+2026-07-17 세션20  클론 5주제 빌드(harness/build_topic.py, T1~T3·T5는 resume+델타만·T4는 풀빌드) — 전부 15노드/16엣지·10/10 생성 완료(67796b9)
+2026-07-17 세션20  갤러리+결산 — reports/complex-workflows/gen_compare.py 신규 작성→index.html(5주제 좌실물/우클론, 파리티발견 3건). MCP transactions 160건 전수 재계산으로 크레딧 375.43cr 확정, ★오케 브리핑("968→692≈276cr")이 T1~T3 resume 중간 체크포인트를 시작값으로 오인한 부분합이었음을 적발·정정(-99.43cr). canvas-coord-inject-rearrange verified 승격. 잔액 1067.74→692.31cr(−375.43). runs+ledger+status+techniques(2장)+index.md+대시보드 결산 완료
 ```

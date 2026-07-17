@@ -31,6 +31,8 @@ owner: 박춘순
 - [[techniques.orchestrator-model-routing]] — 빌더(sonnet)≠검증자(opus/fable) 규칙의 원 출처
 - [[pipelines.99-percent]] — 6축 판정식 정의 원 출처
 - [[techniques.cross-paste-parity]] — P1 파일럿(세션 10)으로 verified 승격: 실물 직렬화 계약(마커+localStorage) 채택, 왕복 4/4 diff 0. [[techniques.clipboard-source-of-truth]]의 "클립보드에 JSON 직접" 서술을 교정한 재실측(r2)도 이 라운드의 산물
+- [[techniques.canvas-clipboard-localstorage]] — 클립보드 2단 구조(OS마커+localStorage payload) 3중 증거 확정, 세션20에 "서버참조ID" 가설 재검증으로 재확인
+- [[techniques.canvas-coord-inject-rearrange]] — 세션20에 실물 T1~T5 5/5 성공으로 experimental→verified 승격, 프로그램적 좌표 재배치 절차 확정
 
 ## 현재 캠페인 루프 (도식 — 결산 시 갱신)
 

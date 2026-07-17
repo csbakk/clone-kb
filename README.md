@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 13:21). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 14:54). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -11,6 +11,7 @@
 
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
+| 2026-07-17 | [canvas 세션 20 — 복잡 노드 연결 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) | canvas | done | 7 |
 | 2026-07-16 | [canvas 세션 17 — 무인 밤런 (윈도우노이즈 규명 + 진짜갭 3건 수복 + 생성 자율테스트 + 브리지 아키텍처 사고)](runs/2026-07-16-canvas-s17.md) | canvas | done | 6 |
 | 2026-07-16 | [canvas 세션 19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 버그 트리아지)](runs/2026-07-16-canvas-s19.md) | canvas | done | 6 |
 | 2026-07-16 | [notion 2026-07-16 — 무인 갭채우기+버그헌트14 → Notion API 클론 + API 파리티 루프](runs/2026-07-16-notion-api-clone-parity.md) | notion | paused | 6 |
@@ -30,8 +31,8 @@
 pie showData
     title 기법 35장
     "정식 (standard)" : 11
-    "검증 (verified)" : 13
-    "실험 (experimental)" : 10
+    "검증 (verified)" : 14
+    "실험 (experimental)" : 9
     "은퇴 (retired)" : 1
 ```
 
@@ -53,11 +54,12 @@ pie showData
 | RIP 레이어① CSS/DOM 전수 덤프 | canvas, notion | [techniques/rip-css-dump.md](techniques/rip-css-dump.md) |
 | 서브에이전트 병렬화 규칙 (독립·무충돌만 병렬) | kit, canvas, notion | [techniques/subagent-fanout-rules.md](techniques/subagent-fanout-rules.md) |
 
-### 검증 (verified) — 13
+### 검증 (verified) — 14
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
 | 원자적 localStorage 주입 (bulk_inject) | notion | [techniques/atomic-localstorage-inject.md](techniques/atomic-localstorage-inject.md) |
+| 복사→좌표수정→주입 재배치 (프로그램적 격자정렬) | canvas | [techniques/canvas-coord-inject-rearrange.md](techniques/canvas-coord-inject-rearrange.md) |
 | CDP Raw 드라이버 (좀비 탭 우회) | canvas | [techniques/cdp-raw-driver.md](techniques/cdp-raw-driver.md) |
 | 크로스-페이스트 파리티 (라운드트립 diff 0) | canvas | [techniques/cross-paste-parity.md](techniques/cross-paste-parity.md) |
 | 실사용(dogfooding)으로 버그 발견 — BORI 사례 | canvas | [techniques/dogfooding-as-bug-discovery.md](techniques/dogfooding-as-bug-discovery.md) |
@@ -71,7 +73,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 10
+### 실험 (experimental) — 9
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -79,7 +81,6 @@ pie showData
 | 자산 출처 게이트 (시각 자산 provenance — 자작 대체 재발방지) | notion | [techniques/asset-provenance-gate.md](techniques/asset-provenance-gate.md) |
 | 블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인) | — | [techniques/blind-ab-test.md](techniques/blind-ab-test.md) |
 | 캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설) | canvas | [techniques/canvas-clipboard-localstorage.md](techniques/canvas-clipboard-localstorage.md) |
-| 복사→좌표수정→주입 재배치 (프로그램적 격자정렬) | — | [techniques/canvas-coord-inject-rearrange.md](techniques/canvas-coord-inject-rearrange.md) |
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
 | 스키마 마이그레이션 안전망 (버전·백업·invariant·게이트) | notion | [techniques/persist-migration-safety-net.md](techniques/persist-migration-safety-net.md) |
