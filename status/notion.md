@@ -27,6 +27,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 오전 **★파일 SoT 완성 — 1페이지=1폴더, 어느 브라우저든 경로 접근**(W-BX, push 390143d): 오너 지시(0712 ⑤의 완성). bridge `data/pages/<id>/page.json`(610폴더)+`databases/<id>/`(233)+workspace.json · GET /state 하이드레이션+디바운스 write-through+다운 폴백배너 · 실코퍼스 1회 파일승격 · **수용기준 통과: 깨끗한 브라우저에서 /p/<id> 직접 렌더**(file_persist_gate 21/21). 부수 실측회귀 3건 수정. 환경: Chrome 업데이트 중첩(4버전)로 신규 인스턴스 즉사 규명 → 클론작업 전용 번들 크로뮴(9226) 전환, 노션탭 churn 금지(봇차단 우려, 오너 지시) 규칙화
 - 2026-07-17 아침 **⑥T2 경계+결산 — 10h 루프 완주(⚪)**(W-BW): 게이트 22종 전부 그린·**이번 루프 회귀 0**. click_audit 270/394의 실패 124건=코드 무관 corpus 오염 확정(3중 근거: 이전 stash 재현기록·고아DB 라이브 규명·0712 전례). 아침보고 push(ce8e45a, 결정: ①corpus 고아정리 ②188 컬럼폭 모델 ③다음 확장). 루프 합계 13커밋·가설반증 3건(컬럼순서·아웃라인 공식·콜아웃색 기록)
 - 2026-07-17 새벽 **⑤렌더 일치율 자동화 완료**(W-BV, push 3550e9c): 콘텐츠영역 픽셀 diff(`pixel_diff.py`) — 12문서 **평균 91.4%**(리치텍스트 92.6~94.8·DB 92.8~94.3·풀블록 95.1·REL 96.4), 188만 62.7%=콘텐츠 컬럼폭 비율차 구조원인 규명. 갤러리에 파랑 "렌더N%" 배지+🌡히트맵. **이제 렌더 축도 육안 아닌 수치 기준선** — 오너 캡처지적 루프를 배지로 대체. 다음=⑥T2+아침보고+결산
 - 2026-07-17 새벽 **④풀블록 시각 실측 완료**(W-BU, push 9f57677): 8블록 실측 → 5건 포팅(이미지 radius 2px·북마크 패딩/제목17px/URL회색·TOC secondary색·파일칩 16/22px·synced idle 테두리 hover-reveal). simpletable·컬럼gap·quote는 이미 일치. 다크 무회귀. 다음=⑤렌더 일치율 자동화(픽셀 diff 배지)
