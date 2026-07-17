@@ -1,5 +1,6 @@
 # index — 전체 색인 (한 줄, 질의는 여기부터)
 
+> **★새 클론 캠페인은 [[PLAYBOOK]](`PLAYBOOK.md`)부터 로드** — 방법선택·시행착오·방법론진화를 엮은 로드해 쓰는 캠페인 진입 플레이북.
 
 ## techniques/
 - [★구조-우선 클론 (골격→스타일→동작 — 오너 채택 1순위 원칙)](techniques/structure-first-cloning.md) — standard
