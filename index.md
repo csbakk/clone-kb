@@ -46,6 +46,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-17 canvas 세션21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) — done: structure-first-cloning canvas 첫 retrofit·RIP 17425→17113·0크레딧
 - [2026-07-17 canvas 세션20 — 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) — done: 5/5 양쪽 15노드 매칭·좌표재배치 verified 승격·크레딧 375.43cr
 - [2026-07-16 canvas 세션19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 트리아지)](runs/2026-07-16-canvas-s19.md) — done: 내러티브 실물5/5+클론5/5·델타 -65·유령2/진짜1
 - [2026-07-16 canvas 세션17 — 무인 밤런 (측정노이즈 분리+진짜갭3+생성 자율테스트)](runs/2026-07-16-canvas-s17.md) — done: 22,626→17,490·생성 자율테스트(4.8cr)

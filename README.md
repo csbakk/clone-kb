@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 14:54). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 17:20). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -12,6 +12,7 @@
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
 | 2026-07-17 | [canvas 세션 20 — 복잡 노드 연결 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) | canvas | done | 7 |
+| 2026-07-17 | [canvas 세션 21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) | canvas | done | 6 |
 | 2026-07-16 | [canvas 세션 17 — 무인 밤런 (윈도우노이즈 규명 + 진짜갭 3건 수복 + 생성 자율테스트 + 브리지 아키텍처 사고)](runs/2026-07-16-canvas-s17.md) | canvas | done | 6 |
 | 2026-07-16 | [canvas 세션 19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 버그 트리아지)](runs/2026-07-16-canvas-s19.md) | canvas | done | 6 |
 | 2026-07-16 | [notion 2026-07-16 — 무인 갭채우기+버그헌트14 → Notion API 클론 + API 파리티 루프](runs/2026-07-16-notion-api-clone-parity.md) | notion | paused | 6 |
@@ -29,8 +30,8 @@
 
 ```mermaid
 pie showData
-    title 기법 35장
-    "정식 (standard)" : 11
+    title 기법 36장
+    "정식 (standard)" : 12
     "검증 (verified)" : 14
     "실험 (experimental)" : 9
     "은퇴 (retired)" : 1
@@ -38,7 +39,7 @@ pie showData
 
 ## 기법 카드
 
-### 정식 (standard) — 11
+### 정식 (standard) — 12
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -52,6 +53,7 @@ pie showData
 | 포트+프로필 격리 (프로젝트당 전용 CDP 포트·Chrome 프로필) | canvas, notion, akiflow, kit | [techniques/port-profile-isolation.md](techniques/port-profile-isolation.md) |
 | 번호매김 회귀 검증 스위트 (_bN_verify.py / *_gate.py) | canvas, notion, akiflow | [techniques/regression-harness-suite.md](techniques/regression-harness-suite.md) |
 | RIP 레이어① CSS/DOM 전수 덤프 | canvas, notion | [techniques/rip-css-dump.md](techniques/rip-css-dump.md) |
+| 구조-우선 클론 (골격→스타일→동작 순서 원칙) | notion, canvas | [techniques/structure-first-cloning.md](techniques/structure-first-cloning.md) |
 | 서브에이전트 병렬화 규칙 (독립·무충돌만 병렬) | kit, canvas, notion | [techniques/subagent-fanout-rules.md](techniques/subagent-fanout-rules.md) |
 
 ### 검증 (verified) — 14

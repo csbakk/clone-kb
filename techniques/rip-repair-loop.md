@@ -4,14 +4,15 @@ title: RIP 레이어③ 자동 수복 루프
 doctype: technique
 status: verified
 proven_in: [canvas, notion]
-related: [techniques.rip-css-dump, techniques.rip-crawler, pipelines.rip-v1]
+related: [techniques.rip-css-dump, techniques.rip-crawler, pipelines.rip-v1, techniques.structure-first-cloning]
 evidence:
   - "260615_canvas-clone/ref/_RIP_MASTER_DELTA.md §4 — 티켓 그룹 4분류(판단필요/구현명확/시각확인필요/하네스자체버그), harness/rip_resweep_clone.py로 클론만 재덤프해 재검증"
   - "260615_canvas-clone/ref/_RIP_MASTER_DELTA.md §8 RIP-T-E — --radius-btn/--radius-pill 토큰 분리 사례 (1차 과잉교정 → 재측정 → 수정)"
   - "260622_notion-clone/RIP-PIPELINE.md — 델타 리포트가 티켓 배치로 이어짐, 재수렴 확인"
   - "260615_canvas-clone 세션17(2026-07-16) — 측정 전 window-size 정합 선행(→ [[techniques.dom-first-measurement]])이 22,626 중 −3,558을 하네스 노이즈로 분리, 남은 진짜갭 3건(줌바·Share·ref-add)만 수복해 17,490 확정. '노이즈 분리 후 수복'이 새 표준 절차로 굳어짐"
   - "260615_canvas-clone 세션19(2026-07-16) — 진짜갭 3건(folder-modal·assets-tab·topbar chevron) 17,490→17,425 역행0·0크레딧. ★`rip_delta_cluster` 확신 티켓 위양성률 高 재확인(~24건 조사 중 실제갭 소수) — 클러스터 순위 대신 상태별 delta.md 직접 훑기가 더 유효함을 Track C 트리아지가 실증"
-updated: 2026-07-16
+  - "260615_canvas-clone 세션21(2026-07-17) — [[techniques.structure-first-cloning]] retrofit 선행 재덤프: 클론 5175 탭 4개 동시 상주로 url_substr 매칭 모호성 위험 상태였던 것을 state-spec 19개+resweep 하네스 2개를 canvas-id(3ad36980c5eb)로 영구 고정, 뷰포트 1556x895 정규화 후 재립. 17,425→17,113(-312, isolated 순수차분), 미니툴바 radius·out-of-view 토스트 유령 2건 종결. 이후 산출물탭 오염을 harness 레벨에서 원천차단"
+updated: 2026-07-17
 owner: 박춘순
 ---
 

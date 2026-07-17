@@ -3,9 +3,23 @@
 > 갱신 정책(오너결정 2026-07-16): **마일스톤/아크 단위 + 런 시작·종료 시** 갱신·push(이벤트마다 X — 커밋 노이즈 방지). 런 없을 때 = 마지막 런의 최종 상태.
 > 산출물(리포트·대조 갤러리·핸드오프)은 private `canvas-clone` 레포 → [산출물 대시보드](https://github.com/csbakk/canvas-clone)
 
-**런 상태**: ⚪ 대기 — 세션20 종료(2026-07-17). 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성(각 15노드·7타입) · 대조갤러리 `reports/complex-workflows/index.html` · [[techniques.canvas-coord-inject-rearrange]] verified 승격 · 파리티 발견 3건(Upscale엣지divergence·T2 NSFW오탐·구성매칭) · 잔액 **692.31cr**(세션 시작 1067.74, −375.43 — MCP 전수재계산, 브리핑 276cr 정정) · 이월: Upscale 엣지 메커니즘 규명·NSFW 재현성 확인
+**런 상태**: ⚪ 대기 — 세션21 종료(2026-07-17). **구조-우선 원칙([[techniques.structure-first-cloning]]) canvas 최초 소급 레트로핏** — 핸들·비디오플레이어 실물파리티 · RIP 재덤프 17,425→**17,113** · 헤더span(-40%)·라이트박스메타패널(-29%) · 프롬프트 골격 6타입 전면교체(image→video→llm→audio→promptnode→inspector, contentEditable화) · 전 커밋 tsc/vitest 102/102·0크레딧 · 이월: LLM/Audio 전용 RIP state-spec·모델피커/인스펙터피커 육안대조·IMETextarea.tsx 삭제
 
-## 🆕 세션 20 (2026-07-17, 완료)
+## 🆕 세션 21 (2026-07-17, 완료)
+- **구조-우선 원칙 canvas 소급 적용(retrofit)** — notion 캠페인이 당일 확립·오너 채택한 [[techniques.structure-first-cloning]]("①골격→②스타일→③동작" 순서)을 canvas에 최초 이식. canvas는 세션1~20을 스타일-먼저로 누적 진행해온 캠페인이라 카드 §함정의 "이미 스타일-먼저 캠페인은 골격을 retrofit" 시나리오의 첫 실증.
+- **정찰(`ac38f1d`)** — 신규 CDP 캡처 없이 기존 RIP 델타(19상태, 7/13 기준) + RECON 문서 + 현재 소스코드(git log/grep) 3축 교차검증. 스테일 델타 5건(모델피커·인스펙터피커·LLM/Audio패널·미니툴바radius·out-of-view토스트 — 7/15~17 커밋으로 이미 해결) + 캡처 아티팩트(소스가 이미 자인)를 배제하고, 확정 갭 3건(헤더span·라이트박스메타패널·프롬프트골격) 확정. `ref/_STRUCTURE_FIRST_ROADMAP.md` 신설.
+- **①핸들·비디오플레이어(`3ab442a`)** — 오너 지적 대응, 실물 노드 live CDP 실측. 핸들: 2레이어(28px squircle+투명히트박스+내부pill)→실물과 동치인 단일 24px 원형 배지 통합, hover 확대 제거, 4종 실물 SVG 포트글리프 이식. 비디오플레이어: 중앙Play 56→36px·컨트롤바 인셋/높이·버튼 22→14px 등 실측 정합.
+- **RIP 재덤프(`2cdae0b`)** — 클론 5175 탭 4개 동시상주로 모호성 위험이던 url_substr 매칭을 canvas-id(`3ad36980c5eb`)로 영구고정 + 뷰포트 1556x895 정규화 후 재립. isolated **17,425→17,113**(-312, 순수차분), 미니툴바radius·out-of-view토스트 유령 2건 종결.
+- **②헤더 span래퍼(`e73c8ab`)** — GenerateNode+SimpleNodes 3곳, 실물 골격(`div.header>span.icon+span.title`) 동치화. CSS무변경(회귀0). 6상태 속성diff **7295→4364(-40%)**.
+- **③라이트박스 메타데이터패널(`6d8c485`)** — 프롬프트/모델명/종횡비/배치카운터 신규 섹션(`.hf-lightbox__meta`), 기존 stage/actions 구조 안건드림. lightbox_open 속성diff **2374→1696(-29%)**.
+- **④프롬프트 입력 골격 전면교체(6커밋)** — 실물=리치텍스트/contenteditable 계열 vs 클론=네이티브 `<textarea>`(IMETextarea, T79 IME우회) — 렌더러 심장부급 갭. TextNode/StickyNoteNode가 이미 프로덕션 검증한 `useEditableSeed` 언컨트롤드 contentEditable 패턴을 재사용, image(`3a88c8d`,프로토타입)→video(`8b888f2`)→llm(`9548c0f`)→audio(`be0c3dd`)→promptnode(`b6daee6`)→inspector(`82601be`,마지막) 순차 확산. T79 controlled리렌더 버그 근본원인이 구조적으로 소거됨. 매 라운드 이전 타입 전체 무회귀 재확인(`_t85_ime_spread.py` 18/18×6회), 한글IME조합·T42동기화·멀티라인 6타입 전부 정상. 부수발견(마지막 라운드): contentEditable 기본 `cursor:auto`vs실물`cursor:text` 미스매칭 → 5클래스 소급수정. `IMETextarea.tsx` 6개 소비처 전부 이탈(파일 삭제는 다음 세션).
+- **검증**: 전 6커밋 tsc -b 클린 + vitest 102/102, RIP resweep 단계별 무회귀, 크레딧 **0**(GENERATE 미호출, 잔액 692.31cr 불변). 보호 캔버스(a12eb16a·cb30b89/AD/CW/T·766028e1) 무접촉.
+- **push**: 로컬 커밋만, 오너 승인 대기.
+- 상세: `clone-kb runs/2026-07-17-canvas-structfirst.md` · canvas repo `ref/_STRUCTURE_FIRST_ROADMAP.md`.
+- **남은 일**: 잔여 커서 미세매칭 1건(스타일 레이어 후속) · 모델피커 플라이아웃/인스펙터 피커 육안대조(RIP role 자동판정 불가) · LLM/Audio 패널 전용 RIP state-spec 신규(현재 IME하네스+tsc+vitest로만 대체검증) · 핸들/엣지/툴바 RIP 커버리지갭(엣지·툴바 미착수) · `IMETextarea.tsx` 삭제 · 세션20 이월(Upscale 엣지 메커니즘·T2 NSFW 재현성) 그대로 유지.
+
+---
+### (이력) 세션 20
 - **복잡 노드 연결 워크플로우 5주제 매칭** — 오너 지시(모든 노드타입 총동원·프롬프트노드 인라인 금지·크로스타입 연결)로 T1커피·T2느와르·T3러닝·T4스킨케어·T5전기차 5개 주제를 실물·클론 **동일 프로젝트 이름·동일 15노드 구성**으로 완성. 노드타입 7종(Prompt·Image·Video·Upscale·LLM·Voice·Reference엣지), 앵커→씬 ref fan-out, neat 좌→우 정렬.
 - **클론 인에이블(선행)** — LLM/오디오 인라인 패널(G1/G2)·Voice 배선(text2speech_v2)·Upscale 노드 타입 신규(`3167e9a`)·이미지젠 `input_images` 핸들 렌더 복원(`c02bfe5`, 앵커 fan-out 4엣지 갭 수복) — 세션19 이월 과제 완료.
 - **[[techniques.canvas-coord-inject-rearrange]] verified 승격** — "TODO 실증대기" 카드가 실물 T1(패턴검증 패스)→T2~T5(패턴 재사용) 5/5 성공으로 확정. 핵심 quirk: Cmd+V 키다운 합성 무반응 → `dispatchEvent(new ClipboardEvent('paste'))` 직접 트리거+`Browser.grantPermissions(clipboardReadWrite)`로 우회. 엣지 재연결은 "Run pipeline" 정상 동작으로 무결 확인.
@@ -48,6 +62,11 @@ flowchart LR
 ## 가동 중 에이전트
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
+| 단일에이전트(opus) | 구조-우선 정찰(19상태 델타×소스 3축 교차검증) | 세션 21 | ✅ 완료(ac38f1d) |
+| 단일에이전트(opus) | 핸들·비디오플레이어 실물파리티(live CDP실측) | 세션 21 | ✅ 완료(3ab442a) |
+| 단일에이전트(opus) | RIP 재덤프(canvas-id고정+뷰포트정규화) | 세션 21 | ✅ 완료(2cdae0b, 17425→17113) |
+| 단일에이전트(opus) | 헤더span래퍼+라이트박스메타패널 | 세션 21 | ✅ 완료(e73c8ab·6d8c485) |
+| 단일에이전트(opus) | 프롬프트골격 6타입 확산(image~inspector) | 세션 21 | ✅ 완료(3a88c8d~82601be, 18/18×6) |
 | 빌더(sonnet) | 클론 인에이블(G1/G2 인라인패널·Voice배선·Upscale노드타입·input_images핸들복원) | 세션 20 | ✅ 완료(3167e9a·c02bfe5) |
 | 빌더(sonnet) | 실물 클립보드 "서버참조ID" 가설 재검증(신규 스크래치탭) | 세션 20 | ✅ 기각(ref/_RECON_CLIPBOARD_API.md) |
 | 빌더(sonnet) | T1 패턴검증 패스(실물 좌표재배치 실측+클론 빌드) | 세션 20 | ✅ 완료(67796b9) |
@@ -91,6 +110,8 @@ flowchart LR
 ## 티켓 보드
 | 상태 | 티켓 |
 |---|---|
+| ✅ 완료(세션21) | 구조-우선 원칙 canvas 최초 소급 레트로핏 · 핸들·비디오플레이어 실물파리티 · RIP재덤프 17425→17113 · 헤더span(-40%)·라이트박스메타패널(-29%) · 프롬프트골격 6타입 전면교체(textarea→contentEditable) · 전커밋 tsc/vitest 102/102·0크레딧 |
+| ⬜ 대기(세션21 이월) | 잔여 커서 미세매칭 1건 · 모델피커/인스펙터피커 육안대조 · LLM/Audio 전용 RIP state-spec 신규 · 핸들/엣지/툴바 RIP 커버리지갭(엣지·툴바 미착수) · IMETextarea.tsx 삭제 |
 | ✅ 완료(세션20) | 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 15노드 완성 · G1/G2+Voice+Upscale 클론 인에이블 · canvas-coord-inject-rearrange verified 승격 · 대조갤러리 index.html · 크레딧 재계산(브리핑 276cr→정본 375.43cr 정정) |
 | ⬜ 대기(세션20 이월) | Upscale 엣지 실물 메커니즘 근본 규명 · T2 NSFW 오탐 재현성 확인 |
 | ✅ 완료 | 게이트 8종 · GitHub 이관 · clone-kb 부트스트랩 |
@@ -201,4 +222,10 @@ flowchart LR
 2026-07-17 세션20  T2~T5 패턴 재사용 — T1 확정 절차 그대로 적용, 4주제 전부 실물 15노드/15엣지 완주(탐색 스크린샷 대폭 축소, 재현성 확인). T2 씬1 이미지 NSFW 오탐(크레딧 자동환불, idle) 관측(파리티 발견②)
 2026-07-17 세션20  클론 5주제 빌드(harness/build_topic.py, T1~T3·T5는 resume+델타만·T4는 풀빌드) — 전부 15노드/16엣지·10/10 생성 완료(67796b9)
 2026-07-17 세션20  갤러리+결산 — reports/complex-workflows/gen_compare.py 신규 작성→index.html(5주제 좌실물/우클론, 파리티발견 3건). MCP transactions 160건 전수 재계산으로 크레딧 375.43cr 확정, ★오케 브리핑("968→692≈276cr")이 T1~T3 resume 중간 체크포인트를 시작값으로 오인한 부분합이었음을 적발·정정(-99.43cr). canvas-coord-inject-rearrange verified 승격. 잔액 1067.74→692.31cr(−375.43). runs+ledger+status+techniques(2장)+index.md+대시보드 결산 완료
+2026-07-17 세션21  시작 — notion 캠페인이 당일 확립·오너 채택한 structure-first-cloning("①골격→②스타일→③동작") 원칙을 canvas에 최초 소급 적용(retrofit). 정찰(ac38f1d): 신규 캡처 없이 기존 RIP델타19상태+RECON문서+현재소스 3축 교차검증 — 스테일 델타 5건·캡처아티팩트 배제, 확정 갭 3건(헤더span·라이트박스메타패널·프롬프트골격) 확정
+2026-07-17 세션21  ①핸들·비디오플레이어(3ab442a) — 오너 지적 대응, 실물 AD1 결과노드 live CDP 실측. 핸들 2레이어→단일24px원형배지 통합·SVG포트글리프 이식, 비디오플레이어 치수 정합
+2026-07-17 세션21  RIP 재덤프(2cdae0b) — 클론5175탭 4개동시상주 모호성 해소, canvas-id(3ad36980c5eb) 영구고정+뷰포트1556x895 정규화 후 재립. isolated 17,425→17,113(-312), 미니툴바radius·out-of-view토스트 유령2건 종결
+2026-07-17 세션21  ②헤더span래퍼(e73c8ab)+③라이트박스메타패널(6d8c485) — GenerateNode+SimpleNodes 3곳 span포장(6상태diff 7295→4364,-40%), 라이트박스 프롬프트/모델/비율/배치 신규섹션(2374→1696,-29%). 구조정합 1건이 스타일레이어 다수 동반개선하는 notion과 동일 메커니즘 재현
+2026-07-17 세션21  ④프롬프트골격 6타입 확산(3a88c8d·8b888f2·9548c0f·be0c3dd·b6daee6·82601be) — 네이티브textarea(IMETextarea,T79우회)→contentEditable(useEditableSeed 재사용), image→video→llm→audio→promptnode→inspector 순차 완결. 매라운드 이전타입 전체 무회귀 재확인(_t85_ime_spread.py 18/18×6회), 한글IME조합·T42동기화·멀티라인 전부 정상. 마지막라운드 cursor:text 공통회귀 발견·5클래스 소급수정
+2026-07-17 세션21  결산 — 전6커밋 tsc-b클린+vitest102/102, 0크레딧(잔액692.31cr불변), 보호캔버스 무접촉. runs+status+techniques(structure-first-cloning+rip-repair-loop)+cases+ledger+index.md+대시보드 결산 완료. 이월: LLM/Audio 전용 RIP state-spec·모델피커/인스펙터피커 육안대조·IMETextarea.tsx 삭제
 ```
