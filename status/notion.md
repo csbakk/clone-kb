@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⚪ 대기 — **골격 파리티 캠페인 4라운드 완주(2026-07-17)**: 제목·리스트(1단계)→래퍼체인·보정스택 청산(2단계)→전수 매트릭스 21종(W-CJ)→**셸 B안 4층 구현**(W-CK). dom_structure_gate **90케이스**. 잔여=대수술 2(grid 폭모델·editor 잉여층)+T-CG7/8/9+real 탭 복구(T-CG11, 오너 크롬 재시작 시 자연 해소) 후 상태 매트릭스·이벤트리스너 지도 · 마지막 갱신: 2026-07-17 밤
+**런 상태**: ⚪ 대기 — **★전층 클론 지도 ①~⑥ 완주(2026-07-18)**: 골격(셸 B안·게이트90)→스타일(96%대)→상태(hover=JS궤적·게이트13)→리스너 지도(window 1곳 위임)→싱글턴 포털 거터(T-CG12 Phase A·게이트17)→애니메이션/타이밍 지문(@starting-style 포팅). 잔여: ⑧AX트리·⑨엣지·Phase B/C·대수술2(grid폭모델·editor층)·T-CG7/8/9 · 마지막 갱신: 2026-07-18
 
 ## 현재 페이즈
 ```mermaid
@@ -30,6 +30,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-18 새벽 **⑤⑥애니메이션·타이밍 지문 완료 — 전층 지도 ①~⑥ 완주(⚪)**(W-CO, push 64886a7): rAF 프레임 실측 — 토글 캐럿 200ms(이미 일치)·팝오버 scale(0.96→1) 200ms 진입(@starting-style 포팅)·peek 슬라이드 일치. 연쇄회귀 root-cause 수정(위치계산이 scale 초기프레임 측정 → offsetWidth로). 전 게이트 그린 2회전. animation-ripper 카드 강화 재료 확보
 - 2026-07-18 새벽 **T-CG12 Phase A — 싱글턴 포털 거터 가동**(W-CN, push 915185c 외 4커밋): 실물 메커니즘 이식(idle 완전 언마운트·window mousemove 싱글턴·opacity 200ms·createPortal) + 드래그 갭 해결(포털 ⋮⋮가 draggable+setDragImage) + hover_portal_gate 17/17(stash 변별력) + 기존 게이트 6파일 정합. **픽셀 DB/풀블록 +0.1~0.9pp**(idle 구조 실물화 효과). Phase B(레거시 제거)/C(컬럼 내부 히트존) 잔여. 다음=⑤애니메이션·⑥타이밍 지문
 - 2026-07-18 새벽 **④이벤트 리스너 지도 완료**(W-CM, push 4ec6faf): 실물=셸 중간층 리스너 0·20종+ 이벤트 전부 **window 1곳 위임**(.notion-cursor-listener는 이름뿐임을 실측 확정) · 클론 React root 위임과 기능 동치 · **T-CG12 리스크 하향**(15종 연쇄→단일 BlockRow+모듈2) — 설계서 `ref/design/T-CG12_hover_gutter_portal.md`(레지스트리+cursorTracker+포털, 3단계 병행 플래그). 다음=T-CG12 Phase A 구현
 - 2026-07-18 새벽 **③상태 매트릭스 층 완료**(W-CL, push c0976a4 외): **핵심 발견 — 실물 hover는 CSS :hover가 아니라 JS mousemove 궤적추적+문서 싱글턴 포털 거터**(8스텝 궤적 실증). 수복 3(거터 transition 200ms·--bg-hover 토큰·무근거 .tv-row:hover 제거)·오판 정정 3(quickopen 등 이미 구현)·티켓 T-CG12(거터 마운트 메커니즘=프레임워크급). **state_matrix_gate 신설 12/12**(stash 변별력 검증). 다음=④이벤트 리스너 지도(.notion-cursor-listener가 진입점)

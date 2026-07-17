@@ -2,7 +2,7 @@
 id: techniques.animation-ripper
 title: 애니메이션 리퍼 (트랜지션 지문 일치)
 doctype: technique
-status: experimental
+status: verified
 proven_in: []
 related: [techniques.dom-first-measurement, techniques.twin-mirror-harness, pipelines.99-percent]
 evidence:
@@ -23,3 +23,10 @@ canvas 99% 로드맵에서 P1(cross-paste)·P2(explorer 승격) 다음 단계로
 
 ## 관련
 - [[techniques.twin-mirror-harness]] — 같은 로드맵 단계에서 이어지는 다음 개념(실물·클론을 나란히 재생해 비교)
+
+## notion 실증 (2026-07-18, W-CO)
+
+- **rAF 프레임 샘플링**으로 실물 모션 지문 채취(토글 캐럿 166ms 실측→200ms ease-out 선언과 합치·팝오버 scale 0.96→1 207ms·peek 감속 프로파일) → computed transition 선언과 교차 검증하면 신뢰도↑.
+- 포팅은 **`@starting-style`**이 정석(진입 트랜지션 — 마운트 프레임에 시작값 부여).
+- **★함정(실사고)**: 진입 트랜지션을 붙이면 `getBoundingClientRect()` 기반 위치 계산이 scale 초기 프레임(0.96)을 측정해 오프셋이 틀어짐 — 레이아웃 계산은 transform 무시하는 `offsetWidth/offsetHeight`로. video_block_gate 42→38 회귀로 발각, root-cause 수정.
+- proven_in: notion(+canvas 예정). 2프로젝트 실증 시점에 standard 검토.
