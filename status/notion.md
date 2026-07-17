@@ -30,6 +30,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 저녁 **T-CG5 규명+골격 순수화**(W-CI, push f2e3d9d 외): 드리프트 주범=CDN 이미지 디코드 레이스(188 2.9pp 스윙) → **pixel_diff에 캡처상태 assert 신설**(사이드바·스크롤·이미지로드·dpr — 조용한 드리프트 원천 차단, 0.00pp 재현) + dpr 출처기록·--repeat. 콜아웃 2겹 실물 골격 분리(role=note 외피+시각 내피)·h1 30px 상시 실측 확정(-2px 근사 제거)·toggle aria 확정. 12문서 96.30% 무하락. 다음=W-CJ 전수 골격 매칭 스윕(기존 자원만·재생성 0)
 - 2026-07-17 오후 **골격 2단계 완료(⚪ 마감)**(W-CH, push 637c68a 외): 래퍼체인 6종 실측=기존 flat-default가 이미 실물 총높이와 일치(W-CA 검증) · T-CG4 마진보정 스택 전부 제거→런 위치별 패딩 모델(data-run) · T-CG3 role/aria 전파(+콜아웃 role=note) · T-CG2 마커 auto(15항목 무클리핑) · **dom_structure_gate 23→68**(stash 변별력 검증). 픽셀 12문서 무하락(-0.008pp 노이즈). 신규 T-CG5: DB류 -1.0~1.6pp 드리프트가 CG/CH 무관 증명 — 다음 세션 규명 과제
 - 2026-07-17 오후 **★골격 파리티 1단계 완료 — 도크트린 즉시 실증**(W-CG, push aea2128 외 3커밋): 제목 골격(role=textbox 명시속성 — contentEditable만으론 미부여 규명·패딩 축 교정 0px8px·×48)+리스트 마커/텍스트 전용 flex row(.blk-list-row). **dom_structure_gate 신설 23/23**(stash 변별력 검증). **구조만 바꿨는데 픽셀 00~04 전부 상승(+1.03pp, 97%대)** — 구조-우선의 배당. 2단계 티켓: T-CG2(마커 auto폭)·T-CG3(타 리프 role 갭)·T-CG4(마진보정 스택→실물 패딩 모델 교체)
 - 2026-07-17 오후 **골격 파리티 1단계 착수**(W-CG): 오너 지시 '작업 들어가줘' — 구조-우선 도크트린 첫 실행. 실물 스켈레톤 자동 추출→클론 렌더 DOM 재구성→구조 게이트 신설→픽셀 00~04 무하락 증명
