@@ -48,6 +48,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-17 canvas 세션22 — "남은것 다" 라운드(도구파리티·피커재검증·LLM/Audio+핸들/엣지/툴바 RIP·전체체인 스켈레톤) + drawWidth fix](runs/2026-07-17-canvas-remaining-parity.md) — done: state-spec-json 2회재사용·오너결정 체인깊이 B채택(total-fidelity)·0크레딧
 - [2026-07-17 canvas 세션21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) — done: structure-first-cloning canvas 첫 retrofit·RIP 17425→17113·0크레딧
 - [2026-07-17 canvas 세션20 — 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) — done: 5/5 양쪽 15노드 매칭·좌표재배치 verified 승격·크레딧 375.43cr
 - [2026-07-16 canvas 세션19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 트리아지)](runs/2026-07-16-canvas-s19.md) — done: 내러티브 실물5/5+클론5/5·델타 -65·유령2/진짜1

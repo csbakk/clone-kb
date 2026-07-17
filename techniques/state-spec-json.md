@@ -3,12 +3,13 @@ id: techniques.state-spec-json
 title: 상태 명세 JSON (URL + 도달 절차 재현)
 doctype: technique
 status: verified
-proven_in: [notion]
+proven_in: [notion, canvas]
 related: [techniques.rip-css-dump, techniques.cdp-nondestructive-recon]
 evidence:
   - "260622_notion-clone/ref/rip/states/*.json — peek_open/popup_date/popup_propmenu/popup_rowmenu/popup_select/title_hover/view_board/view_calendar/view_gallery/view_timeline (10개)"
   - "260622_notion-clone/RIP-PIPELINE.md §6 — '상태 정의: URL+도달 절차(클릭 시퀀스)를 JSON으로 명세해 재현 가능하게'"
-updated: 2026-07-13
+  - "canvas 세션22(2026-07-17) — 19-state RIP 스위트 커버리지 갭을 LLM/Audio(harness/rip_states_llm_audio.py, 3종)·핸들/엣지/툴바(harness/rip_states_handles_edges_toolbar.py, 3종) 두 라운드에서 기존 rip_states_r.py 헬퍼 재사용으로 신속 확장. 매번 실측이 recon 추측(LLM footer 마운트조건·핸들 direct-hover 무반응)을 정정하는 부산물 동반 — @xyflow 노드캔버스라는 별개 프레임워크에서도 패턴 재사용 확인, verified 유지 근거 2프로젝트 충족"
+updated: 2026-07-17
 owner: 박춘순
 ---
 

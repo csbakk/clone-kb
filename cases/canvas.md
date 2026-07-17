@@ -15,13 +15,13 @@ owner: 박춘순
 
 **외부 작업폴더**: `~/Documents/project/260615_canvas-clone/` (실물 앱: Higgsfield Canvas, 노드캔버스형 생성 AI 툴)
 
-## 현재 상태 (2026-07-17 세션21 기준)
+## 현재 상태 (2026-07-17 세션22 기준)
 - **dev 서버**: `localhost:5175` (`npm run dev`) · **CDP 포트**: 9222/9223, 프로필 `~/.chrome-canvas-clone` · **RIP 스크래치 캔버스 영구고정**: `3ad36980c5eb`(세션18부터, url_substr 모호성 방지)
 - **파리티 게이트**: 9종 통과 (셸·노드·인터랙션·모델/업로드·상태/서피스/도구·크롤러·**크로스-페이스트**) — 99% 판정식 항목④ 달성(2026-07-13 세션 10)
-- **RIP 레이어① 상태**: 19/19 전수 덤프, 0 스킵. attribute-diff 38,476 → 30,580(세션7 리셋) → isolated 기준선 33,538 → 28,642(세션11) → 27,762(세션12) → 23,581(세션16 큐 근본수정, 진짜 총계 재확정) → 22,626(세션16 후속) → 17,490(세션17, window-size 노이즈 −3,558 분리) → 17,425(세션19) → **17,113**(세션21, canvas-id 고정+뷰포트정규화 재덤프, 유령2건 종결)
-- **테스트**: `npx vitest run` — 102/102(세션21 기준, 프롬프트골격 리팩터 6라운드 전부 무회귀), 상시 GitHub Actions CI
+- **RIP 레이어① 상태**: 19/19 전수 덤프 + 세션22에 LLM/Audio·핸들/엣지/툴바 전용 state-spec 6종 신규(커버리지 확장). attribute-diff 38,476 → 30,580(세션7 리셋) → isolated 기준선 33,538 → 28,642(세션11) → 27,762(세션12) → 23,581(세션16 큐 근본수정, 진짜 총계 재확정) → 22,626(세션16 후속) → 17,490(세션17, window-size 노이즈 −3,558 분리) → 17,425(세션19) → **17,113**(세션21, canvas-id 고정+뷰포트정규화 재덤프, 유령2건 종결. 세션22는 코드수정 위주로 이 총계 자체는 재측정 없음)
+- **테스트**: `npx vitest run` — 102/102(세션22 기준, 도구파리티 3커밋+피커수정+RIP확장 2커밋+drawWidth fix 전부 무회귀), 상시 GitHub Actions CI
 - **브랜치**: `polish-effects`(구 데모 레이어, 2026-07-13 철거) vs `parity`(활성 캠페인 브랜치)
-- **방법론 축(세션21)**: [[techniques.structure-first-cloning]] canvas 소급 적용(retrofit) — 스타일-먼저로 누적 진행돼온 이 캠페인에 "골격→스타일→동작" 원칙을 처음 이식. 상세는 `ref/_STRUCTURE_FIRST_ROADMAP.md`.
+- **방법론 축(세션21→22)**: [[techniques.structure-first-cloning]] canvas 소급 적용(retrofit) 이후, 세션22 결산 시점 **오너가 체인깊이 A/B 결정을 B(전층 일치, total-fidelity)로 확정** — "픽셀 등가면 골격/메커니즘 차이 무해"라는 세션22 자체 판정(스켈레톤 매트릭스 §9)이 뒤집힘. 다음 세션 1순위는 이 B 이행(프롬프트 리치에디터 층 이식·hover 전이 메커니즘 재작성). 상세는 `ref/_STRUCTURE_FIRST_ROADMAP.md`·`ref/_SKELETON_CHAIN_MATRIX.md`·`clone-kb runs/2026-07-17-canvas-remaining-parity.md`.
 
 ## 이 캠페인이 낳은 기법
 - [[techniques.rip-css-dump]] · [[techniques.rip-crawler]] · [[techniques.rip-repair-loop]] — RIP 3단 파이프라인 원류 ([[pipelines.rip-v1]])
@@ -34,7 +34,8 @@ owner: 박춘순
 - [[techniques.cross-paste-parity]] — P1 파일럿(세션 10)으로 verified 승격: 실물 직렬화 계약(마커+localStorage) 채택, 왕복 4/4 diff 0. [[techniques.clipboard-source-of-truth]]의 "클립보드에 JSON 직접" 서술을 교정한 재실측(r2)도 이 라운드의 산물
 - [[techniques.canvas-clipboard-localstorage]] — 클립보드 2단 구조(OS마커+localStorage payload) 3중 증거 확정, 세션20에 "서버참조ID" 가설 재검증으로 재확인
 - [[techniques.canvas-coord-inject-rearrange]] — 세션20에 실물 T1~T5 5/5 성공으로 experimental→verified 승격, 프로그램적 좌표 재배치 절차 확정
-- [[techniques.structure-first-cloning]] — 세션21에 canvas가 이 원칙의 **retrofit 시나리오 첫 실증**(카드 §함정 "이미 스타일-먼저 캠페인은 골격을 소급 교체" 시나리오). 헤더span·라이트박스메타패널·프롬프트골격 6타입 순차 리트로핏, proven_in에 canvas 추가
+- [[techniques.structure-first-cloning]] — 세션21에 canvas가 이 원칙의 **retrofit 시나리오 첫 실증**(카드 §함정 "이미 스타일-먼저 캠페인은 골격을 소급 교체" 시나리오). 헤더span·라이트박스메타패널·프롬프트골격 6타입 순차 리트로핏, proven_in에 canvas 추가. **세션22 결산에 오너가 원칙을 "전층 계약 클론(total-fidelity)"으로 확장**(체인깊이 A/B 결정 → B 채택) — 카드 §함정에 "무해 단순화 판정은 잠정" 규율 신설의 계기가 됨
+- [[techniques.state-spec-json]] — 세션22에 canvas가 2번째 실증 프로젝트로 proven_in 추가(LLM/Audio·핸들/엣지/툴바 전용 state-spec 6종, `rip_states_r.py` 헬퍼 재사용 확인)
 
 ## 현재 캠페인 루프 (도식 — 결산 시 갱신)
 

@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 20:01). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 20:06). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -72,7 +72,7 @@ pie showData
 | RIP 레이어② 인터랙션 크롤러 | canvas, notion | [techniques/rip-crawler.md](techniques/rip-crawler.md) |
 | RIP 레이어③ 자동 수복 루프 | canvas, notion | [techniques/rip-repair-loop.md](techniques/rip-repair-loop.md) |
 | 상태 탐색기 (커버리지 % 자동 측정) | canvas | [techniques/state-explorer.md](techniques/state-explorer.md) |
-| 상태 명세 JSON (URL + 도달 절차 재현) | notion | [techniques/state-spec-json.md](techniques/state-spec-json.md) |
+| 상태 명세 JSON (URL + 도달 절차 재현) | notion, canvas | [techniques/state-spec-json.md](techniques/state-spec-json.md) |
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
@@ -99,6 +99,7 @@ pie showData
 
 ## 파이프라인 (조립도)
 
+- **★캠페인 킥오프 플레이북 — 새 클론 프로젝트 시작 시 이것부터 로드** — [pipelines/00-campaign-kickoff-playbook.md](pipelines/00-campaign-kickoff-playbook.md)
 - **99% 파리티 판정식 (v2 — 6축 게이트)** — [pipelines/99-percent.md](pipelines/99-percent.md)
 - **야간 무인 런 파이프라인** — [pipelines/night-run.md](pipelines/night-run.md)
 - **RIP 파이프라인 v1 (전수 리핑 3단 조립도)** — [pipelines/rip-v1.md](pipelines/rip-v1.md)

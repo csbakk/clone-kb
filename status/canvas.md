@@ -3,9 +3,24 @@
 > 갱신 정책(오너결정 2026-07-16): **마일스톤/아크 단위 + 런 시작·종료 시** 갱신·push(이벤트마다 X — 커밋 노이즈 방지). 런 없을 때 = 마지막 런의 최종 상태.
 > 산출물(리포트·대조 갤러리·핸드오프)은 private `canvas-clone` 레포 → [산출물 대시보드](https://github.com/csbakk/canvas-clone)
 
-**런 상태**: ⚪ 대기 — 세션21 종료(2026-07-17). **구조-우선 원칙([[techniques.structure-first-cloning]]) canvas 최초 소급 레트로핏** — 핸들·비디오플레이어 실물파리티 · RIP 재덤프 17,425→**17,113** · 헤더span(-40%)·라이트박스메타패널(-29%) · 프롬프트 골격 6타입 전면교체(image→video→llm→audio→promptnode→inspector, contentEditable화) · 전 커밋 tsc/vitest 102/102·0크레딧 · 이월: LLM/Audio 전용 RIP state-spec·모델피커/인스펙터피커 육안대조·IMETextarea.tsx 삭제
+**런 상태**: ⚪ 대기 — 세션22 종료(2026-07-17). **"남은것 다" 라운드** — 도구 동작 파리티(툴바 hover 툴팁·메모 편집즉시·포맷툴바 공용화·도형드래그투사이즈·Draw/Arrow 연속작업) · 피커 재검증(변경0, 부수로 모델피커 클램프 버그 발견·수정) · LLM/Audio·핸들/엣지/툴바 전용 RIP state-spec 신규(19-state 공백 해소) · 전체-체인 스켈레톤 매트릭스 재검증(진짜 신규갭 0) · `IMETextarea.tsx` 삭제 · 전 커밋 tsc/vitest 102/102·0크레딧(MCP balance 692.21cr 재확인, 세션21 체크포인트와 소수점까지 일치) · **drawWidth 기본값 버그 fix**(4→2.5, Draw 브러시 둘 다 비활성으로 보이던 시작화면 버그).
+> ★**오너 결정(2026-07-17, 결산 시점) — 체인깊이 A/B → B 채택(전층 일치, total-fidelity)**: 스켈레톤 매트릭스(a810e58)가 "무해 단순화"로 판정했던 항목(프롬프트 리치에디터 real13층 vs clone10층·hover 전이 real=mount/unmount+reflow vs clone=상시마운트+opacity토글)은 픽셀 등가를 이유로 한 절충이 아니라 **다음 실행에서 실물 층수·메커니즘까지 일치시킬 B 대상**으로 재분류. 이유(오너): "프로들이 그 층 구조를 이유있게 만들었고, 층까지 맞춰야 실물이 기능을 추가해도 클론이 그 구조를 따라갈 수 있다." → [[techniques.structure-first-cloning]]을 **"전층 계약 클론(total-fidelity)"**으로 확장하는 방향(픽셀 등가로 골격 차이를 무해 판정하지 않고, 조상체인 층수·상태전이 메커니즘까지 실물과 동치화하는 것을 목표로 승격). 상세: `clone-kb runs/2026-07-17-canvas-remaining-parity.md` §5.
 
-## 🆕 세션 21 (2026-07-17, 완료)
+## 🆕 세션 22 (2026-07-17, "남은것 다" 라운드, 완료)
+- **도구 동작 파리티 3건** — ①툴바 hover 툴팁 신규(`8fdab40`, 실물 400ms지연 다크팝오버 실측+`.hf-tool-wrap` 형제분리로 클리핑 회피) ②메모(Sticky) 배치즉시편집+`RichFormatToolbar` 공용화+작성자라벨(`aecfc73`, TextNode 전용 UI를 재사용가능 컴포넌트로 추출) ③도형 드래그-투-사이즈+Draw/Arrow 연속작업(`26b70f5`, Shape를 draw-layer로 이관, 드래그실측 dx/dy≈1:1 결과size).
+- **피커 재검증(변경0) + 부수 버그 발견·수정** — 모델피커·인스펙터 피커 4종 재실측, 이미 정합 확인. 재검증 도중 `pickModel()` 클램프 로직 버그 발견 → `c1e8c28`: 무제약 모델 전환 시 이전 모델 resolution 값 잔존 버그 수정(게이팅 조건을 subtype 필드존재 기준으로 교체).
+- **LLM/Audio 패널 RIP state-spec 3종(`a1c39d4`)** — 19-state 스위트 공백 해소. ★실측이 recon의 "System 펼쳤을 때만 footer 마운트" 추측을 **정정**(실제=순수 hover 게이팅, accordion 무관). voice-label line-height 정합.
+- **`IMETextarea.tsx` 삭제(`a05be5c`)** — 세션21 이월 정리 과제, 6개 소비처 전부 이탈 확인 후 제거.
+- **전체-체인 스켈레톤 매트릭스(`a810e58`)** — 세션18 로드맵 top3 갭 클레임을 조상체인+상태전이 diff 레벨로 재검증 → **전부 이미 해소 확인**(다른 커밋들이 처리 완료), 코드수정 0. 스테일 캡처 9종 재덤프. 신규 발견: real/clone 상태전이 메커니즘 구조적 상이(mount/unmount+reflow vs opacity토글) — **당시 판정은 "무해 단순화"였으나 오너 결정으로 B 대상 재분류(위 참고)**.
+- **핸들/엣지/툴바 RIP state-spec 3종(`c5600f0`)** — 미연결 핸들 direct-hover 밝아짐 실측 정정(연결/결과 핸들 기준 "변화없음" 결론과 구분)+스타일 복원, Draw 서브메뉴 iOS 시스템컬러 8색(검정 누락 발견·복원)+스와치 36px/gap0. `edge_connected`는 실물측 OS-트러스티드 입력 필요로 보류.
+- **drawWidth 기본값 fix(`1ef6d86`, 이 결산 세션)** — `CanvasApp.tsx` L337 `useState(4)`가 `DRAW_WIDTHS=[2.5,6]` 어느 값과도 안 맞아 시작 시 Draw 브러시(Thin/Thick) 둘 다 비활성으로 보이던 버그. 실물 기본=Thin(2.5) → `useState(2.5)`. tsc·vitest(102/102) 통과, 회귀 0.
+- **검증**: 8+1커밋 전부 tsc -b 클린 + vitest 102/102. 크레딧 **0**(MCP `balance` 재확인 692.21cr, 세션21 체크포인트 "692.21 재확인"과 소수점까지 완전 일치). 보호 캔버스 무접촉.
+- **push**: 로컬 커밋만(branch `parity`), 오너 승인 대기.
+- 상세: `clone-kb runs/2026-07-17-canvas-remaining-parity.md`.
+- **남은 일(잔여 큐, 다음 세션)**: ★**B 채택 이행** — 프롬프트 리치에디터 decorator/스크롤 래퍼 3~4층 이식 + hover 전이를 mount/unmount+reflow 방식으로 재작성(렌더러 심장부급, 게이트망 선행 필수) · 라이트박스 메타 위치 aside 이관(우측 사이드바, 콘텐츠 파리티를 넘어 배치까지) · `edge_connected` 실물측 측정(OS-트러스티드 마우스 툴 설치 후 재시도) · 결과노드 hover 트리거 육안확정(미발화 vs 의도된 무반응) · 핸들 조상체인 커버리지 확장(`rip_dump.py`에 `className` 필드 추가, 하위호환 저위험).
+
+---
+### (이력) 세션 21
 - **구조-우선 원칙 canvas 소급 적용(retrofit)** — notion 캠페인이 당일 확립·오너 채택한 [[techniques.structure-first-cloning]]("①골격→②스타일→③동작" 순서)을 canvas에 최초 이식. canvas는 세션1~20을 스타일-먼저로 누적 진행해온 캠페인이라 카드 §함정의 "이미 스타일-먼저 캠페인은 골격을 retrofit" 시나리오의 첫 실증.
 - **정찰(`ac38f1d`)** — 신규 CDP 캡처 없이 기존 RIP 델타(19상태, 7/13 기준) + RECON 문서 + 현재 소스코드(git log/grep) 3축 교차검증. 스테일 델타 5건(모델피커·인스펙터피커·LLM/Audio패널·미니툴바radius·out-of-view토스트 — 7/15~17 커밋으로 이미 해결) + 캡처 아티팩트(소스가 이미 자인)를 배제하고, 확정 갭 3건(헤더span·라이트박스메타패널·프롬프트골격) 확정. `ref/_STRUCTURE_FIRST_ROADMAP.md` 신설.
 - **①핸들·비디오플레이어(`3ab442a`)** — 오너 지적 대응, 실물 노드 live CDP 실측. 핸들: 2레이어(28px squircle+투명히트박스+내부pill)→실물과 동치인 단일 24px 원형 배지 통합, hover 확대 제거, 4종 실물 SVG 포트글리프 이식. 비디오플레이어: 중앙Play 56→36px·컨트롤바 인셋/높이·버튼 22→14px 등 실측 정합.
@@ -62,6 +77,14 @@ flowchart LR
 ## 가동 중 에이전트
 | 에이전트 | 작업 | 투입 시각 | 상태 |
 |---|---|---|---|
+| 단일에이전트(opus) | 도구 동작 파리티(툴팁·메모·도형드래그·Draw/Arrow연속) | 세션 22 | ✅ 완료(8fdab40·aecfc73·26b70f5) |
+| 단일에이전트(opus) | 피커 재검증(모델피커·인스펙터 4종, 변경0)+모델피커 클램프 버그 수정 | 세션 22 | ✅ 완료(재검증 커밋없음·수정 c1e8c28) |
+| 단일에이전트(opus) | LLM/Audio 패널 RIP state-spec 3종 | 세션 22 | ✅ 완료(a1c39d4) |
+| 단일에이전트(opus) | IMETextarea.tsx 삭제 | 세션 22 | ✅ 완료(a05be5c) |
+| 단일에이전트(opus) | 전체-체인 스켈레톤 매트릭스 재검증 | 세션 22 | ✅ 완료(a810e58, 진짜신규갭0) |
+| 단일에이전트(opus) | 핸들/엣지/툴바 RIP state-spec 3종 | 세션 22 | ✅ 완료(c5600f0) |
+| 결산 빌더(opus) | drawWidth 기본값 버그 fix + clone-kb 결산 | 세션 22 | ✅ 완료(1ef6d86) |
+| 오너 | 체인깊이 A/B 결정 | 세션 22 결산 | ✅ B 채택(전층 일치) |
 | 단일에이전트(opus) | 구조-우선 정찰(19상태 델타×소스 3축 교차검증) | 세션 21 | ✅ 완료(ac38f1d) |
 | 단일에이전트(opus) | 핸들·비디오플레이어 실물파리티(live CDP실측) | 세션 21 | ✅ 완료(3ab442a) |
 | 단일에이전트(opus) | RIP 재덤프(canvas-id고정+뷰포트정규화) | 세션 21 | ✅ 완료(2cdae0b, 17425→17113) |
@@ -110,8 +133,10 @@ flowchart LR
 ## 티켓 보드
 | 상태 | 티켓 |
 |---|---|
-| ✅ 완료(세션21) | 구조-우선 원칙 canvas 최초 소급 레트로핏 · 핸들·비디오플레이어 실물파리티 · RIP재덤프 17425→17113 · 헤더span(-40%)·라이트박스메타패널(-29%) · 프롬프트골격 6타입 전면교체(textarea→contentEditable) · 전커밋 tsc/vitest 102/102·0크레딧 |
-| ⬜ 대기(세션21 이월) | 잔여 커서 미세매칭 1건 · 모델피커/인스펙터피커 육안대조 · LLM/Audio 전용 RIP state-spec 신규 · 핸들/엣지/툴바 RIP 커버리지갭(엣지·툴바 미착수) · IMETextarea.tsx 삭제 |
+| ✅ 완료(세션22) | 도구 동작 파리티 3건(툴팁·메모·도형드래그+Draw/Arrow연속) · 피커 재검증(변경0)+모델피커 클램프버그 수정 · LLM/Audio·핸들/엣지/툴바 RIP state-spec 3+3종 신규 · 전체-체인 스켈레톤 매트릭스 재검증(진짜신규갭0) · IMETextarea.tsx 삭제 · drawWidth 기본값 fix · 전커밋 tsc/vitest 102/102·0크레딧(692.21cr 재확인) |
+| ★오너결정(세션22 결산) | 체인깊이 A/B → **B 채택**(전층 일치·total-fidelity). structure-first-cloning 확장 방향 |
+| ⬜ 대기(세션22 이월, B 이행 대상) | 프롬프트 리치에디터 decorator/스크롤래퍼 이식+hover전이 mount/unmount 재작성(렌더러심장부급) · 라이트박스 메타 aside 이관 · edge_connected 실물측 측정(OS-트러스티드 툴 필요) · 결과노드 hover트리거 육안확정 · 핸들 조상체인 커버리지(rip_dump.py className 필드) |
+| ⬜ 대기(세션21 이월, 잔존) | 잔여 커서 미세매칭 1건 |
 | ✅ 완료(세션20) | 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 15노드 완성 · G1/G2+Voice+Upscale 클론 인에이블 · canvas-coord-inject-rearrange verified 승격 · 대조갤러리 index.html · 크레딧 재계산(브리핑 276cr→정본 375.43cr 정정) |
 | ⬜ 대기(세션20 이월) | Upscale 엣지 실물 메커니즘 근본 규명 · T2 NSFW 오탐 재현성 확인 |
 | ✅ 완료 | 게이트 8종 · GitHub 이관 · clone-kb 부트스트랩 |
@@ -228,4 +253,12 @@ flowchart LR
 2026-07-17 세션21  ②헤더span래퍼(e73c8ab)+③라이트박스메타패널(6d8c485) — GenerateNode+SimpleNodes 3곳 span포장(6상태diff 7295→4364,-40%), 라이트박스 프롬프트/모델/비율/배치 신규섹션(2374→1696,-29%). 구조정합 1건이 스타일레이어 다수 동반개선하는 notion과 동일 메커니즘 재현
 2026-07-17 세션21  ④프롬프트골격 6타입 확산(3a88c8d·8b888f2·9548c0f·be0c3dd·b6daee6·82601be) — 네이티브textarea(IMETextarea,T79우회)→contentEditable(useEditableSeed 재사용), image→video→llm→audio→promptnode→inspector 순차 완결. 매라운드 이전타입 전체 무회귀 재확인(_t85_ime_spread.py 18/18×6회), 한글IME조합·T42동기화·멀티라인 전부 정상. 마지막라운드 cursor:text 공통회귀 발견·5클래스 소급수정
 2026-07-17 세션21  결산 — 전6커밋 tsc-b클린+vitest102/102, 0크레딧(잔액692.31cr불변), 보호캔버스 무접촉. runs+status+techniques(structure-first-cloning+rip-repair-loop)+cases+ledger+index.md+대시보드 결산 완료. 이월: LLM/Audio 전용 RIP state-spec·모델피커/인스펙터피커 육안대조·IMETextarea.tsx 삭제
+2026-07-17 세션22  "남은것 다" 라운드 시작 — 세션21 결산(9e70ee0) 직후 이어짐, 신규 recon 없이 이월 큐 소비. 툴바 hover 툴팁(8fdab40, 실물 400ms지연 다크팝오버 실측)·메모(Sticky) 동작파리티(aecfc73, 배치즉시편집+RichFormatToolbar공용화+작성자라벨)·도형드래그투사이즈+Draw/Arrow연속작업(26b70f5, Shape를 draw-layer로 이관)
+2026-07-17 세션22  피커 재검증(모델피커·인스펙터 4종, 변경0 — 이미 정합 확인) 도중 별건 발견 → c1e8c28: pickModel() 클램프 로직 버그(무제약 모델 전환 시 이전모델 resolution값 잔존) 수정, 게이팅 조건을 subtype 필드존재 기준으로 교체
+2026-07-17 세션22  LLM/Audio 패널 RIP state-spec 3종(a1c39d4) — 19-state 스위트 공백 해소. 실측이 recon 추측("System펼쳤을때만 footer마운트")을 정정(실제=순수 hover게이팅). IMETextarea.tsx 삭제(a05be5c, 6소비처 전부 이탈 확인 후)
+2026-07-17 세션22  전체-체인 스켈레톤 매트릭스(a810e58) — 세션18 로드맵 top3 갭 클레임을 조상체인+상태전이 diff로 재검증 → 전부 이미 해소 확인(코드수정0). 신규발견: real/clone hover전이 메커니즘 구조상이(mount/unmount+reflow vs opacity토글) — 이 시점엔 "무해 단순화"로 판정
+2026-07-17 세션22  핸들/엣지/툴바 RIP state-spec 3종(c5600f0) — 미연결핸들 direct-hover 실측정정(밝아짐 확인)+스타일복원, Draw서브메뉴 iOS시스템컬러8색(검정누락 발견·복원). edge_connected는 실물측 OS-트러스티드 입력 미설치로 보류
+2026-07-17 세션22  결산 빌더 투입 — drawWidth 기본값 버그 발견·수정(1ef6d86, CanvasApp.tsx useState(4)→useState(2.5), DRAW_WIDTHS=[2.5,6] 어느값과도 안맞아 시작시 Draw브러시 둘다 비활성으로 보이던 버그). tsc·vitest(102/102) 통과
+2026-07-17 세션22  ★오너 개입 — 체인깊이 A/B 결정: 스켈레톤 매트릭스(a810e58)의 "무해 단순화" 판정을 뒤집고 **B(전층 일치, total-fidelity) 채택**. "프로들이 그 층 구조를 이유있게 만들었고, 층까지 맞춰야 실물이 기능을 추가해도 클론이 따라갈 수 있다"는 원칙. structure-first-cloning을 "전층 계약 클론" 방향으로 확장하기로
+2026-07-17 세션22  결산 — MCP balance 재확인 692.21cr(세션21 체크포인트 "692.21 재확인"과 소수점까지 일치, 이번 라운드 0크레딧 확정). runs+status+ledger+index.md+대시보드 결산 완료. B채택 이행 큐(프롬프트 decorator층 이식·hover전이 재작성·라이트박스aside이관·edge_connected실물측측정·핸들className커버리지) 다음 세션 1순위로 명시
 ```
