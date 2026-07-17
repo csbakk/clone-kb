@@ -30,6 +30,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-18 새벽 **T-CG12 Phase A — 싱글턴 포털 거터 가동**(W-CN, push 915185c 외 4커밋): 실물 메커니즘 이식(idle 완전 언마운트·window mousemove 싱글턴·opacity 200ms·createPortal) + 드래그 갭 해결(포털 ⋮⋮가 draggable+setDragImage) + hover_portal_gate 17/17(stash 변별력) + 기존 게이트 6파일 정합. **픽셀 DB/풀블록 +0.1~0.9pp**(idle 구조 실물화 효과). Phase B(레거시 제거)/C(컬럼 내부 히트존) 잔여. 다음=⑤애니메이션·⑥타이밍 지문
 - 2026-07-18 새벽 **④이벤트 리스너 지도 완료**(W-CM, push 4ec6faf): 실물=셸 중간층 리스너 0·20종+ 이벤트 전부 **window 1곳 위임**(.notion-cursor-listener는 이름뿐임을 실측 확정) · 클론 React root 위임과 기능 동치 · **T-CG12 리스크 하향**(15종 연쇄→단일 BlockRow+모듈2) — 설계서 `ref/design/T-CG12_hover_gutter_portal.md`(레지스트리+cursorTracker+포털, 3단계 병행 플래그). 다음=T-CG12 Phase A 구현
 - 2026-07-18 새벽 **③상태 매트릭스 층 완료**(W-CL, push c0976a4 외): **핵심 발견 — 실물 hover는 CSS :hover가 아니라 JS mousemove 궤적추적+문서 싱글턴 포털 거터**(8스텝 궤적 실증). 수복 3(거터 transition 200ms·--bg-hover 토큰·무근거 .tv-row:hover 제거)·오판 정정 3(quickopen 등 이미 구현)·티켓 T-CG12(거터 마운트 메커니즘=프레임워크급). **state_matrix_gate 신설 12/12**(stash 변별력 검증). 다음=④이벤트 리스너 지도(.notion-cursor-listener가 진입점)
 - 2026-07-17 밤 **셸 B안 부분 구현(⚪ 마감)**(W-CK, push 17648a6 외 5커밋): 4층 additive 구현(.page role/aria·selectable-container display:contents·테마 명명·body 봉인) · 대수술 2건 정직 보류(grid 폭모델=아웃라인/커버 재검증 필요·editor 잉여층=13파일 연쇄) · **게이트 90/90** · 픽셀 무하락 A/B 증명(DB 드리프트=기존 상태, stash 재현). 다음 재개 조건: 오너 크롬 재시작→real 탭 복구(T-CG11)→상태 매트릭스(W-CK')→이벤트리스너 지도
