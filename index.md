@@ -19,6 +19,7 @@
 - [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
 - [DOM 기반 측정 (픽셀 스샷 대체)](techniques/dom-first-measurement.md) — standard
+- [실측 CSS 포팅 (골격 동치 후 computed 값 그대로 이식)](techniques/measured-css-porting.md) — standard
 - [모델 매트릭스 diff (카탈로그 전수 검증, GENERATE 비용 0)](techniques/model-matrix-diff.md) — verified
 - [야간 무인 런 SOP (graceful skip · 안전경계 · 큐)](techniques/night-run-sop.md) — standard
 - [스키마 마이그레이션 안전망 (버전·백업·invariant·게이트)](techniques/persist-migration-safety-net.md) — experimental
@@ -27,6 +28,7 @@
 - [파리티 CI (교차앱 자동 회귀 파이프라인)](techniques/parity-ci.md) — experimental
 - [파리티 감시 데몬 (99% 선언 이후 유지)](techniques/parity-watch-daemon.md) — experimental
 - [픽셀 지문 게이트 (≥99% 점수 재현성)](techniques/pixel-fingerprint-gate.md) — experimental
+- [픽셀 diff 기준선 (구조/기능 게이트와 쌍인 파리티 배지)](techniques/pixel-diff-baseline.md) — standard
 - [픽셀 스크린샷을 1차 오라클로 (은퇴)](techniques/pixel-screenshot-as-primary-oracle.md) — retired
 - [포트+프로필 격리 (프로젝트당 전용 CDP 포트·Chrome 프로필)](techniques/port-profile-isolation.md) — standard
 - [호버 중 레코딩 (Clone Inspector + ci_agent)](techniques/record-during-hover.md) — verified

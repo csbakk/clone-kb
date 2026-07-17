@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 21:02). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 21:09). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -31,8 +31,8 @@
 
 ```mermaid
 pie showData
-    title 기법 39장
-    "정식 (standard)" : 12
+    title 기법 41장
+    "정식 (standard)" : 14
     "검증 (verified)" : 14
     "실험 (experimental)" : 12
     "은퇴 (retired)" : 1
@@ -40,7 +40,7 @@ pie showData
 
 ## 기법 카드
 
-### 정식 (standard) — 12
+### 정식 (standard) — 14
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -49,8 +49,10 @@ pie showData
 | CDP 비파괴 정찰 (peek 패턴, 리로드 금지) | canvas, notion, akiflow | [techniques/cdp-nondestructive-recon.md](techniques/cdp-nondestructive-recon.md) |
 | 클립보드 JSON을 정본으로 (노드캔버스 앱) | canvas | [techniques/clipboard-source-of-truth.md](techniques/clipboard-source-of-truth.md) |
 | DOM 기반 측정 (픽셀 스샷 대체) | canvas, notion | [techniques/dom-first-measurement.md](techniques/dom-first-measurement.md) |
+| 실측 CSS 포팅 (골격 동치 후 computed 값 그대로 이식) | notion, canvas | [techniques/measured-css-porting.md](techniques/measured-css-porting.md) |
 | 야간 무인 런 SOP (graceful skip · 안전경계 · 큐) | kit, notion, akiflow, canvas | [techniques/night-run-sop.md](techniques/night-run-sop.md) |
 | 오케스트레이터 모델 라우팅 (fable 오케 / sonnet 빌더 / opus 검증) | canvas | [techniques/orchestrator-model-routing.md](techniques/orchestrator-model-routing.md) |
+| 픽셀 diff 기준선 (구조/기능 게이트와 쌍인 파리티 배지) | notion, canvas | [techniques/pixel-diff-baseline.md](techniques/pixel-diff-baseline.md) |
 | 포트+프로필 격리 (프로젝트당 전용 CDP 포트·Chrome 프로필) | canvas, notion, akiflow, kit | [techniques/port-profile-isolation.md](techniques/port-profile-isolation.md) |
 | 번호매김 회귀 검증 스위트 (_bN_verify.py / *_gate.py) | canvas, notion, akiflow | [techniques/regression-harness-suite.md](techniques/regression-harness-suite.md) |
 | RIP 레이어① CSS/DOM 전수 덤프 | canvas, notion | [techniques/rip-css-dump.md](techniques/rip-css-dump.md) |
