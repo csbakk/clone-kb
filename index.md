@@ -41,6 +41,7 @@
 - [G1 비주얼 판정 시트 (bbox 오버레이 + 크롭)](techniques/visual-triage-sheet.md) — verified
 
 ## pipelines/
+- [★캠페인 킥오프 플레이북 — 새 클론 시작 시 이것부터 로드](pipelines/00-campaign-kickoff-playbook.md) — standard
 - [99% 파리티 판정식 (v2 — 6축 게이트)](pipelines/99-percent.md) — verified
 - [야간 무인 런 파이프라인](pipelines/night-run.md) — standard
 - [RIP 파이프라인 v1 (전수 리핑 3단 조립도)](pipelines/rip-v1.md) — standard
