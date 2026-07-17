@@ -14,6 +14,7 @@
 - [캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설)](techniques/canvas-clipboard-localstorage.md) — experimental
 - [복사→좌표수정→주입 재배치 (프로그램적 격자정렬)](techniques/canvas-coord-inject-rearrange.md) — verified
 - [클립보드 JSON을 정본으로 (노드캔버스 앱)](techniques/clipboard-source-of-truth.md) — standard
+- [클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나)](techniques/clone-documentation-formats.md) — experimental
 - [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
 - [DOM 기반 측정 (픽셀 스샷 대체)](techniques/dom-first-measurement.md) — standard
@@ -34,6 +35,7 @@
 - [RIP 레이어③ 자동 수복 루프](techniques/rip-repair-loop.md) — verified
 - [상태 탐색기 (커버리지 % 자동 측정)](techniques/state-explorer.md) — verified
 - [상태 명세 JSON (URL + 도달 절차 재현)](techniques/state-spec-json.md) — verified
+- [인터랙션 상태 지도 (노드/컴포넌트 전 버튼→상태 말단까지)](techniques/interaction-state-map.md) — experimental
 - [서브에이전트 병렬화 규칙 (독립·무충돌만 병렬)](techniques/subagent-fanout-rules.md) — standard
 - [트윈 미러 하네스 (실물·클론 동시 재생 비교)](techniques/twin-mirror-harness.md) — experimental
 - [URL 이탈 가드 (크롤러 실수 네비게이션 방어)](techniques/url-escape-guard.md) — verified
