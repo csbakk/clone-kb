@@ -3,6 +3,7 @@
 
 ## techniques/
 - [★구조-우선 클론 (골격→스타일→동작 — 오너 채택 1순위 원칙)](techniques/structure-first-cloning.md) — standard
+- [★Total-Fidelity 클론 (전 서브시스템·전 층 계약 일치 — B 원칙, 2026-07-17 오너 격상)](techniques/total-fidelity-cloning.md) — experimental
 - [적대적 검증 (빌더 ≠ 검증자, verify-first 루프)](techniques/adversarial-verification.md) — standard
 - [애니메이션 리퍼 (트랜지션 지문 일치)](techniques/animation-ripper.md) — experimental
 - [Append-only 로깅 (워크로그·티켓·갭매트릭스)](techniques/append-only-logging.md) — standard

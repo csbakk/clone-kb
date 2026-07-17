@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 17:20). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 20:01). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -12,6 +12,7 @@
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
 | 2026-07-17 | [canvas 세션 20 — 복잡 노드 연결 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) | canvas | done | 7 |
+| 2026-07-17 | [canvas 세션 22 — "남은것 다" 라운드(도구 파리티·피커 재검증·LLM/Audio RIP·전체체인 스켈레톤·핸들/엣지/툴바 RIP) + drawWidth 기본값 fix](runs/2026-07-17-canvas-remaining-parity.md) | canvas | done | 7 |
 | 2026-07-17 | [canvas 세션 21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) | canvas | done | 6 |
 | 2026-07-16 | [canvas 세션 17 — 무인 밤런 (윈도우노이즈 규명 + 진짜갭 3건 수복 + 생성 자율테스트 + 브리지 아키텍처 사고)](runs/2026-07-16-canvas-s17.md) | canvas | done | 6 |
 | 2026-07-16 | [canvas 세션 19 — 무인 10h (내러티브 파리티 완성 5/5 + isolated 델타 소탕 + Track C 버그 트리아지)](runs/2026-07-16-canvas-s19.md) | canvas | done | 6 |
@@ -30,10 +31,10 @@
 
 ```mermaid
 pie showData
-    title 기법 36장
+    title 기법 37장
     "정식 (standard)" : 12
     "검증 (verified)" : 14
-    "실험 (experimental)" : 9
+    "실험 (experimental)" : 10
     "은퇴 (retired)" : 1
 ```
 
@@ -75,7 +76,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 9
+### 실험 (experimental) — 10
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -87,6 +88,7 @@ pie showData
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
 | 스키마 마이그레이션 안전망 (버전·백업·invariant·게이트) | notion | [techniques/persist-migration-safety-net.md](techniques/persist-migration-safety-net.md) |
 | 픽셀 지문 게이트 (≥99% 점수 재현성) | — | [techniques/pixel-fingerprint-gate.md](techniques/pixel-fingerprint-gate.md) |
+| Total-Fidelity 클론 (전 서브시스템·전 층 계약 일치 — B 원칙) | canvas | [techniques/total-fidelity-cloning.md](techniques/total-fidelity-cloning.md) |
 | 트윈 미러 하네스 (실물·클론 동시 재생 비교) | — | [techniques/twin-mirror-harness.md](techniques/twin-mirror-harness.md) |
 
 ### 은퇴 (retired) — 1
