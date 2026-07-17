@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⚪ 대기 — **★구조-우선 골격 파리티 1·2단계 완주(2026-07-17)**: 제목·리스트·6블록 래퍼체인 골격 정합, 마진보정 스택→실물 패딩 모델 교체(T-CG4), role/aria 전파, dom_structure_gate 68케이스. 픽셀 무하락(리치텍스트 +1pp대). 잔여 티켓: T-CG5(DB 픽셀 드리프트 규명)·콜아웃 2겹 패딩 재구조·h1 doc-first 구분 · 마지막 갱신: 2026-07-17 오후
+**런 상태**: ⚪ 대기 — **골격 파리티 캠페인 4라운드 완주(2026-07-17)**: 제목·리스트(1단계)→래퍼체인·보정스택 청산(2단계)→전수 매트릭스 21종(W-CJ)→**셸 B안 4층 구현**(W-CK). dom_structure_gate **90케이스**. 잔여=대수술 2(grid 폭모델·editor 잉여층)+T-CG7/8/9+real 탭 복구(T-CG11, 오너 크롬 재시작 시 자연 해소) 후 상태 매트릭스·이벤트리스너 지도 · 마지막 갱신: 2026-07-17 밤
 
 ## 현재 페이즈
 ```mermaid
@@ -30,6 +30,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-17 밤 **셸 B안 부분 구현(⚪ 마감)**(W-CK, push 17648a6 외 5커밋): 4층 additive 구현(.page role/aria·selectable-container display:contents·테마 명명·body 봉인) · 대수술 2건 정직 보류(grid 폭모델=아웃라인/커버 재검증 필요·editor 잉여층=13파일 연쇄) · **게이트 90/90** · 픽셀 무하락 A/B 증명(DB 드리프트=기존 상태, stash 재현). 다음 재개 조건: 오너 크롬 재시작→real 탭 복구(T-CG11)→상태 매트릭스(W-CK')→이벤트리스너 지도
 - 2026-07-17 밤 **전수 골격 매트릭스 완성(21종)**(W-CJ, push 36098e6 외): 수복5(media role=figure·main 랜드마크)/일치6/재구조보류9/티켓(code구성·link_preview·중첩toggle·**셸 전층 T-CG10**[real 14층 vs 클론 8층, skeleton_shell.json 스펙 확보]). dom_structure_gate 68→**83**. 픽셀 무하락 비트동일 증명. 사고: real 탭 렌더러 데드락(OPFS 공유워커, T-CG11 — 세션 내 복구불가). 다음=T-CG10 셸 재구성(스펙 기확보라 real 불필요)
 - 2026-07-17 저녁 **T-CG5 규명+골격 순수화**(W-CI, push f2e3d9d 외): 드리프트 주범=CDN 이미지 디코드 레이스(188 2.9pp 스윙) → **pixel_diff에 캡처상태 assert 신설**(사이드바·스크롤·이미지로드·dpr — 조용한 드리프트 원천 차단, 0.00pp 재현) + dpr 출처기록·--repeat. 콜아웃 2겹 실물 골격 분리(role=note 외피+시각 내피)·h1 30px 상시 실측 확정(-2px 근사 제거)·toggle aria 확정. 12문서 96.30% 무하락. 다음=W-CJ 전수 골격 매칭 스윕(기존 자원만·재생성 0)
 - 2026-07-17 오후 **골격 2단계 완료(⚪ 마감)**(W-CH, push 637c68a 외): 래퍼체인 6종 실측=기존 flat-default가 이미 실물 총높이와 일치(W-CA 검증) · T-CG4 마진보정 스택 전부 제거→런 위치별 패딩 모델(data-run) · T-CG3 role/aria 전파(+콜아웃 role=note) · T-CG2 마커 auto(15항목 무클리핑) · **dom_structure_gate 23→68**(stash 변별력 검증). 픽셀 12문서 무하락(-0.008pp 노이즈). 신규 T-CG5: DB류 -1.0~1.6pp 드리프트가 CG/CH 무관 증명 — 다음 세션 규명 과제
