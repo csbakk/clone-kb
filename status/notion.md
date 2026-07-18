@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-EC | UNMAPPED 5종 스코프 조사(오너 결정큐2 근거, read-only) | 🔴 가동(단독) |
+| W-ED | TYPE_MAP 정정(4종 기구현 반영)+매칭표/티켓 최종화 | 🔴 가동(단독) |
 
-직전 완료: W-EA(embed OK) · **W-EB(결산 매칭표15/18·아침보고 HTML, 0c28d24 push)** · ledger 5건 append.
+직전 완료: W-EB(결산 매칭표·아침보고) · ledger 5건 · **W-EC(UNMAPPED 4종 기구현 발견, a2e3873 push)**.
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **UNMAPPED 5종 = 실은 4종 기구현 발견**(W-EC, push a2e3873): read-only 조사 — header_4(=h4)·button·external_object_instance(=link_preview)·collection_view_page(=DatabaseFullPage) 전부 **이미 클론 구현됨**(T-LS2/T-LS3의 grep miss 오기재를 git log로 반증). diff TYPE_MAP 미등록으로 UNMAPPED 오분류된 것뿐. **진짜 미구현은 인라인 "하위 페이지 링크" 블록 1종(freq~30)만** — 오너 결정큐2가 "5종"이 아니라 실질 1종으로 축소. → W-ED로 TYPE_MAP 등록+매칭표/티켓 최종 정정
 - 2026-07-19 **골격 완전정합 캠페인 마감 결산**(W-EB, push 0c28d24 + ledger append): 매칭표 embed 반영 **완전일치 15/18(83.3%)·전체필드 97.5%·박스99.2%** · 아침보고 `RUN-0719-morning-skeleton.html`(런요약 20워커/26커밋·오너 결정큐 4항목 인터랙티브·티켓보드, 헤드리스 검증 통과) · ledger 5건(diff강화·대수술5연속·스윕전수·멀티셀렉버그·클립보드) append+대시보드 재생성. 잔여=대수술 티켓(quote/toc chain·셸폭모델)+UNMAPPED 5종(오너확인) → W-EC 스코프 조사로 결정 근거 준비
 - 2026-07-19 **embed 수복 + toc 폰트 아티팩트 판별**(W-EA, push 4bc50ad): embed를 카드형 void 패턴(padding 8px·display block)으로 합류 → **GAP→OK, OK 14→15(83.3%)**, 188 94.51→**98.7%**(+4.19). ★toc 폰트(fs14/lh21)는 **아티팩트로 정직 판별·미수복** — 같은 페이지 image/video도 일제히 0.875배(그 페이지 텍스트축소 설정이지 블록 고유값 아님, T-LS4 동형). 무근거 px 변경 금지 준수. toc/quote chain_depth는 column_list/tab 공유 컴포넌트 대수술이라 티켓. dom 94/94·embed_file 19/19. → 리프 골격 자연 수렴점(잔여=대수술 티켓/오너확인) → W-EB 마감 결산
 - 2026-07-19 **★리프 골격 전수 매칭표 결산**(W-DZ, push d6bcb7b·c8b838a): diff 최종집계 — 테스트가능 18종 중 **완전일치 14(77.8%)**, 전체 필드 **96.5%**(폰트 fs/fw/lh 96.3%·박스 97.6%·chain 88.9%). 매칭표 HTML `RUN-0719-leaf-skeleton-parity.html`(24 blockType 카드: leaf→root 체인표+폰트표+박스표+verdict, 헤드리스 검증 통과). 남은 GAP 4: quote(chain, 실측신뢰도부족 티켓)·**toc(chain+폰트버그 fs14→16·lh21→24)**·table(SVG만 T-LS1)·**embed(padding 8888 vs 4040·display block vs flex)** + UNMAPPED 5종(렌더러 부재, 오너 확인 필요)+셸 폭모델(별개 T-CG10). toc/embed 경량 수복 가능 → W-EA
