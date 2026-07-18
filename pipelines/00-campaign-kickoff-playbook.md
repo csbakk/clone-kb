@@ -39,7 +39,7 @@ owner: 박춘순
 | 대상에 API가 있으면 | **API 계약 클론**(notion: 클론이 공개 API를 로컬에서 말하게) | 동일 요청→양쪽 비교 = UI 자동화 없이 결정적 파리티. 데이터 주입도 이 경로로 |
 | 실물 UI 자동화 | ❌ 기본 금지 | 실물·클론 양쪽 다 취약(정크 생성·빈 페이지). API/캐시 덤프로 대체 |
 | 갭 수복 | measure-then-fix + [[techniques.rip-repair-loop]] | 실측 근거 없는 px 변경 금지. 수렴이면 억지 수복 말고 지도만 |
-| 검증 | [[techniques.adversarial-verification]] + 게이트 티어링(T0 매변경/T1 스팟/T2 경계) | 빌더 자가선언 금지. T2는 mutation-heavy 경계만(비싸다) |
+| 검증 | [[techniques.adversarial-verification]] + 게이트 티어링 **4단**(2026-07-18 오너 확정): 매변경=tsc+smoke+**변경표면 타깃 게이트만** / 심장부 변경=인접 확대 / 런 마감=전판 1회 / 무인 경계=T2 전수 | 빌더 자가선언 금지. **전판을 워커마다 돌리는 건 과잉**(무관 게이트가 90%, 회귀는 거의 타깃 게이트가 잡음 — notion 실측) |
 | 영속 | 파일 SoT(1페이지=1폴더, 브라우저 프로필 독립) | localStorage 단독은 프로필에 갇힘 — "주소만 있으면 어느 브라우저든" 요건 |
 | 워커 위임 전 | **verify-before-dispatch**: 30초 grep으로 현 구현 확인 | 문서는 상한다 — stale 문서 믿고 헛워커 3건 낼 뻔(notion) |
 
