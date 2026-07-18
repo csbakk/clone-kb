@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DG | 실측 잔여(Phase C 좁은컬럼·T-DF1 카드폭·상단바)+리프스윕 배치1(8p) | 🔴 가동(실물 9224) |
+| W-DH | sweep_real 정책패치→리프스윕 배치1(8p)→Phase C hover 실측→카드폭 실물측 | 🔴 가동(실물 9224) |
 
-직전 완료: W-DE(T-DD1, e7480fd) · W-DF(이모지 피커, 89550a3 push).
+직전 완료: W-DF(이모지 피커, 89550a3) · W-DG(상단바 6/6 MATCH·컬럼기하, 9a3f1d1 push).
 
 ## 다음 페이즈 (오너 확정 1순위)
 **★구조-우선 클론(골격 파리티)** — `techniques/structure-first-cloning.md`. 순서: ①골격(DOM 스켈레톤·role·그룹핑 채택 — 1단계: 제목 h1 스펙+번호목록 마커/텍스트 단일부모, 2단계: 블록 래퍼 체인) → ②스타일 셀렉터째 이식 → ③동작/JS. 검증 3축: 구조 게이트(신설)+픽셀 배지+기능 게이트.
@@ -34,6 +34,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **상단바 아이콘 전수 대조 완결 + 컬럼 기하 실측**(W-DG, push 9a3f1d1): 상단바 SVG 6종 해시 대조 → **클론과 100% 일치, 교체 0건**("댓글·시계 아이콘" 가정은 실측 정정 — 실물 상단바에 애초 없음). 좁은컬럼(219px, 17%) 좌표 8개 실측 확보. hover 실측 직전 탭 소멸로 정책 중단했으나 **오케 후속 판정: 데드락 아님**(CDP attach+evaluate 정상 응답) — 오너가 중복 탭 정리한 것. 카드폭 클론측 확보(보드 248/갤러리 227.5px)·리프스윕 미착수 → W-DH로 재개(sweep_real domcontentloaded 패치 포함). 운영 교훈: 오너 공용 브라우저에선 "탭 개수 변화"는 중단 사유 아님(로그인 화면·CDP 무응답만)
 - 2026-07-19 **콜아웃 이모지 피커 실측→구현 완주**(W-DF, push 89550a3): 실물 피커=role=dialog "페이지 아이콘"(T16 페이지 아이콘 피커와 공유 컴포넌트 확증), 408×390·radius10·3겹 그림자·overlay-container 포털, 탭 이모지/아이콘/업로드+제거, 검색 "필터" autofocus·랜덤·컨텍스트 제안 "콜아웃" 24종·CLDR 8그룹 퀵네비 — `skeleton_emoji_picker.json`+실캡처. 클론 EmojiPicker.tsx+유니코드 카탈로그+setBlockEmoji(컬럼 중첩 재귀)+**emoji_picker_gate 신설 15/15**·회귀 5게이트 그린. Phase C는 좁은컬럼 실측 직전 9224 탭 이상(1→3)으로 정책 중단 → 오케 판정: **오너 로그인 세션과 중첩된 것, 봇차단 아님**(자동화 new_page 0건 검증·탭 자연 안정화) → W-DG로 재개. 카드폭·상단바=T-DF1 이월
 - 2026-07-19 **T-DD1 = 제품 회귀 확정·수복**(W-DE, push e7480fd): 게이트 구식이 아니라 T-CG12 포털의 2중 버그 — ①cursorTracker notify가 id 문자열만으로 중복제거 → 같은 id 재등록(드래그로 컬럼 진입 등) 시 hover 통지가 삼켜짐 ②수정 후에도 React useState가 동일 문자열에 Object.is 베일아웃 → {id,seq} 이벤트 계약으로 전환+(id,target참조) 쌍 dedupe. column_media 크래시→**16/16**(2연속)·hover_portal 14/14 유지·smoke 23/23. **정크 판정: 브리프 전제 절반 반증** — "고아 10건" 중 2건은 db_workout의 살아있는 row(옛 탭 localStorage가 이번 write-through에 뒤늦게 flush된 시드 오염 — 별건 기록)라 유지, 확정 고아 8건+TESTP_wcw_measure만 아카이브(복구 가능)
 - 2026-07-18 밤 **오너 복귀·결정 0719 4건 확정 + T-DA4 해소**: ①크롬 재시작+리프스윕 재개(배치 완화) ②실측 우선순위=이모지피커→Phase C→카드폭·아이콘 ③정크 11건=소유 추적 후 판정 ④M9 영상·checked 표본·재시작 전부 수락. 오케가 전용 인스턴스만 정확 종료(TERM)→launch_chrome.sh 재기동 → **attach+evaluate 정상, 프로필 쿠키 생존으로 재로그인 불요**(워크스페이스 즉시 로드). W-DE/W-DF 병렬 가동(스코프 배타: 9226 클론 / 9224 실물)
