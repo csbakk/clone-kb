@@ -19,10 +19,10 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DR | 노션 클립보드 저장위치 조사(새 스크래치 실제 복사/붙여넣기) | 🔴 가동(실물 9224) |
-| W-DT | 앱 셸 층 대수술 — real 14층 스펙으로 additive 층 추가(chain 3겹 근본) | 🔴 가동(클론 9226) |
+| W-DU | 중첩 wrapper 2겹→실물 4겹(E/D/C/B) — chain_depth 4→7 근본 | 🔴 가동(클론 9226) |
+| W-DV | 리프스윕 실물추출 배치8~(88→116 완주 목표) | 🔴 가동(실물 9224) |
 
-직전 완료: W-DQ(2단+ 재귀·배치7) · W-DS(멀티셀렉 토글 버그 수복, a1616eb push).
+직전 완료: W-DS(멀티셀렉 버그) · W-DR(클립보드 조사 e7214f6) · W-DT(셸 파일럿 57a601d, push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -36,6 +36,8 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **노션 클립보드 저장위치 규명**(W-DR, push e7214f6): 오너 요청 조사. localStorage/sessionStorage/IndexedDB **전부 무변화**(힉스필드와 반대) → payload는 **클립보드 커스텀 MIME `text/_notion-blocks-v3-production`**(노션 내부 block row 스키마). 추출 1줄=`paste 이벤트 getData('text/_notion-blocks-v3-production')`. Chrome async clipboard.read()는 커스텀타입 미노출→**trusted OS paste 필수**. 파이프라인 가능(구조 통째 추출). 운영교훈: 멀티크롬 osascript name-activate가 엉뚱한 창 활성화→`bring_to_front()` 써야·pbcopy+Cmd+V가 keystroke보다 안정. 리포트 `ref/rip/notion_clipboard_investigation.md`
+- 2026-07-19 **셸 층 파일럿 + chain_depth 오귀인 정정**(W-DT, push 57a601d): real 14층 스펙 재검증 후 안전 additive 1층(#root에 layer13 CSS 정합) 추가, 픽셀 5문서 Δ=0, **dom_structure 90→94**. ★중요 정정: 리프 chain_depth 갭(real7 vs clone4)은 **앱 셸 아님**(리프 chain은 .notion-page-content까지만 측정, 14층 셸은 그 위) → 진짜 원인=중첩 wrapper 2겹(실물 4겹 E/D/C/B) 단순화, **T-LS5 소관**으로 재귀속. 셸 잔여(폭모델·editor 잉여층)는 T-CG10 대수술 유지
 - 2026-07-19 **멀티셀렉→토글 자식유실 버그 근본수복**(W-DS, push a1616eb): 오너 영상2건. 같은 뿌리 두 갈래 — ①드래그: `handleBlkDragStart`가 domBlockIds 필터라 접힌 토글 자식이 DOM 미렌더→후보 제외→moveBlocks 유실 → `pickSelectedWithChildren`(트리 기반, DOM 무관)로 교체 ②Tab: `setBlockDepth`가 자식 서브트리 depth를 안 밀어 nestByDepth 불변식 붕괴 → `shiftBlockDepthDeep`(서브트리 재귀) 신설. 계측(treeToFlat depth dump)으로 확정. **multiselect_nest_gate 신설 4/4**(stash 2/4→4/4 변별력)·smoke 23/23·columns/columnedit 11/11. 자식 있는 단일블록 Tab도 덤으로 정확해짐
 - 2026-07-19 **중첩 렌더링 2단+ 재귀 확장**(W-DQ, push 6a70215): 실물 3단 중첩 실측(1단마다 4겹 wrapper 재귀 반복·전 조상 marginLeft 0) → `renderListChildren` 재귀 헬퍼로 임의 깊이 지원, **픽셀 합성 A/B 바이트 동일**. quote(blockquote 시맨틱 별개 모델)·file(toggle children wrapper 부재)은 blast radius 커 정직 티켓, toc는 컬럼 컨테이너 문제로 스코프밖 재분류. 배치7 88/116(신규 시그13·타입0). goto 23회(브리프가 실측+스윕 동시 요구해 예산 초과 — 다음부터 실측/스윕 분리 교훈). + 오너 버그리포트 2건(멀티셀렉→토글 드롭/Tab 자식유실) 접수→W-DS, 클립보드 조사→W-DR 병렬 착수
 - 2026-07-19 **★중첩 렌더링 대수술 파일럿 성공**(W-DP, push f91145f): 실물 중첩 골격 실측(4겹 무명 wrapper, 들여쓰기=C층 24px 마커박스가 B컬럼을 형제로 미는 flexbox·자식 리프 margin 0) → bulleted/numbered/todo 1단 중첩을 flat-sibling+marginLeft → `.blk-list-group`/`.blk-list-children` 래퍼 div로 전환. **리프 margin GAP 완전해소(24→0)·chain_depth 2→4·픽셀 합성 A/B 바이트 동일(getbbox None)**. 큐레이션 12문서 무변화(nested list 0건이라 합성이 핵심증거). 미착수 quote/toc/file·2단+·chain 4→7(나머지 3겹=앱 셸 T-CG10). dom 90/90·columns 11/11·columnedit 11/11. + clone-kb structure-first 카드 강화(측정기준 동치화+99% 조건 3항)
