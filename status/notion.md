@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: 🔴 10h 무인(2026-07-18 밤) — 큐: ~~①검수보고서 v2~~✅ ~~①b ✗7건 수복~~✅ → **②★리프 전수 스윕 v2(255p 자동 추출→diff→포팅) 가동** ③부분갭(콜아웃 이모지메뉴·카드폭·상단바 아이콘) ④Phase B ⑤마감(전판 1회+아침보고)
+**런 상태**: 🔴 10h 무인(2026-07-18 밤) — 큐: ~~①검수 v2~~✅ ~~①b ✗7건 수복~~✅ ~~②리프스윕 v2~~◐부분(9224 데드락 T-DA4로 안전중단) → **④Phase B 가동** ③클론단독분(콜아웃 이모지메뉴) ⑤마감(전판 1회+아침보고). **실측 필요분은 T-DA4로 오너 복귀까지 보류**
 
 ## 현재 페이즈
 ```mermaid
@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DA | ②★리프 전수 스윕 v2 — 실코퍼스 리프 단위 골격체인+CSS+SVG 자동 추출→시그니처 dedup→클론 diff→포팅/티켓 | 🔴 가동 |
+| W-DB | ④T-CG12 Phase B — 레거시 거터 제거(+C 클론단독분) | 🔴 가동 |
 
-직전 완료: W-CY(검수 v2 보고서) · W-CZ(✗ 7건 수복, a722e30 push).
+직전 완료: W-CY(검수 v2) · W-CZ(✗7건 수복) · W-DA(리프스윕 v2 부분, 38bdc16 push).
 
 ## 다음 페이즈 (오너 확정 1순위)
 **★구조-우선 클론(골격 파리티)** — `techniques/structure-first-cloning.md`. 순서: ①골격(DOM 스켈레톤·role·그룹핑 채택 — 1단계: 제목 h1 스펙+번호목록 마커/텍스트 단일부모, 2단계: 블록 래퍼 체인) → ②스타일 셀렉터째 이식 → ③동작/JS. 검증 3축: 구조 게이트(신설)+픽셀 배지+기능 게이트.
@@ -34,7 +34,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
-- 2026-07-18 밤 **검수 ✗ 7건 수복 완료**(W-CZ, push a722e30까지 4커밋): ①필터/정렬 아이콘 — "교체 완료" 기존 기록이 오기재(실제론 다른 20×20)였음을 적발, real filterSmall/arrowUpDownSmall 16×16 재이식 ②**세로선 상충 재판정** — real 바디 셀에 border-right rgba(42,28,0,.07) 실존(W-CT의 "50+ none"은 육안 오판정) → 복원 + 헤더구분선=행 wrapper box-shadow inset 구조까지 정정 ③rollup 아이콘 search_gray.svg 원본 이식(🔍 이모지 대체) ④h2 핸들 real 비대칭(top26/bottom6) 반영 9.59px(real 9.90) ⑤checked 표본 코퍼스 부재 재확인(정직 보류) ⑥코드 언어=real도 저장형 property 확정(드롭다운 가역 확인 — 클론 아키텍처 정답, 갭은 fixture 데이터버그) · provenance 116/부채0 · dom 90/90·api_db 84/84·smoke 23/23 · v2 보고서 카드 갱신(완전일치 9→14). **함정 2건 발견**: bridge/pages(통신채널)≠bridge/data/pages(SoT) 별개 저장소 · filePersist merge가 editedAt 신선도 판정이라 timestamp 안 올리면 캐시가 갱신 무시
+- 2026-07-18 밤 **리프 전수 스윕 v2 — 부분 완료 + 안전 중단**(W-DA, push 38bdc16): 하네스 신설(`harness/leaf_sweep/` 골격체인+CSS+SVG 추출·시그니처 dedup·클론 diff) · 실코퍼스 327p 중 다양성 상위 3p 방문, 유니크 시그니처 33·블록타입 17종 확보 · **타입 대조 14/15 OK(93%)**, GAP 1(simpletable SVG — 표본 불일치라 조사 티켓) · **4페이지째부터 9224 goto 연속 타임아웃 → 정책대로 즉시 중단**(재로그인·재시작 시도 0). 오케 후속 판정: 잔재 드라이버 정리 후에도 브라우저·페이지레벨 CDP 모두 무응답 = **렌더러 데드락(T-DA4, T-CG11 동일 패턴)**. 로그인 화면 아님·탭 보존됨. 크롬 재시작은 무인 금지라 실측 작업(카드폭·상단바 아이콘·잔여 113p) 오너 복귀까지 보류. 부수 발견: 클론 641p는 PARITY 픽스처+시드이지 notion_api pull 코퍼스와 별개(브리프 가정 정정)(W-CZ, push a722e30까지 4커밋): ①필터/정렬 아이콘 — "교체 완료" 기존 기록이 오기재(실제론 다른 20×20)였음을 적발, real filterSmall/arrowUpDownSmall 16×16 재이식 ②**세로선 상충 재판정** — real 바디 셀에 border-right rgba(42,28,0,.07) 실존(W-CT의 "50+ none"은 육안 오판정) → 복원 + 헤더구분선=행 wrapper box-shadow inset 구조까지 정정 ③rollup 아이콘 search_gray.svg 원본 이식(🔍 이모지 대체) ④h2 핸들 real 비대칭(top26/bottom6) 반영 9.59px(real 9.90) ⑤checked 표본 코퍼스 부재 재확인(정직 보류) ⑥코드 언어=real도 저장형 property 확정(드롭다운 가역 확인 — 클론 아키텍처 정답, 갭은 fixture 데이터버그) · provenance 116/부채0 · dom 90/90·api_db 84/84·smoke 23/23 · v2 보고서 카드 갱신(완전일치 9→14). **함정 2건 발견**: bridge/pages(통신채널)≠bridge/data/pages(SoT) 별개 저장소 · filePersist merge가 editedAt 신선도 판정이라 timestamp 안 올리면 캐시가 갱신 무시
 - 2026-07-18 밤 **검수보고서 v2**(W-CY, push e13d919): 오너 피드백("좌우 이미지가 다른데? 골격·CSS 매칭 확인") 대응 — bbox 앵커 동일영역·동배율(480px) 페어 + 골격 체인표 + CSS 값표(✓/✗) 전면 재구축. **판정 완전일치 9/부분일치 7(명시 ✗)/미확정 1(M9)** — "수정 완료"로 잘못 보고돼 있던 7건을 매칭표가 적발 → W-CZ 수복 큐로
 - 2026-07-18 오후 **오너 메모 수정 런 완주**(W-CQ~CU/CV/CT, push 09c1172까지 9커밋): ①breadcrumb 공백버그·탭제목·풀페이지 제목 32px ②핸들 위치 **자가보정 전환**(stale 상수 클래스 소멸, h1 +35px급 어긋남 해소)·콜아웃 첫행 핸들 제거·코드 드롭다운 우측 ③DB 컬럼 세로선/가로선 제거·칩 다크배경·rollup 우측정렬·아이콘 SVG(provenance 110) ④토글 자식 밀어내기=이미 정상(회귀게이트 flow13 추가) + **선택 전달 3형제**(JSON/텍스트/MD 복사, selection_text_gate 28). 게이트 4단 티어링 확정 적용(전판은 경계만)
 - 2026-07-18 새벽 **⑤⑥애니메이션·타이밍 지문 완료 — 전층 지도 ①~⑥ 완주(⚪)**(W-CO, push 64886a7): rAF 프레임 실측 — 토글 캐럿 200ms(이미 일치)·팝오버 scale(0.96→1) 200ms 진입(@starting-style 포팅)·peek 슬라이드 일치. 연쇄회귀 root-cause 수정(위치계산이 scale 초기프레임 측정 → offsetWidth로). 전 게이트 그린 2회전. animation-ripper 카드 강화 재료 확보
