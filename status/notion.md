@@ -20,9 +20,9 @@ flowchart LR
 | 워커 | 임무 | 상태 |
 |---|---|---|
 | W-DU | 중첩 wrapper 2겹→실물 4겹(E/D/C/B) — chain_depth 4→7 근본 | 🔴 가동(클론 9226) |
-| W-DV | 리프스윕 실물추출 배치8~(88→116 완주 목표) | 🔴 가동(실물 9224) |
+| W-DW | 리프스윕 최종배치(잔여 13p, 116 완주) | 🔴 가동(실물 9224) |
 
-직전 완료: W-DS(멀티셀렉 버그) · W-DR(클립보드 조사 e7214f6) · W-DT(셸 파일럿 57a601d, push).
+직전 완료: W-DR(클립보드) · W-DT(셸 파일럿) · W-DV(스윕 103/116, a31ace1 push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -36,6 +36,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **리프스윕 배치9 — 103/116, 수렴 신호**(W-DV, push a31ace1): 15p 순회(88→103), 신규 시그니처 +5(193→198)·**신규 타입 0**·top-level 유입 0. 후반 12p 중 9p가 신규 0으로 수렴 뚜렷하나 임계 미달(마지막 3p서 +2). 잔여 13p → W-DW 완주. 확인된 blockType 23종 고정
 - 2026-07-19 **노션 클립보드 저장위치 규명**(W-DR, push e7214f6): 오너 요청 조사. localStorage/sessionStorage/IndexedDB **전부 무변화**(힉스필드와 반대) → payload는 **클립보드 커스텀 MIME `text/_notion-blocks-v3-production`**(노션 내부 block row 스키마). 추출 1줄=`paste 이벤트 getData('text/_notion-blocks-v3-production')`. Chrome async clipboard.read()는 커스텀타입 미노출→**trusted OS paste 필수**. 파이프라인 가능(구조 통째 추출). 운영교훈: 멀티크롬 osascript name-activate가 엉뚱한 창 활성화→`bring_to_front()` 써야·pbcopy+Cmd+V가 keystroke보다 안정. 리포트 `ref/rip/notion_clipboard_investigation.md`
 - 2026-07-19 **셸 층 파일럿 + chain_depth 오귀인 정정**(W-DT, push 57a601d): real 14층 스펙 재검증 후 안전 additive 1층(#root에 layer13 CSS 정합) 추가, 픽셀 5문서 Δ=0, **dom_structure 90→94**. ★중요 정정: 리프 chain_depth 갭(real7 vs clone4)은 **앱 셸 아님**(리프 chain은 .notion-page-content까지만 측정, 14층 셸은 그 위) → 진짜 원인=중첩 wrapper 2겹(실물 4겹 E/D/C/B) 단순화, **T-LS5 소관**으로 재귀속. 셸 잔여(폭모델·editor 잉여층)는 T-CG10 대수술 유지
 - 2026-07-19 **멀티셀렉→토글 자식유실 버그 근본수복**(W-DS, push a1616eb): 오너 영상2건. 같은 뿌리 두 갈래 — ①드래그: `handleBlkDragStart`가 domBlockIds 필터라 접힌 토글 자식이 DOM 미렌더→후보 제외→moveBlocks 유실 → `pickSelectedWithChildren`(트리 기반, DOM 무관)로 교체 ②Tab: `setBlockDepth`가 자식 서브트리 depth를 안 밀어 nestByDepth 불변식 붕괴 → `shiftBlockDepthDeep`(서브트리 재귀) 신설. 계측(treeToFlat depth dump)으로 확정. **multiselect_nest_gate 신설 4/4**(stash 2/4→4/4 변별력)·smoke 23/23·columns/columnedit 11/11. 자식 있는 단일블록 Tab도 덤으로 정확해짐
