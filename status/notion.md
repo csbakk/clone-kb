@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DN | diff 대표선택 개선(chain_depth 아티팩트 제거)+리프스윕 배치5~ 전수 | 🔴 가동 |
+| W-DO | ★diff nested-context 대조(최하단 자식 골격 확정)+리프스윕 배치6 | 🔴 가동 |
 
-직전 완료: W-DL(T-LS4 골격 대수술) · W-DM(toggle/lists/file·doc01 순증, af71c75 push).
+직전 완료: W-DM(골격 후속) · W-DN(diff 대표선택 개선·배치5 62/116, 7e39158 push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **diff 대표선택 개선+배치5 — chain_depth 근본진단**(W-DN, push 7e39158): 대표 시그니처를 chain_depth 최소 우선으로 바꿔 재판정 → chain_depth GAP 6개(bulleted/todo/numbered/quote/toc/file)는 **알고리즘 문제 아님, 코퍼스에 top-level 표본 자체가 0** 확정(실물 문서서 항상 중첩). table만 대표 교체로 fs/lh false positive 2필드 해소(verdict는 T-LS5 대수술이라 GAP 유지). 배치5 완주 62/116(신규 시그22·신규타입 0·top-level 미유입). → nested-context 대조(W-DO)만이 chain_depth 확정 경로
 - 2026-07-19 **T-LS4 후속 골격 수복**(W-DM, push af71c75): toggle `.blk-fold-row` flex 래퍼 신설(+이전 세션이 깨뜨려둔 toggleable 헤딩 동시 수복) · lists p/display를 `.blk-list-row`로 relocate(선택자 특이도 충돌 원천해소) · file p/display 해소 · **doc01 -0.4pp 규명=콜아웃 padding이 W-CI 산술타협값 17px(실물 12px 아님)+세션간 숨은 의존성 붕괴 → 실물 12px 교체로 96.5(원래)→96.8% 순증**. GAP 필드레벨 대부분 해소, chain_depth만 잔존(top-level 표본 코퍼스 부재=측정 아티팩트 정황). dom 90/90·smoke 23/23·픽셀 무회귀. 누적 OK 9→10
 - 2026-07-19 **★T-LS4 골격 대수술 — `.blk` flex→block 전환 성공**(W-DL, push b597c00·b448fc5): 실물 spacing 모델 규명(리프 자신은 padding0·block, 간격은 leaf 내부 자식 div 패딩에서 — ancestor-walk로 안 보이던 층) → text/h1/h2/h3/quote/divider를 block+padding재배치로 전환, image/video/bookmark/code/toc는 real 8px 패딩으로 교정. **골격 바꿨는데 픽셀 무하락(풀블록 188: 95.6→98.7% +3.1pp — 구조-우선의 배당)**. GAP **17→8**(9타입 OK 전환)·dom 90/90. 잔여: toggle(flex-row 래퍼 필요)·lists p/chain·file/toc·doc01 -0.4pp 미해소 → W-DM
 - 2026-07-19 **★diff 강화로 거짓 OK 적발 — 리프 17타입 전부 GAP**(W-DK, push ae5f25c): 오너 지시 반영해 diff_clone을 color만 보던 것→**fs/fw/lh/margin/padding/border/radius/display+골격깊이 전부 대조**로 강화 → **OK 16→0, GAP 1→17**. 근본 2건: **T-LS4** `.blk{display:flex;padding:4px 0}` base가 실물(block·padding0)과 다름 — 전 17타입에 픽셀보정 스택이 그 위에 쌓인 computed-복사 함정(대수술) · T-LS5 table 3층 계층. 저빈도 fs/lh 수복 시도는 배치4에서 샘플 늘자 뒤집혀 정직 롤백(대표시그 컨텍스트 오염 교훈). 배치4 완주 49/116(신규15). → W-DL로 T-LS4 착수
