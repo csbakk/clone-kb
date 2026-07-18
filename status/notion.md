@@ -1,8 +1,8 @@
-# 🔴 LIVE — notion 캠페인 무인 런 상태판
+# ⚪ 대기 — notion 캠페인 상태판(골격 완전정합 런 완주)
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: 🔴 **10h 무인**(2026-07-19, 오너 지시) — 골격 완전정합 캠페인 계속. 가동: W-DS(멀티셀렉→토글 버그)·W-DR(클립보드 조사). **무인 큐**: ①두 워커 완료 → ②table 3중구조 대수술(T-LS5②) → ③quote/file 중첩(T-LS5 티켓) → ④리프스윕 88→116 완주(배치8~) → ⑤셸 층 대수술(chain 나머지 3겹=real14 vs clone8, T-CG10, 대공사·신중) → ⑥결산(리프 골격 전수 매칭표 HTML+ledger+아침보고). **★오너 원칙: 폰트·골격 완전일치, 99% 아니면 계속.** 실측 필요분은 9224 순차(goto 예산 15/세션·실측·스윕 분리)
+**런 상태**: ⚪ **골격 완전정합 10h 무인 런 완주**(2026-07-19). 워커 W-DE~W-EE(~22명). **최종: 리프 골격 완전일치 17/21(81.0%)·전체 필드 97.4%(폰트 96.8%·박스 99.3%)**, 리프 스윕 116/116 전수. 아침보고 `ref/reports/RUN-0719-morning-skeleton.html`(결정큐 4항목)·매칭표 `RUN-0719-leaf-skeleton-parity.html`. **남은 갭=오너 결정/대수술만**: quote·toc chain(공유 렌더경로 대수술)·sub-page link 블록(신규)·셸 폭모델(T-CG10)·table SVG(T-LS1). 무근거 강행 안 함(측정 아티팩트·오너 아키텍처 결정 존중)
 
 ## 현재 페이즈
 ```mermaid
@@ -17,12 +17,8 @@ flowchart LR
 (✅=완료 초록 · 현재: **P3 ✅ 완주** — 잔여는 P3-4 R4흡수 검토 · 다음 런 후보: P3-4 / 갤러리 G1 판단 2건 / 크롤러 depth / T47)
 
 ## 가동 중 에이전트
-| 워커 | 임무 | 상태 |
-|---|---|---|
-| W-EE | T-LS6 3종 수복(header_4·link_preview 1줄·button rename)+매칭표 최종화 | 🔴 가동(단독) |
+⚪ 없음 — 런 완주. 이번 런 워커(W-DE~W-EE): diff강화·골격대수술5·스윕전수·멀티셀렉버그·클립보드조사·셸파일럿·결산매칭표·UNMAPPED정정·T-LS6. 전부 csbakk push 완료(최종 6234002).
 
-직전 완료: W-EC(UNMAPPED 4종 기구현) · **W-ED(TYPE_MAP 정정·완전일치 15/21 정직화, 3b9995b push)**.
-**★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
 **★구조-우선 클론(골격 파리티)** — `techniques/structure-first-cloning.md`. 순서: ①골격(DOM 스켈레톤·role·그룹핑 채택 — 1단계: 제목 h1 스펙+번호목록 마커/텍스트 단일부모, 2단계: 블록 래퍼 체인) → ②스타일 셀렉터째 이식 → ③동작/JS. 검증 3축: 구조 게이트(신설)+픽셀 배지+기능 게이트.
@@ -35,6 +31,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★골격 완전정합 런 완주(⚪) — T-LS6 CLOSED**(W-EE, push 6234002): header_4(.blk-h4 block override+content relocate, 높이 43.4px 무변)·link_preview(카드void 그룹 합류)·button(외곽/pill blk-button 충돌 rename+block override, DB버튼컬럼 무영향 19/19) 3종 GAP→OK. **완전일치 15→17/21(81.0%)·박스 99.3%·폰트 96.8%**·픽셀 무하락. 매칭표·아침보고 재생성(헤드리스 검증). 남은 갭 4종+UNMAPPED 2=전부 오너 결정/대수술/아티팩트. **무인 런 여기서 마감** — 남은 건 오너 입회 아키텍처 결정 대상
 - 2026-07-19 **TYPE_MAP 정정 — 완전일치 15/21(71.4%) 정직화**(W-ED, push 3b9995b): 기구현 4종 TYPE_MAP 등록+page 스코프분리(DB행=SKIP·sub-page link=UNMAPPED). 등록 3종이 실제론 GAP으로 드러나 근본원인 규명: header_4(=.blk-h4에 T-LS4 block override 누락 1줄)·link_preview(카드void 8px 그룹 누락 1줄)·button(외곽 wrapper와 내부 pill이 같은 blk-button 클래스라 CSS 누출 버그, rename 필요) → **T-LS6 신설**. 완전일치 15/18→15/21(테스트 대상 3종 증가로 %는 내렸으나 더 정확). 매칭표·아침보고 재생성. T-LS3 stale 4종 CLOSED. → W-EE로 T-LS6 3종 수복
 - 2026-07-19 **UNMAPPED 5종 = 실은 4종 기구현 발견**(W-EC, push a2e3873): read-only 조사 — header_4(=h4)·button·external_object_instance(=link_preview)·collection_view_page(=DatabaseFullPage) 전부 **이미 클론 구현됨**(T-LS2/T-LS3의 grep miss 오기재를 git log로 반증). diff TYPE_MAP 미등록으로 UNMAPPED 오분류된 것뿐. **진짜 미구현은 인라인 "하위 페이지 링크" 블록 1종(freq~30)만** — 오너 결정큐2가 "5종"이 아니라 실질 1종으로 축소. → W-ED로 TYPE_MAP 등록+매칭표/티켓 최종 정정
 - 2026-07-19 **골격 완전정합 캠페인 마감 결산**(W-EB, push 0c28d24 + ledger append): 매칭표 embed 반영 **완전일치 15/18(83.3%)·전체필드 97.5%·박스99.2%** · 아침보고 `RUN-0719-morning-skeleton.html`(런요약 20워커/26커밋·오너 결정큐 4항목 인터랙티브·티켓보드, 헤드리스 검증 통과) · ledger 5건(diff강화·대수술5연속·스윕전수·멀티셀렉버그·클립보드) append+대시보드 재생성. 잔여=대수술 티켓(quote/toc chain·셸폭모델)+UNMAPPED 5종(오너확인) → W-EC 스코프 조사로 결정 근거 준비
