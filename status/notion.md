@@ -19,10 +19,10 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DS | 멀티셀렉→토글 자식화 버그(드롭+Tab 두 경로) 재현·수복 | 🔴 가동(클론 9226) |
 | W-DR | 노션 클립보드 저장위치 조사(새 스크래치 실제 복사/붙여넣기) | 🔴 가동(실물 9224) |
+| W-DT | 앱 셸 층 대수술 — real 14층 스펙으로 additive 층 추가(chain 3겹 근본) | 🔴 가동(클론 9226) |
 
-직전 완료: W-DP(중첩 파일럿) · W-DQ(2단+ 재귀·배치7 88/116, 6a70215 push).
+직전 완료: W-DQ(2단+ 재귀·배치7) · W-DS(멀티셀렉 토글 버그 수복, a1616eb push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -36,6 +36,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **멀티셀렉→토글 자식유실 버그 근본수복**(W-DS, push a1616eb): 오너 영상2건. 같은 뿌리 두 갈래 — ①드래그: `handleBlkDragStart`가 domBlockIds 필터라 접힌 토글 자식이 DOM 미렌더→후보 제외→moveBlocks 유실 → `pickSelectedWithChildren`(트리 기반, DOM 무관)로 교체 ②Tab: `setBlockDepth`가 자식 서브트리 depth를 안 밀어 nestByDepth 불변식 붕괴 → `shiftBlockDepthDeep`(서브트리 재귀) 신설. 계측(treeToFlat depth dump)으로 확정. **multiselect_nest_gate 신설 4/4**(stash 2/4→4/4 변별력)·smoke 23/23·columns/columnedit 11/11. 자식 있는 단일블록 Tab도 덤으로 정확해짐
 - 2026-07-19 **중첩 렌더링 2단+ 재귀 확장**(W-DQ, push 6a70215): 실물 3단 중첩 실측(1단마다 4겹 wrapper 재귀 반복·전 조상 marginLeft 0) → `renderListChildren` 재귀 헬퍼로 임의 깊이 지원, **픽셀 합성 A/B 바이트 동일**. quote(blockquote 시맨틱 별개 모델)·file(toggle children wrapper 부재)은 blast radius 커 정직 티켓, toc는 컬럼 컨테이너 문제로 스코프밖 재분류. 배치7 88/116(신규 시그13·타입0). goto 23회(브리프가 실측+스윕 동시 요구해 예산 초과 — 다음부터 실측/스윕 분리 교훈). + 오너 버그리포트 2건(멀티셀렉→토글 드롭/Tab 자식유실) 접수→W-DS, 클립보드 조사→W-DR 병렬 착수
 - 2026-07-19 **★중첩 렌더링 대수술 파일럿 성공**(W-DP, push f91145f): 실물 중첩 골격 실측(4겹 무명 wrapper, 들여쓰기=C층 24px 마커박스가 B컬럼을 형제로 미는 flexbox·자식 리프 margin 0) → bulleted/numbered/todo 1단 중첩을 flat-sibling+marginLeft → `.blk-list-group`/`.blk-list-children` 래퍼 div로 전환. **리프 margin GAP 완전해소(24→0)·chain_depth 2→4·픽셀 합성 A/B 바이트 동일(getbbox None)**. 큐레이션 12문서 무변화(nested list 0건이라 합성이 핵심증거). 미착수 quote/toc/file·2단+·chain 4→7(나머지 3겹=앱 셸 T-CG10). dom 90/90·columns 11/11·columnedit 11/11. + clone-kb structure-first 카드 강화(측정기준 동치화+99% 조건 3항)
 - 2026-07-19 **★chain_depth = 진짜 골격 갭 확정(nested 대조)**(W-DO, push 1a1b785): diff에 nested-context 재현 구현 — 실물 리프의 조상구조(중첩/컬럼/토글)를 클론에도 재현해 공정 대조 → 6타입 전부 컨텍스트 재현 후에도 GAP(clone depth 2 불변) = **아티팩트 가설 기각**. 근본: 클론=flat sibling+`marginLeft:depth*24`, 실물=중첩 1단마다 4~6겹 자식 컨테이너 래퍼 div(리프 margin 0). 리프 m real=0 vs clone=24px까지 실측. 배치6 완주 75/116(신규 시그7·타입0·top-level 미유입 재확인). 이 중첩 렌더 아키텍처 갭+table 3중구조 = 남은 골격 대수술 2건(T-LS5) → W-DP 착수
