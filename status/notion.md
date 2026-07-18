@@ -2,7 +2,7 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⚪ 대기 — **★전층 클론 지도 ①~⑥ 완주(2026-07-18)**: 골격(셸 B안·게이트90)→스타일(96%대)→상태(hover=JS궤적·게이트13)→리스너 지도(window 1곳 위임)→싱글턴 포털 거터(T-CG12 Phase A·게이트17)→애니메이션/타이밍 지문(@starting-style 포팅). 잔여: ⑧AX트리·⑨엣지·Phase B/C·대수술2(grid폭모델·editor층)·T-CG7/8/9 · 마지막 갱신: 2026-07-18
+**런 상태**: ⚪ 대기 — **오너 메모(0718) 수정 런 완주**: 4워커 병렬(제목/탭/breadcrumb·핸들 자가보정·DB 아이콘/칩/보더/정렬·토글드롭 검증) + 전달채널 3형제(JSON/텍스트/MD 복사) 완성. 잔여=실측대기 4건(9224 수동 로그인 후)+M9 영상확인. 검증=4단 티어링(타깃+smoke, 전판은 다음 무인경계) · 마지막 갱신: 2026-07-18
 
 ## 현재 페이즈
 ```mermaid
@@ -30,6 +30,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-18 오후 **오너 메모 수정 런 완주**(W-CQ~CU/CV/CT, push 09c1172까지 9커밋): ①breadcrumb 공백버그·탭제목·풀페이지 제목 32px ②핸들 위치 **자가보정 전환**(stale 상수 클래스 소멸, h1 +35px급 어긋남 해소)·콜아웃 첫행 핸들 제거·코드 드롭다운 우측 ③DB 컬럼 세로선/가로선 제거·칩 다크배경·rollup 우측정렬·아이콘 SVG(provenance 110) ④토글 자식 밀어내기=이미 정상(회귀게이트 flow13 추가) + **선택 전달 3형제**(JSON/텍스트/MD 복사, selection_text_gate 28). 게이트 4단 티어링 확정 적용(전판은 경계만)
 - 2026-07-18 새벽 **⑤⑥애니메이션·타이밍 지문 완료 — 전층 지도 ①~⑥ 완주(⚪)**(W-CO, push 64886a7): rAF 프레임 실측 — 토글 캐럿 200ms(이미 일치)·팝오버 scale(0.96→1) 200ms 진입(@starting-style 포팅)·peek 슬라이드 일치. 연쇄회귀 root-cause 수정(위치계산이 scale 초기프레임 측정 → offsetWidth로). 전 게이트 그린 2회전. animation-ripper 카드 강화 재료 확보
 - 2026-07-18 새벽 **T-CG12 Phase A — 싱글턴 포털 거터 가동**(W-CN, push 915185c 외 4커밋): 실물 메커니즘 이식(idle 완전 언마운트·window mousemove 싱글턴·opacity 200ms·createPortal) + 드래그 갭 해결(포털 ⋮⋮가 draggable+setDragImage) + hover_portal_gate 17/17(stash 변별력) + 기존 게이트 6파일 정합. **픽셀 DB/풀블록 +0.1~0.9pp**(idle 구조 실물화 효과). Phase B(레거시 제거)/C(컬럼 내부 히트존) 잔여. 다음=⑤애니메이션·⑥타이밍 지문
 - 2026-07-18 새벽 **④이벤트 리스너 지도 완료**(W-CM, push 4ec6faf): 실물=셸 중간층 리스너 0·20종+ 이벤트 전부 **window 1곳 위임**(.notion-cursor-listener는 이름뿐임을 실측 확정) · 클론 React root 위임과 기능 동치 · **T-CG12 리스크 하향**(15종 연쇄→단일 BlockRow+모듈2) — 설계서 `ref/design/T-CG12_hover_gutter_portal.md`(레지스트리+cursorTracker+포털, 3단계 병행 플래그). 다음=T-CG12 Phase A 구현
