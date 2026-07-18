@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DK | ★diff 강화(폰트/골격 갭 판정 도입)+진짜갭 노출·수복+리프스윕 배치4 | 🔴 가동 |
+| W-DL | ★T-LS4 골격 대수술 — `.blk` flex/padding base를 실물 block 모델로(픽셀 무하락 조건) | 🔴 가동 |
 
-직전 완료: W-DI(배치2·갤러리 프리셋) · W-DJ(배치3 36/116·시그136·갤러리 base=260, 4230e94 push).
+직전 완료: W-DJ(배치3) · W-DK(diff 강화·배치4 49/116, ae5f25c push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★diff 강화로 거짓 OK 적발 — 리프 17타입 전부 GAP**(W-DK, push ae5f25c): 오너 지시 반영해 diff_clone을 color만 보던 것→**fs/fw/lh/margin/padding/border/radius/display+골격깊이 전부 대조**로 강화 → **OK 16→0, GAP 1→17**. 근본 2건: **T-LS4** `.blk{display:flex;padding:4px 0}` base가 실물(block·padding0)과 다름 — 전 17타입에 픽셀보정 스택이 그 위에 쌓인 computed-복사 함정(대수술) · T-LS5 table 3층 계층. 저빈도 fs/lh 수복 시도는 배치4에서 샘플 늘자 뒤집혀 정직 롤백(대표시그 컨텍스트 오염 교훈). 배치4 완주 49/116(신규15). → W-DL로 T-LS4 착수
 - 2026-07-19 **★오너 지시 — 폰트/골격 완전 일치 + 리프 전수 재개**: "골격 구조 스타일 다 똑같게, 최하단 자식부터 골격 다 보고, 폰트 사이즈·크기·굵기까지. 99% 아니면 계속." → **diff_clone.py가 color만 비교하고 폰트(fs/fw/lh)·마진·패딩·보더·골격깊이를 "정보용"으로 눈감던 것 적발**(computed-복사 실수의 축소판 — 거짓 OK). W-DK로 diff 강화(전 속성+chain_depth GAP화)→진짜 갭 노출→수복, 배치4~ 전수 완주(조기수렴 종료 금지). 최종=리프 골격 전수 매칭표(체인+폰트 실물vs클론 ✓/✗)
 - 2026-07-19 **리프스윕 배치2·3 + 갤러리 카드폭 확정**(W-DI 73324a3 / W-DJ 4230e94): 배치2 12p(23/116, 신규25)·배치3 13p(**36/116**, 신규56 — 수렴 전혀 아님, 스파이크 페이지 다수). extract_js 정규식버그 수정(숫자 포함 클래스 오분류, 소급수정). 갤러리 카드폭 이진탐색으로 컨테이너 535/536px 열전환 경계 역산 → **base=260px 유일특정·수복**(medium 220→260). 신규 UNMAPPED 4종(button/header_4/collection_view_page/external_object_instance) T-LS3 티켓
 - 2026-07-19 **리프스윕 재가동+Phase C 실측 완결+보드 카드폭 수복**(W-DH, push a5708f0): ①배치1 8/8(누적 11/116), 시그니처 33→**55**(신규 22) — sweep_real을 정책 goto+누적 병합으로 패치, drive-by 수복 1(URL 셀 ↗→real SVG), 티켓 T-LS1(SimpleTable 셀 인라인 멘션/링크 리치텍스트 부재 — 36-svg 갭 근본원인)·T-LS2(page BlockType 렌더러 0) ②Phase C: 좁은컬럼 hover 실측 — 핸들 -47/-71px, **클리핑·옆컬럼 침범 없음(우려 실측 기각)**, 레거시 제거는 버그 아닌 아키정합 과제로 T-CG12-C 티켓(컬럼 게이트 8종 연쇄) ③보드 카드폭: real 276/260 vs clone 260/248 → 수복·라이브 검증. 갤러리는 반응형 그리드 컨테이너 폭 미통제로 비교 무효 판정 — 프리셋 확정 후속. goto 10/15 예산 내·9224 안정
