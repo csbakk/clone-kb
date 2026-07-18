@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DP | ★중첩 렌더링 대수술 — margin-indent→실물 래퍼 div 구조(chain_depth 갭 근본) | 🔴 가동 |
+| W-DQ | 중첩 렌더링 확대(2단+·quote/toc/file)+리프스윕 배치7 | 🔴 가동 |
 
-직전 완료: W-DN(diff 개선·배치5) · W-DO(nested 대조·배치6 75/116, 1a1b785 push).
+직전 완료: W-DO(nested 대조) · W-DP(중첩 렌더 파일럿 성공, f91145f push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★중첩 렌더링 대수술 파일럿 성공**(W-DP, push f91145f): 실물 중첩 골격 실측(4겹 무명 wrapper, 들여쓰기=C층 24px 마커박스가 B컬럼을 형제로 미는 flexbox·자식 리프 margin 0) → bulleted/numbered/todo 1단 중첩을 flat-sibling+marginLeft → `.blk-list-group`/`.blk-list-children` 래퍼 div로 전환. **리프 margin GAP 완전해소(24→0)·chain_depth 2→4·픽셀 합성 A/B 바이트 동일(getbbox None)**. 큐레이션 12문서 무변화(nested list 0건이라 합성이 핵심증거). 미착수 quote/toc/file·2단+·chain 4→7(나머지 3겹=앱 셸 T-CG10). dom 90/90·columns 11/11·columnedit 11/11. + clone-kb structure-first 카드 강화(측정기준 동치화+99% 조건 3항)
 - 2026-07-19 **★chain_depth = 진짜 골격 갭 확정(nested 대조)**(W-DO, push 1a1b785): diff에 nested-context 재현 구현 — 실물 리프의 조상구조(중첩/컬럼/토글)를 클론에도 재현해 공정 대조 → 6타입 전부 컨텍스트 재현 후에도 GAP(clone depth 2 불변) = **아티팩트 가설 기각**. 근본: 클론=flat sibling+`marginLeft:depth*24`, 실물=중첩 1단마다 4~6겹 자식 컨테이너 래퍼 div(리프 margin 0). 리프 m real=0 vs clone=24px까지 실측. 배치6 완주 75/116(신규 시그7·타입0·top-level 미유입 재확인). 이 중첩 렌더 아키텍처 갭+table 3중구조 = 남은 골격 대수술 2건(T-LS5) → W-DP 착수
 - 2026-07-19 **diff 대표선택 개선+배치5 — chain_depth 근본진단**(W-DN, push 7e39158): 대표 시그니처를 chain_depth 최소 우선으로 바꿔 재판정 → chain_depth GAP 6개(bulleted/todo/numbered/quote/toc/file)는 **알고리즘 문제 아님, 코퍼스에 top-level 표본 자체가 0** 확정(실물 문서서 항상 중첩). table만 대표 교체로 fs/lh false positive 2필드 해소(verdict는 T-LS5 대수술이라 GAP 유지). 배치5 완주 62/116(신규 시그22·신규타입 0·top-level 미유입). → nested-context 대조(W-DO)만이 chain_depth 확정 경로
 - 2026-07-19 **T-LS4 후속 골격 수복**(W-DM, push af71c75): toggle `.blk-fold-row` flex 래퍼 신설(+이전 세션이 깨뜨려둔 toggleable 헤딩 동시 수복) · lists p/display를 `.blk-list-row`로 relocate(선택자 특이도 충돌 원천해소) · file p/display 해소 · **doc01 -0.4pp 규명=콜아웃 padding이 W-CI 산술타협값 17px(실물 12px 아님)+세션간 숨은 의존성 붕괴 → 실물 12px 교체로 96.5(원래)→96.8% 순증**. GAP 필드레벨 대부분 해소, chain_depth만 잔존(top-level 표본 코퍼스 부재=측정 아티팩트 정황). dom 90/90·smoke 23/23·픽셀 무회귀. 누적 OK 9→10
