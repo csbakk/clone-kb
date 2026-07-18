@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DF | 실측 3종 — ①이모지 피커 캡처→구현 ②Phase C 컬럼 거터 ③카드폭·상단바 아이콘 | 🔴 가동(실물 9224) |
+| W-DG | 실측 잔여(Phase C 좁은컬럼·T-DF1 카드폭·상단바)+리프스윕 배치1(8p) | 🔴 가동(실물 9224) |
 
-직전 완료: W-DE(T-DD1 수복+정크 판정, e7480fd push).
+직전 완료: W-DE(T-DD1, e7480fd) · W-DF(이모지 피커, 89550a3 push).
 
 ## 다음 페이즈 (오너 확정 1순위)
 **★구조-우선 클론(골격 파리티)** — `techniques/structure-first-cloning.md`. 순서: ①골격(DOM 스켈레톤·role·그룹핑 채택 — 1단계: 제목 h1 스펙+번호목록 마커/텍스트 단일부모, 2단계: 블록 래퍼 체인) → ②스타일 셀렉터째 이식 → ③동작/JS. 검증 3축: 구조 게이트(신설)+픽셀 배지+기능 게이트.
@@ -34,6 +34,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **콜아웃 이모지 피커 실측→구현 완주**(W-DF, push 89550a3): 실물 피커=role=dialog "페이지 아이콘"(T16 페이지 아이콘 피커와 공유 컴포넌트 확증), 408×390·radius10·3겹 그림자·overlay-container 포털, 탭 이모지/아이콘/업로드+제거, 검색 "필터" autofocus·랜덤·컨텍스트 제안 "콜아웃" 24종·CLDR 8그룹 퀵네비 — `skeleton_emoji_picker.json`+실캡처. 클론 EmojiPicker.tsx+유니코드 카탈로그+setBlockEmoji(컬럼 중첩 재귀)+**emoji_picker_gate 신설 15/15**·회귀 5게이트 그린. Phase C는 좁은컬럼 실측 직전 9224 탭 이상(1→3)으로 정책 중단 → 오케 판정: **오너 로그인 세션과 중첩된 것, 봇차단 아님**(자동화 new_page 0건 검증·탭 자연 안정화) → W-DG로 재개. 카드폭·상단바=T-DF1 이월
 - 2026-07-19 **T-DD1 = 제품 회귀 확정·수복**(W-DE, push e7480fd): 게이트 구식이 아니라 T-CG12 포털의 2중 버그 — ①cursorTracker notify가 id 문자열만으로 중복제거 → 같은 id 재등록(드래그로 컬럼 진입 등) 시 hover 통지가 삼켜짐 ②수정 후에도 React useState가 동일 문자열에 Object.is 베일아웃 → {id,seq} 이벤트 계약으로 전환+(id,target참조) 쌍 dedupe. column_media 크래시→**16/16**(2연속)·hover_portal 14/14 유지·smoke 23/23. **정크 판정: 브리프 전제 절반 반증** — "고아 10건" 중 2건은 db_workout의 살아있는 row(옛 탭 localStorage가 이번 write-through에 뒤늦게 flush된 시드 오염 — 별건 기록)라 유지, 확정 고아 8건+TESTP_wcw_measure만 아카이브(복구 가능)
 - 2026-07-18 밤 **오너 복귀·결정 0719 4건 확정 + T-DA4 해소**: ①크롬 재시작+리프스윕 재개(배치 완화) ②실측 우선순위=이모지피커→Phase C→카드폭·아이콘 ③정크 11건=소유 추적 후 판정 ④M9 영상·checked 표본·재시작 전부 수락. 오케가 전용 인스턴스만 정확 종료(TERM)→launch_chrome.sh 재기동 → **attach+evaluate 정상, 프로필 쿠키 생존으로 재로그인 불요**(워크스페이스 즉시 로드). W-DE/W-DF 병렬 가동(스코프 배타: 9226 클론 / 9224 실물)
 - 2026-07-19 아침 **런 마감(⚪)**(W-DD, push 0116c45): 전판 게이트 — 실행가능 12개 중 **11 PASS**(dom 90/90·api 58/58·api_db 84/84·smoke 23/23·persist_migration 28/28·hover_portal 14/14·synced 16/16·tab 17/17·selection·state_matrix 13/13·file_persist 20/21 기존한계) / **1 실물 FAIL: column_media(.blk-handle 타임아웃 2/16)** — Phase B 거터 제거 부작용 후보, 마지막-이터레이션 규칙대로 미수복·**T-DD1** 티켓 / **40 SKIP**(9224 하드코딩 — GATE_CDP_URL 미지원, 하네스 부채로 기록). 아침보고 `RUN-0719-morning.html`(런 요약 6워커·오너 결정 4항목·게이트표·티켓보드, 헤드리스 검증 통과). 오너 결정 대기: ①T-DA4 크롬 재시작+리프스윕 재개 방식 ②실측 우선순위 ③정크 보류 11건 ④M9 영상·checked 표본
