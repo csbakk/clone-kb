@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DY | quote/file 골격(file 4겹 재사용·quote blockquote 시맨틱) | 🔴 가동(단독) |
+| W-DZ | 결산 — diff 최종집계+리프 골격 전수 매칭표 HTML(체인+폰트 ✓/✗) | 🔴 가동(단독) |
 
-직전 완료: W-DW(스윕 전수) · W-DU(중첩 4겹) · **W-DX(table chain 2→10 GAP→OK, 038bdf8 push)**.
+직전 완료: W-DU(중첩 4겹) · W-DX(table 2→10) · **W-DY(file chain 2→9 GAP→OK, e76e8bb push)**.
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **file 골격 GAP→OK · quote 티켓 유지**(W-DY, push e76e8bb): 열린 토글 children 그룹 wrapper(blk-toggle-group+fold-a/b) 신설, 하위는 W-DU 리스트 4겹·재귀헬퍼 재사용 → **file chain 2→9 real 일치·margin 0·픽셀 합성 A/B 바이트동일**. quote는 재검토 결과 4겹 적용시 chain 7(real 5)로 형태 불일치+nested 실측이 중복 data-block-id 아티팩트 의심 → 무근거 변경 금지로 **T-LS5 티켓 유지**(real 정밀 재실측 선행 조건). diff OK 13→14. dom 94/94·smoke 23/23. → 리프 골격 대수술 사실상 완결(리스트·table·file real 일치), 잔여=quote·UNMAPPED5·셸폭모델. W-DZ 결산(매칭표) 착수
 - 2026-07-19 **★table 3중 계층 골격 대수술**(W-DX, push 038bdf8): SimpleTable 단일 div→실물 3중 data-block 계층(8 div 삽입, 전부 zero box-model=골격깊이만 늘리고 픽셀 무관) → **chain_depth 2→10 real 완전 일치**, 10개 CSS 필드(fs/fw/lh/m/p/color/bg/bd/radius/display) 전부 일치, 픽셀 합성 A/B 바이트 동일. 우려한 13파일 연쇄 없음(domBlockIds가 `.blk[data-block]` 콤보라 data-block만 부여해 격리·중복id 오동작 차단). "real 14"는 콜아웃중첩 오염 구값·정본 top-level 10 정정. 잔여 GAP=SVG아이콘(T-LS1, 골격밖). SimpleTable.tsx 1파일. 9224 goto 0(기존 자원 충분)
 - 2026-07-19 **★중첩 wrapper 4겹 확장 — chain_depth 리프 갭 해소**(W-DU, push 354a9db): renderListChildren에 실물 E/D/C/B 4겹 재현(blk-list-e/d/c 투명 통과층 3개 추가) → **bulleted/numbered/todo chain_depth 4→7 real 정확 일치·verdict GAP→OK** · 1단·2단 재귀 픽셀 합성 A/B 바이트 동일(getbbox None). dom 94/94·smoke 23/23. 리프 골격 갭 중 리스트 계열 완결, 잔여 골격 GAP=table(3중구조)·quote(별경로)·file(toggle wrapper)
 - 2026-07-19 **★리프 스윕 116/116 전수 완주**(W-DW, push bc6a26d): 잔여 13p 순회, 우선순위 목록 자연 소진(강제 종료 아님). 최종 **유니크 시그니처 202건·blockType 24종 고정**. 마지막 배치 신규 4건 전부 기존 타입 구조변형(collection_view·page 카드 레이아웃). 오너 지시 "리프 전수" 달성 → 이제 diff 통합 재판정(W-DU wrapper 4겹 반영)으로 최종 골격 갭 집계 가능
