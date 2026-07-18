@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-17 21:09). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-18 17:51). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -31,10 +31,10 @@
 
 ```mermaid
 pie showData
-    title 기법 41장
+    title 기법 45장
     "정식 (standard)" : 14
-    "검증 (verified)" : 14
-    "실험 (experimental)" : 12
+    "검증 (verified)" : 15
+    "실험 (experimental)" : 15
     "은퇴 (retired)" : 1
 ```
 
@@ -59,10 +59,11 @@ pie showData
 | 구조-우선 클론 (골격→스타일→동작 순서 원칙) | notion, canvas | [techniques/structure-first-cloning.md](techniques/structure-first-cloning.md) |
 | 서브에이전트 병렬화 규칙 (독립·무충돌만 병렬) | kit, canvas, notion | [techniques/subagent-fanout-rules.md](techniques/subagent-fanout-rules.md) |
 
-### 검증 (verified) — 14
+### 검증 (verified) — 15
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
+| 애니메이션 리퍼 (트랜지션 지문 일치) | — | [techniques/animation-ripper.md](techniques/animation-ripper.md) |
 | 원자적 localStorage 주입 (bulk_inject) | notion | [techniques/atomic-localstorage-inject.md](techniques/atomic-localstorage-inject.md) |
 | 복사→좌표수정→주입 재배치 (프로그램적 격자정렬) | canvas | [techniques/canvas-coord-inject-rearrange.md](techniques/canvas-coord-inject-rearrange.md) |
 | CDP Raw 드라이버 (좀비 탭 우회) | canvas | [techniques/cdp-raw-driver.md](techniques/cdp-raw-driver.md) |
@@ -78,15 +79,16 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 12
+### 실험 (experimental) — 15
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
-| 애니메이션 리퍼 (트랜지션 지문 일치) | — | [techniques/animation-ripper.md](techniques/animation-ripper.md) |
 | 자산 출처 게이트 (시각 자산 provenance — 자작 대체 재발방지) | notion | [techniques/asset-provenance-gate.md](techniques/asset-provenance-gate.md) |
+| 베이스라인-후-디프 (한 번 전수조사 → 이후 diff-only) | canvas | [techniques/baseline-then-diff.md](techniques/baseline-then-diff.md) |
 | 블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인) | — | [techniques/blind-ab-test.md](techniques/blind-ab-test.md) |
 | 캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설) | canvas | [techniques/canvas-clipboard-localstorage.md](techniques/canvas-clipboard-localstorage.md) |
 | 클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나) | canvas | [techniques/clone-documentation-formats.md](techniques/clone-documentation-formats.md) |
+| 좌표-클릭 캡처 (DOM 셀렉터 실패 시 CDP 좌표 마우스) | canvas | [techniques/coordinate-click-capture.md](techniques/coordinate-click-capture.md) |
 | 인터랙션 상태 지도 (노드/컴포넌트 전 버튼→상태 말단까지) | canvas | [techniques/interaction-state-map.md](techniques/interaction-state-map.md) |
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
@@ -94,6 +96,8 @@ pie showData
 | 픽셀 지문 게이트 (≥99% 점수 재현성) | — | [techniques/pixel-fingerprint-gate.md](techniques/pixel-fingerprint-gate.md) |
 | Total-Fidelity 클론 (전 서브시스템·전 층 계약 일치 — B 원칙) | canvas | [techniques/total-fidelity-cloning.md](techniques/total-fidelity-cloning.md) |
 | 트윈 미러 하네스 (실물·클론 동시 재생 비교) | — | [techniques/twin-mirror-harness.md](techniques/twin-mirror-harness.md) |
+| 버전-증명 3층 아카이브 (MHTML + PNG + localStorage) | canvas | [techniques/version-archive-3layer.md](techniques/version-archive-3layer.md) |
+| WebGL 노드 렌더 대응 (DOM 골격 없는 캔버스 노드 클론) | canvas | [techniques/webgl-node-rendering-clone.md](techniques/webgl-node-rendering-clone.md) |
 
 ### 은퇴 (retired) — 1
 

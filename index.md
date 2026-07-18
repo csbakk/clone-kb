@@ -9,6 +9,7 @@
 - [애니메이션 리퍼 (트랜지션 지문 일치)](techniques/animation-ripper.md) — experimental
 - [Append-only 로깅 (워크로그·티켓·갭매트릭스)](techniques/append-only-logging.md) — standard
 - [원자적 localStorage 주입 (bulk_inject)](techniques/atomic-localstorage-inject.md) — verified
+- [베이스라인-후-diff (한 번 전수조사 → 이후 diff-only)](techniques/baseline-then-diff.md) — experimental
 - [블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인)](techniques/blind-ab-test.md) — experimental
 - [CDP 비파괴 정찰 (peek 패턴, 리로드 금지)](techniques/cdp-nondestructive-recon.md) — standard
 - [CDP Raw 드라이버 (좀비 탭 우회)](techniques/cdp-raw-driver.md) — verified
@@ -16,6 +17,7 @@
 - [복사→좌표수정→주입 재배치 (프로그램적 격자정렬)](techniques/canvas-coord-inject-rearrange.md) — verified
 - [클립보드 JSON을 정본으로 (노드캔버스 앱)](techniques/clipboard-source-of-truth.md) — standard
 - [클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나)](techniques/clone-documentation-formats.md) — experimental
+- [좌표-클릭 캡처 (DOM 셀렉터 실패 시 CDP 좌표 마우스)](techniques/coordinate-click-capture.md) — experimental
 - [크로스-페이스트 파리티 (라운드트립 diff 0)](techniques/cross-paste-parity.md) — verified
 - [실사용(dogfooding)으로 버그 발견 — BORI 사례](techniques/dogfooding-as-bug-discovery.md) — verified
 - [DOM 기반 측정 (픽셀 스샷 대체)](techniques/dom-first-measurement.md) — standard
@@ -42,8 +44,10 @@
 - [서브에이전트 병렬화 규칙 (독립·무충돌만 병렬)](techniques/subagent-fanout-rules.md) — standard
 - [트윈 미러 하네스 (실물·클론 동시 재생 비교)](techniques/twin-mirror-harness.md) — experimental
 - [URL 이탈 가드 (크롤러 실수 네비게이션 방어)](techniques/url-escape-guard.md) — verified
+- [버전-증명 3층 아카이브 (MHTML + PNG + localStorage)](techniques/version-archive-3layer.md) — experimental
 - [자산 출처 게이트 (시각 자산 provenance — 자작 대체 재발방지)](techniques/asset-provenance-gate.md) — experimental
 - [G1 비주얼 판정 시트 (bbox 오버레이 + 크롭)](techniques/visual-triage-sheet.md) — verified
+- [WebGL 노드 렌더 대응 (DOM 골격 없는 캔버스 노드 클론)](techniques/webgl-node-rendering-clone.md) — experimental
 
 ## pipelines/
 - [★캠페인 킥오프 플레이북 — 새 클론 시작 시 이것부터 로드](pipelines/00-campaign-kickoff-playbook.md) — standard

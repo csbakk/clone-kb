@@ -4,14 +4,15 @@ title: 구조-우선 클론 (골격→스타일→동작 순서 원칙)
 doctype: technique
 status: standard
 proven_in: [notion, canvas]
-related: [techniques.measured-css-porting, techniques.pixel-diff-baseline, techniques.rip-repair-loop, techniques.dom-first-measurement]
+related: [techniques.measured-css-porting, techniques.pixel-diff-baseline, techniques.rip-repair-loop, techniques.dom-first-measurement, techniques.webgl-node-rendering-clone]
 evidence:
   - "notion 수렴 루프(2026-07-17)의 갭 대부분이 구조 기원으로 판명: 행높이 1px=tr 보더 레이어·거터 96px 이중예약·제목 잘림=input vs h1·번호목록 깨짐=마커/텍스트 부모 분리 — 골격이 같았으면 없었을 갭들"
   - "오너 DevTools 요소 인스펙션(제목 720×48/0px8px/textbox vs 클론 720×56/4px0/heading)이 픽셀 96% 아래의 골격 불일치 층을 드러냄"
   - "canvas 세션21(2026-07-17) — **retrofit 시나리오 첫 실증**: 이미 스타일-먼저로 진행돼온 canvas 캠페인에 원칙을 소급 적용. 헤더 타이틀 span래퍼 1줄 수정이 6상태 속성diff 7295→4364(-40%) 동반 감소, 라이트박스 메타패널 신설이 2374→1696(-29%) 동반 감소 — 구조 정합 1건이 스타일 레이어 다수를 공짜로 데려오는 notion과 동일 메커니즘이 별개 앱·별개 프레임워크(@xyflow 노드캔버스)에서도 재현됨"
   - "canvas 세션21 — 프롬프트 입력 골격(렌더러 심장부급, 전 Generate 노드 공통 textarea→contentEditable)을 image→video→llm→audio→promptnode→inspector 6개 소비처에 순차 확산, 매 라운드 이전 타입 전체 무회귀 재확인(18/18×6회)으로 완결. 이미 프로덕션 검증된 contentEditable 패턴(TextNode/StickyNoteNode의 useEditableSeed) 재사용이 골격 리팩터의 신규 리스크를 낮춘 사례 — 골격 교체가 '렌더러 심장부'라도 기존 검증 패턴 재사용 시 점진 확산 가능함을 실증"
   - "canvas 세션22(2026-07-17) — 오너가 체인깊이 A/B 결정을 B(전층 일치, total-fidelity)로 확정: 스켈레톤 매트릭스가 '최종 픽셀 등가'를 근거로 real13층 vs clone10층·hover전이 메커니즘(mount/unmount+reflow vs opacity토글) 격차를 '무해 단순화'로 판정했던 것을 뒤집음. 원칙이 '골격→스타일→동작' 순서에서 '조상체인 층수·상태전이 메커니즘까지 실물과 동치화'로 확장됨 — 픽셀 등가만으로 골격 차이를 무해 판정하지 않는다는 상위 규율 신설"
-updated: 2026-07-17
+  - "canvas 2026-07-18 — 실물 Higgsfield Canvas가 노드를 DOM이 아니라 WebGL `<canvas>` 픽셀로 렌더하도록 업그레이드된 것을 발견(`.react-flow__nodes` children 0·노드 텍스트가 `document.body.innerText`에 부재·뷰포트 전체 WebGL canvas 존재 3-신호). 골격-우선 원칙이 전제하던 '복사할 DOM이 존재한다'는 가정이 노드 층에서 깨짐 — 원칙을 은퇴시키지 않고 **적용 범위 caveat**(노드=WebGL이면 골격-우선 대신 data-model+visual+behavior로 대체)로 §적용 범위 caveat에 반영, [[techniques.webgl-node-rendering-clone]] 신설"
+updated: 2026-07-18
 owner: 박춘순
 ---
 
@@ -59,3 +60,11 @@ notion은 처음부터 구조-우선으로 설계된 캠페인이었지만, canv
 ## 전층 클론 지도 (화면 복사를 넘어 — 2026-07-17)
 
 ①DOM 골격(셸 포함) → ②스타일(computed) → ③상태 변화(hover/press/focus 매트릭스: 상태별 DOM 마운트+computed 델타) → **④동작 골격 = 이벤트 리스너 지도**(CDP getEventListeners — "어느 층이 무엇을 듣나"를 JS 재현 전에 복사, 구조-우선의 동작층 재귀 적용) → ⑤애니메이션 지문([[techniques.animation-ripper]]) → ⑥타이밍 지문(디바운스·오토세이브 주기·낙관적 업데이트 순서) → ⑦네트워크 계약(공개 API 파리티) → ⑧접근성 트리 전수 diff → ⑨엣지 상태(빈/로딩/에러). 잔여 비복사물=서버 로직·외부 콘텐츠만.
+
+## ★적용 범위 caveat — 대상 노드가 DOM일 때만 전제 (canvas 2026-07-18 WebGL 발견)
+
+골격-우선(structure-first) 전체가 **암묵적으로 "복사할 DOM이 존재한다"를 전제**한다. canvas 캠페인이 2026-07-18에 실물 Higgsfield Canvas가 노드를 **DOM이 아니라 WebGL `<canvas>` 픽셀로 렌더**하도록 업그레이드된 것을 발견했다 — `.react-flow__nodes` children 0, 노드 텍스트가 `document.body.innerText`에 부재, 뷰포트 전체 WebGL `<canvas>` 존재 3-신호로 확정([[techniques.webgl-node-rendering-clone]]).
+
+이 경우 **노드 골격 자체가 없으므로** 위 ①~⑨ 전층 지도를 노드 층에 적용할 방법이 없다 — ①DOM 골격부터 복사 대상이 존재하지 않는다. **이는 원칙의 은퇴가 아니라 적용 범위의 경계다**: 셸/툴바/인스펙터/메뉴 등 여전히 DOM인 부분엔 구조-우선이 그대로 유효하고, 오직 캔버스 위 노드 렌더 층만 예외다.
+
+**대체 경로**: 노드 층은 data-model(클립보드/localStorage JSON) + visual(스크린샷) + behavior(좌표 클릭 인터랙션)로 캡처·재현한다 — [[techniques.webgl-node-rendering-clone]] 참고. 클론 자체는 DOM/@xyflow를 유지하기로 오너가 결정(대규모 성능 이득이 없는 규모에서 WebGL 전환 대가가 방법론 핵심을 침해하기 때문) — 노드 렌더 층에 한해 구조-우선을 유예한 사례이지, 원칙을 뒤집은 것이 아니다.
