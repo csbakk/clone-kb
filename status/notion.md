@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DL | ★T-LS4 골격 대수술 — `.blk` flex/padding base를 실물 block 모델로(픽셀 무하락 조건) | 🔴 가동 |
+| W-DM | 잔여 골격 GAP 8개 수복(toggle flex-row 래퍼·lists·file/toc)+doc01 -0.4pp 규명 | 🔴 가동 |
 
-직전 완료: W-DJ(배치3) · W-DK(diff 강화·배치4 49/116, ae5f25c push).
+직전 완료: W-DK(diff 강화) · W-DL(T-LS4 골격 대수술 GAP17→8·188 +3.1pp, b597c00 push).
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -35,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★T-LS4 골격 대수술 — `.blk` flex→block 전환 성공**(W-DL, push b597c00·b448fc5): 실물 spacing 모델 규명(리프 자신은 padding0·block, 간격은 leaf 내부 자식 div 패딩에서 — ancestor-walk로 안 보이던 층) → text/h1/h2/h3/quote/divider를 block+padding재배치로 전환, image/video/bookmark/code/toc는 real 8px 패딩으로 교정. **골격 바꿨는데 픽셀 무하락(풀블록 188: 95.6→98.7% +3.1pp — 구조-우선의 배당)**. GAP **17→8**(9타입 OK 전환)·dom 90/90. 잔여: toggle(flex-row 래퍼 필요)·lists p/chain·file/toc·doc01 -0.4pp 미해소 → W-DM
 - 2026-07-19 **★diff 강화로 거짓 OK 적발 — 리프 17타입 전부 GAP**(W-DK, push ae5f25c): 오너 지시 반영해 diff_clone을 color만 보던 것→**fs/fw/lh/margin/padding/border/radius/display+골격깊이 전부 대조**로 강화 → **OK 16→0, GAP 1→17**. 근본 2건: **T-LS4** `.blk{display:flex;padding:4px 0}` base가 실물(block·padding0)과 다름 — 전 17타입에 픽셀보정 스택이 그 위에 쌓인 computed-복사 함정(대수술) · T-LS5 table 3층 계층. 저빈도 fs/lh 수복 시도는 배치4에서 샘플 늘자 뒤집혀 정직 롤백(대표시그 컨텍스트 오염 교훈). 배치4 완주 49/116(신규15). → W-DL로 T-LS4 착수
 - 2026-07-19 **★오너 지시 — 폰트/골격 완전 일치 + 리프 전수 재개**: "골격 구조 스타일 다 똑같게, 최하단 자식부터 골격 다 보고, 폰트 사이즈·크기·굵기까지. 99% 아니면 계속." → **diff_clone.py가 color만 비교하고 폰트(fs/fw/lh)·마진·패딩·보더·골격깊이를 "정보용"으로 눈감던 것 적발**(computed-복사 실수의 축소판 — 거짓 OK). W-DK로 diff 강화(전 속성+chain_depth GAP화)→진짜 갭 노출→수복, 배치4~ 전수 완주(조기수렴 종료 금지). 최종=리프 골격 전수 매칭표(체인+폰트 실물vs클론 ✓/✗)
 - 2026-07-19 **리프스윕 배치2·3 + 갤러리 카드폭 확정**(W-DI 73324a3 / W-DJ 4230e94): 배치2 12p(23/116, 신규25)·배치3 13p(**36/116**, 신규56 — 수렴 전혀 아님, 스파이크 페이지 다수). extract_js 정규식버그 수정(숫자 포함 클래스 오분류, 소급수정). 갤러리 카드폭 이진탐색으로 컨테이너 535/536px 열전환 경계 역산 → **base=260px 유일특정·수복**(medium 220→260). 신규 UNMAPPED 4종(button/header_4/collection_view_page/external_object_instance) T-LS3 티켓
