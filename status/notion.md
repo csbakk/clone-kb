@@ -19,10 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DU | 중첩 wrapper 2겹→실물 4겹(E/D/C/B) — chain_depth 4→7 근본 | 🔴 가동(클론 9226) |
-(9224 유휴 — 스윕 완주. 다음 실물작업은 W-DU 완료 후)
+| W-DX | table 3중 계층 골격 대수술(T-LS5②, chain 2→real14) | 🔴 가동(클론 9226+실물 9224 단독) |
 
-직전 완료: W-DT(셸 파일럿) · W-DV(스윕 103/116) · **W-DW(스윕 116/116 전수 완주, bc6a26d push)**.
+직전 완료: W-DV·W-DW(스윕 116/116 전수) · **W-DU(중첩 wrapper 4겹, chain 4→7 GAP→OK, 354a9db push)**.
 **★오너 지시(0719): 폰트 사이즈·굵기까지 전부 동일. 최하단 자식부터 골격 전수 보고. 99% 아니면 계속.**
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -36,6 +35,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★중첩 wrapper 4겹 확장 — chain_depth 리프 갭 해소**(W-DU, push 354a9db): renderListChildren에 실물 E/D/C/B 4겹 재현(blk-list-e/d/c 투명 통과층 3개 추가) → **bulleted/numbered/todo chain_depth 4→7 real 정확 일치·verdict GAP→OK** · 1단·2단 재귀 픽셀 합성 A/B 바이트 동일(getbbox None). dom 94/94·smoke 23/23. 리프 골격 갭 중 리스트 계열 완결, 잔여 골격 GAP=table(3중구조)·quote(별경로)·file(toggle wrapper)
 - 2026-07-19 **★리프 스윕 116/116 전수 완주**(W-DW, push bc6a26d): 잔여 13p 순회, 우선순위 목록 자연 소진(강제 종료 아님). 최종 **유니크 시그니처 202건·blockType 24종 고정**. 마지막 배치 신규 4건 전부 기존 타입 구조변형(collection_view·page 카드 레이아웃). 오너 지시 "리프 전수" 달성 → 이제 diff 통합 재판정(W-DU wrapper 4겹 반영)으로 최종 골격 갭 집계 가능
 - 2026-07-19 **리프스윕 배치9 — 103/116, 수렴 신호**(W-DV, push a31ace1): 15p 순회(88→103), 신규 시그니처 +5(193→198)·**신규 타입 0**·top-level 유입 0. 후반 12p 중 9p가 신규 0으로 수렴 뚜렷하나 임계 미달(마지막 3p서 +2). 잔여 13p → W-DW 완주. 확인된 blockType 23종 고정
 - 2026-07-19 **노션 클립보드 저장위치 규명**(W-DR, push e7214f6): 오너 요청 조사. localStorage/sessionStorage/IndexedDB **전부 무변화**(힉스필드와 반대) → payload는 **클립보드 커스텀 MIME `text/_notion-blocks-v3-production`**(노션 내부 block row 스키마). 추출 1줄=`paste 이벤트 getData('text/_notion-blocks-v3-production')`. Chrome async clipboard.read()는 커스텀타입 미노출→**trusted OS paste 필수**. 파이프라인 가능(구조 통째 추출). 운영교훈: 멀티크롬 osascript name-activate가 엉뚱한 창 활성화→`bring_to_front()` 써야·pbcopy+Cmd+V가 keystroke보다 안정. 리포트 `ref/rip/notion_clipboard_investigation.md`
