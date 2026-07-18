@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-DC | ③클론단독 백로그 — 콜아웃 이모지메뉴(스펙 존재분만)·T53/T54 데드코드·클론 정크 정리 | 🔴 가동 |
+| W-DD | ⑤마감 — 전판 게이트 1회(9226 가능분)+아침 HTML 보고서(RUN-0719-morning) | 🔴 가동 |
 
-직전 완료: W-CZ(✗7건 수복) · W-DA(리프스윕 부분) · W-DB(Phase B, 95ae2f3 push).
+직전 완료: W-DA(리프스윕 부분) · W-DB(Phase B) · W-DC(클론단독 백로그, c8c76cd push).
 
 ## 다음 페이즈 (오너 확정 1순위)
 **★구조-우선 클론(골격 파리티)** — `techniques/structure-first-cloning.md`. 순서: ①골격(DOM 스켈레톤·role·그룹핑 채택 — 1단계: 제목 h1 스펙+번호목록 마커/텍스트 단일부모, 2단계: 블록 래퍼 체인) → ②스타일 셀렉터째 이식 → ③동작/JS. 검증 3축: 구조 게이트(신설)+픽셀 배지+기능 게이트.
@@ -34,6 +34,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 새벽 **클론 단독 백로그 3건**(W-DC, push c8c76cd): ①콜아웃 이모지 피커 — 리포 전체 실측자산 검색 결과 피커 열린 골격 캡처 0건 → **추측 구현 없이 티켓**(tab_list 전례 준수, T-DA4 후속) ②T53/T54 데드코드 — 전수 grep 재검증(0 콜사이트) 후 store 래퍼 3함수 제거(columns.ts 헬퍼는 게이트가 직접 테스트해 유지) ③정크 정리 — 641폴더 도달성 스캔(rootOrder+children+DB rows 1100), 안전 확정 37건만 `_archive/`로 mv(복구 가능)·보류 11건 목록화·PARITY 중복은 실제 없음(가정 정정). smoke 23/23·file_persist 20/21(기존한계)·tsc/build 클린. 부수 발견: columnedit 계열 logic_gate.py가 9224 하드코딩(env override 없음) — 하네스 갭 기록
 - 2026-07-18 밤 **T-CG12 Phase B 완료 — 포털 유일 경로화**(W-DB, push 95ae2f3): hoverPortalFlag 삭제·Editor/BlockHoverPortal 플래그 분기 제거·죽은 CSS 5규칙 제거(순수 사구획 삭제). 컬럼 내부만 정직 보류(포털 48px 오프셋이 좁은 컬럼 침범 위험 — 실측 필요, T-DA4 후속). 모순 발견 1건: 콜아웃 헤더 hover 옛 CSS 주석이 W-CS 실측(캡처 근거)과 반대 → 실측 채택·양쪽 티켓 인용. 게이트 hover_portal 14/14(레거시 케이스 3 정리)·dom 90/90·smoke 23/23·tsc/build 클린. 픽셀 스팟은 9224 불가로 스킵(복구 후 재확인 티켓)
 - 2026-07-18 밤 **리프 전수 스윕 v2 — 부분 완료 + 안전 중단**(W-DA, push 38bdc16): 하네스 신설(`harness/leaf_sweep/` 골격체인+CSS+SVG 추출·시그니처 dedup·클론 diff) · 실코퍼스 327p 중 다양성 상위 3p 방문, 유니크 시그니처 33·블록타입 17종 확보 · **타입 대조 14/15 OK(93%)**, GAP 1(simpletable SVG — 표본 불일치라 조사 티켓) · **4페이지째부터 9224 goto 연속 타임아웃 → 정책대로 즉시 중단**(재로그인·재시작 시도 0). 오케 후속 판정: 잔재 드라이버 정리 후에도 브라우저·페이지레벨 CDP 모두 무응답 = **렌더러 데드락(T-DA4, T-CG11 동일 패턴)**. 로그인 화면 아님·탭 보존됨. 크롬 재시작은 무인 금지라 실측 작업(카드폭·상단바 아이콘·잔여 113p) 오너 복귀까지 보류. 부수 발견: 클론 641p는 PARITY 픽스처+시드이지 notion_api pull 코퍼스와 별개(브리프 가정 정정)
 - 2026-07-18 밤 **검수 ✗ 7건 수복 완료**(W-CZ, push a722e30까지 4커밋): ①필터/정렬 아이콘 — "교체 완료" 기존 기록이 오기재(실제론 다른 20×20)였음을 적발, real filterSmall/arrowUpDownSmall 16×16 재이식 ②**세로선 상충 재판정** — real 바디 셀에 border-right rgba(42,28,0,.07) 실존(W-CT의 "50+ none"은 육안 오판정) → 복원 + 헤더구분선=행 wrapper box-shadow inset 구조까지 정정 ③rollup 아이콘 search_gray.svg 원본 이식(🔍 이모지 대체) ④h2 핸들 real 비대칭(top26/bottom6) 반영 9.59px(real 9.90) ⑤checked 표본 코퍼스 부재 재확인(정직 보류) ⑥코드 언어=real도 저장형 property 확정(드롭다운 가역 확인 — 클론 아키텍처 정답, 갭은 fixture 데이터버그) · provenance 116/부채0 · dom 90/90·api_db 84/84·smoke 23/23 · v2 보고서 카드 갱신(완전일치 9→14). **함정 2건 발견**: bridge/pages(통신채널)≠bridge/data/pages(SoT) 별개 저장소 · filePersist merge가 editedAt 신선도 판정이라 timestamp 안 올리면 캐시가 갱신 무시
