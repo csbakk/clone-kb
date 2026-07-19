@@ -19,7 +19,7 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-FC | 3단계(3/4) — DB 3페이지(#06·07·08) 전층 이식 | 🔴 가동 |
+| W-FD | 3단계(4/4) — 보드/갤러리(#09·10) 전층 이식 + 구조차이 판정 | 🔴 가동 |
 
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -33,6 +33,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-20 **3단계(3/4) DB 표뷰 3페이지 수복 4건**(W-FC, push 264a6f1): ①**헤더 property-type 아이콘 9종**이 유니코드 글리프/이모지(Aa/≡/#/📅/☑…)였던 것을 real `/icons/*_gray.svg` mask 자산으로 교체 ②number 셀 우측정렬(real text-align:end) ③PARITY-195 **유령 빈 행** 삭제(live store 잔재, 4번째 드리프트) ④PARITY-195 **컬럼폭 인플레이션**(`.tv-table{min-width:100%}`+table-layout:auto가 여유폭을 비례배분해 280/200→308/220) 제거. probe에 `kind="table"` 지원 추가(위치매칭·colRelX). **★측정 함정 2종 추가 문서화: real은 padding/font가 inner div에 있음(outer 래퍼 아님) · leftOffset 절대비교 무효(root 좌표계 상이)**. 날짜 로케일: 재측정하니 양쪽 다 한글 — W-EQ 관찰 미재현(정직 기록). 게이트 tableview 17/17·api_db 84/84 무회귀
 - 2026-07-20 **3단계(2/4) 풀블록 2페이지 — 진짜 구조갭 3건 수복**(W-FB, push 6cd5170): ①**2단컬럼 20px 폭유실** — `.col-add`(＋버튼)가 flex in-flow로 20px 상시 점유해 컬럼이 337→327px shrink → `position:absolute` 앵커 전환, real 337px 정확 일치 ②**quote 글리프 8px** — real DOM은 leaf 자신도 `paddingLeft:8px`(총 33px), 클론 14→22px 교정 ③컬럼 내부 좌우 4px 인셋 제거(real=0). **★측정 방법론 반례 발견: quote는 기존 티켓이 "0px 검증완료"라 기록했지만 실제론 leaf 자체 padding을 놓친 오판정 — box측정과 glyph측정이 항상 같은 결론을 주지 않음**(다음 워커 필수 인지). 드리프트: 클론 #05 콜아웃 이모지 live store 오염(🤪→🔍) 정정. 픽셀 #04 99.1%·#05 98.1% 유지(구조개선은 해상도 밖), 게이트 7종 무회귀. 티켓: h2 2px·북마크 www(게이트 계약 충돌)·image 자르기버튼 텍스트 아티팩트
 - 2026-07-20 **3단계(1/4) 리치텍스트 3페이지 전층 정합**(W-FA, push 7ec89b7): **범용 하네스 `page_parity_probe.py` 제작**(PAGES 레지스트리+real/clone/diff/all, #04~#10 재사용 가능) + 실물탭 CDP wedge 우회 스크립트. 3페이지 전층 덤프·diff — **row-level `p` 불일치 7건은 false positive 판별**(glyph-level left_edge_audit로 0px delta 확인, 방법론 caveat 티켓화). **진짜 발견: 클론 #01의 유령 체크박스 5개(4444/5555/…)는 파일 SoT가 아니라 9226 브라우저 프로필 live store 잔재** → store deleteBlock으로 정리(#02·03은 클린). 티켓 2건: 콜아웃(real=아이콘+텍스트 단일 flex row vs 클론 분리)·코드블록(언어라벨이 리프 텍스트에 인라인). 픽셀 #01 97.43→97.49·#02 93.51·#03 98.02. dom 94/94·smoke 23/23
 - 2026-07-20 **2단계 완료 — 토글 첫줄 Enter 수복·여백 메커니즘 규명**(W-EZ, push 5e3e35f): **버그E** ffprobe로 노션 규칙 확정(닫힌 토글 헤더 첫줄 Enter→헤더·자식 그대로, 위에 빈 토글 1줄) → 근본=Enter 분기가 `off===0`에도 end-of-text 산식 재사용해 헤더 텍스트가 자기 첫자식으로 내려가고 헤더가 빔 → **`insertBlockBefore` 신설**(전 블록타입 일반화). **버그F 재현 성공**: fold-triangle 8회 결정론적(gap 40↔0, 플레이크0)이라 CSS 결함 아니고, **핸들 클릭→`.bhm-menu` backdrop이 열린 상태에서 fold 클릭을 삼켜 메뉴만 닫히고 collapse 불변**이 "여백 생겼다 없어졌다"의 정확한 메커니즘 — 업계표준 바깥클릭 패턴이라 추측 수정 없이 정직 보고(코드 무변경). 신규 게이트 12/12·3/3, 기존 6종 무회귀, 픽셀 bbox=None
