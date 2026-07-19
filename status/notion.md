@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-EG | 오너 버그 — 핸들 위치(블록2 이미지/영상 가운데·블록3 토글시 변화) 회귀 규명·수복 | 🔴 가동(클론 9226) |
+| W-EH | 오너 버그 — 키보드 네비(블록4·5·6+0719-3 방향키/엔터2번) | 🔴 가동(클론 9226) |
 
-직전: 골격 완전정합 런 완주(W-DE~W-EE, 17/21·필드97.4%). 오너 결정큐 4항목 승인(quote/toc 대수술·sub-page link·셸폭모델=오너입회 / M9영상·checked표본·quote재실측). **선 작업 버그 8건 처리 중**: W-EF 완료(토글 엔터/placeholder/캐럿, 블록1·7·8, 6e4e346) → W-EG(핸들위치 2·3) → W-EH(키보드네비 4·5·6) → 종합 매칭 보고. 그 후 결정큐.
+직전: 골격 완전정합 런 완주(W-DE~W-EE, 17/21·필드97.4%). 오너 결정큐 4항목 승인(quote/toc 대수술·sub-page link·셸폭모델=오너입회 / M9영상·checked표본·quote재실측). **선 작업 버그 8건 처리 중**: W-EF(토글엔터 6e4e346)·W-EG(핸들위치 회귀 0e9174a) 완료 → W-EH(키보드네비 4·5·6+0719-3) → W-EI(텍스트색 0719-2) → 종합 매칭 보고. 클립보드 파리티=설계문서화 완료(PoC 대기). 그 후 결정큐.
 ⚪ 없음 — 런 완주. 이번 런 워커(W-DE~W-EE): diff강화·골격대수술5·스윕전수·멀티셀렉버그·클립보드조사·셸파일럿·결산매칭표·UNMAPPED정정·T-LS6. 전부 csbakk push 완료(최종 6234002).
 
 
@@ -36,6 +36,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **핸들 위치 회귀 근본규명·수복**(W-EG, push 0e9174a): 오너 "골격 다 가져왔는데 왜?" → **골격/CSS 회귀 아님, JS 위치공식 fallback 버그**. W-CS(9ec10c9, 07-18)가 heading 정렬 고치며 핸들을 top+3→getCenterY()−14로 변경, void블록(image/video/embed/bookmark/file/button/divider/toc)은 `.blk-content` 없어 fallback(정중앙)에 걸림 → 이미지/영상 핸들 가운데. top앵커 복원 + scrollbar-gutter:stable(토글 열닫 스크롤바 수평지터). hover_portal_gate 확장 I/J, 15/17(2개 Phase C 기존). 노션↔클론 캡처 확보(`ref/screens/wEG_*`). 9224 goto 0. + 클립보드 파리티 설계문서(ref/design/CLIPBOARD-PARITY.md)·clone-kb experimental 카드 clipboard-format-interop
 - 2026-07-19 **★골격 완전정합 런 완주(⚪) — T-LS6 CLOSED**(W-EE, push 6234002): header_4(.blk-h4 block override+content relocate, 높이 43.4px 무변)·link_preview(카드void 그룹 합류)·button(외곽/pill blk-button 충돌 rename+block override, DB버튼컬럼 무영향 19/19) 3종 GAP→OK. **완전일치 15→17/21(81.0%)·박스 99.3%·폰트 96.8%**·픽셀 무하락. 매칭표·아침보고 재생성(헤드리스 검증). 남은 갭 4종+UNMAPPED 2=전부 오너 결정/대수술/아티팩트. **무인 런 여기서 마감** — 남은 건 오너 입회 아키텍처 결정 대상
 - 2026-07-19 **TYPE_MAP 정정 — 완전일치 15/21(71.4%) 정직화**(W-ED, push 3b9995b): 기구현 4종 TYPE_MAP 등록+page 스코프분리(DB행=SKIP·sub-page link=UNMAPPED). 등록 3종이 실제론 GAP으로 드러나 근본원인 규명: header_4(=.blk-h4에 T-LS4 block override 누락 1줄)·link_preview(카드void 8px 그룹 누락 1줄)·button(외곽 wrapper와 내부 pill이 같은 blk-button 클래스라 CSS 누출 버그, rename 필요) → **T-LS6 신설**. 완전일치 15/18→15/21(테스트 대상 3종 증가로 %는 내렸으나 더 정확). 매칭표·아침보고 재생성. T-LS3 stale 4종 CLOSED. → W-EE로 T-LS6 3종 수복
 - 2026-07-19 **UNMAPPED 5종 = 실은 4종 기구현 발견**(W-EC, push a2e3873): read-only 조사 — header_4(=h4)·button·external_object_instance(=link_preview)·collection_view_page(=DatabaseFullPage) 전부 **이미 클론 구현됨**(T-LS2/T-LS3의 grep miss 오기재를 git log로 반증). diff TYPE_MAP 미등록으로 UNMAPPED 오분류된 것뿐. **진짜 미구현은 인라인 "하위 페이지 링크" 블록 1종(freq~30)만** — 오너 결정큐2가 "5종"이 아니라 실질 1종으로 축소. → W-ED로 TYPE_MAP 등록+매칭표/티켓 최종 정정
