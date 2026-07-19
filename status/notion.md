@@ -19,9 +19,9 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-EI | 오너 버그 — 텍스트 입력 색상(0719-2 다크모드 간헐 어두움) | 🔴 가동(클론 9226) |
+(버그 9건 전부 수복·증명 완료 — 가동 워커 없음)
 
-직전: 골격 완전정합 런 완주(W-DE~W-EE, 17/21·필드97.4%). 오너 결정큐 4항목 승인(quote/toc 대수술·sub-page link·셸폭모델=오너입회 / M9영상·checked표본·quote재실측). **선 작업 버그 8건 처리 중**: W-EF(엔터)·W-EG(핸들)·W-EH(키보드네비 6fcf995) 완료 → W-EI(텍스트색 0719-2) → 종합 매칭 보고. 클립보드 파리티=설계문서화 완료(PoC 대기). 그 후 결정큐.
+직전: 골격 완전정합 런 완주(W-DE~W-EE, 17/21·필드97.4%). 오너 결정큐 4항목 승인(quote/toc 대수술·sub-page link·셸폭모델=오너입회 / M9영상·checked표본·quote재실측). **선 작업 버그 8건 처리 중**: **선 작업 버그 9건 전부 수복·시각증거 증명 완료**(W-EF~W-EJ, 커밋 6e4e346·0e9174a·6fcf995·de8e1b5·d796540). 종합보고 `RUN-0719-bugfix-report.html`(노션↔클론 이미지/영상+실동작 재캡처 8시나리오 PASS). 다음: 클립보드 파리티 PoC / 결정큐 4항목(오너 지시 대기).
 ⚪ 없음 — 런 완주. 이번 런 워커(W-DE~W-EE): diff강화·골격대수술5·스윕전수·멀티셀렉버그·클립보드조사·셸파일럿·결산매칭표·UNMAPPED정정·T-LS6. 전부 csbakk push 완료(최종 6234002).
 
 
@@ -36,6 +36,8 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **★오너 선작업 버그 9건 전부 수복·증명 완료**(W-EF~W-EJ, push d796540): ①토글엔터 자식/형제+placeholder+캐럿색(6e4e346) ②핸들위치=JS공식 fallback 회귀(0e9174a) ③키보드네비 5증상=flat siblings 순회 뿌리(6fcf995) ④다크모드 텍스트 어두움=드래그핸들 grabbable stuck(de8e1b5). **종합보고서** — 노션↔클론 시각증거 매칭표(페이지내 임베드·클릭확대), **실동작 8시나리오 지금 라이브 재캡처 전부 PASS**(오너 "반영 안된거냐" 종결). 신규 게이트 toggle_enter 8·keyboard_nav 10·handle_stuck_dark 4. 헤드리스 검증 통과
+- 2026-07-19 **텍스트색 버그 규명**(W-EI): 다크모드 "가끔 어두움"=드래그핸들 mousedown→opacity:.5, 핸들 살짝 벗어나 mouseup시 복원 미발화→grabbable stuck→이후 타이핑 텍스트 다 반투명(다크배경서 블렌드로 어둡게). window 전역 mouseup/dragend/blur 안전망 수복. handle_stuck_dark_gate 4/4
 - 2026-07-19 **키보드 네비 5증상 수복**(W-EH, push 6fcf995): 공통 뿌리 — ↑/↓ 핸들러가 flat siblings(닫힌 토글 숨은자식 포함) 순회 → 렌더 안 된 자식으로 focus 실패("이동 안 됨") → `visibleNeighborIndex()`(렌더된 visibleRows 기준)로 교체(열림=자식 진입·닫힘=서브트리 스킵). 블록6=거터가 mousemove만 봐 타이핑 중 안 사라짐→`suppressHoverForTyping()`. 0719-3①=빈 리스트 exit setFocus 누락 캐럿유실 수복. **keyboard_nav_gate 신설 10/10**(stash 4/10 변별력)·real 9224 시각증거+클론 패리티. 실측 스크래치 정리·원상복구
 - 2026-07-19 **핸들 위치 회귀 근본규명·수복**(W-EG, push 0e9174a): 오너 "골격 다 가져왔는데 왜?" → **골격/CSS 회귀 아님, JS 위치공식 fallback 버그**. W-CS(9ec10c9, 07-18)가 heading 정렬 고치며 핸들을 top+3→getCenterY()−14로 변경, void블록(image/video/embed/bookmark/file/button/divider/toc)은 `.blk-content` 없어 fallback(정중앙)에 걸림 → 이미지/영상 핸들 가운데. top앵커 복원 + scrollbar-gutter:stable(토글 열닫 스크롤바 수평지터). hover_portal_gate 확장 I/J, 15/17(2개 Phase C 기존). 노션↔클론 캡처 확보(`ref/screens/wEG_*`). 9224 goto 0. + 클립보드 파리티 설계문서(ref/design/CLIPBOARD-PARITY.md)·clone-kb experimental 카드 clipboard-format-interop
 - 2026-07-19 **★골격 완전정합 런 완주(⚪) — T-LS6 CLOSED**(W-EE, push 6234002): header_4(.blk-h4 block override+content relocate, 높이 43.4px 무변)·link_preview(카드void 그룹 합류)·button(외곽/pill blk-button 충돌 rename+block override, DB버튼컬럼 무영향 19/19) 3종 GAP→OK. **완전일치 15→17/21(81.0%)·박스 99.3%·폰트 96.8%**·픽셀 무하락. 매칭표·아침보고 재생성(헤드리스 검증). 남은 갭 4종+UNMAPPED 2=전부 오너 결정/대수술/아티팩트. **무인 런 여기서 마감** — 남은 건 오너 입회 아키텍처 결정 대상
