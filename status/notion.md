@@ -19,7 +19,7 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-⚪ 가동 워커 없음 — 오너 버그 전부 수복+동작영상 증명 완료. 다음: 클립보드 PoC / 결정큐(지시 대기).
+⚪ 가동 워커 없음. 다음: 클립보드 PoC / 결정큐(지시 대기).
 
 직전: 골격 완전정합 런 완주(W-DE~W-EE, 17/21·필드97.4%). 오너 결정큐 4항목 승인(quote/toc 대수술·sub-page link·셸폭모델=오너입회 / M9영상·checked표본·quote재실측). **선 작업 버그 8건 처리 중**: **선 작업 버그 9건 전부 수복·시각증거 증명 완료**(W-EF~W-EJ, 커밋 6e4e346·0e9174a·6fcf995·de8e1b5·d796540). 종합보고 `RUN-0719-bugfix-report.html`(노션↔클론 이미지/영상+실동작 재캡처 8시나리오 PASS). 다음: 클립보드 파리티 PoC / 결정큐 4항목(오너 지시 대기).
 ⚪ 없음 — 런 완주. 이번 런 워커(W-DE~W-EE): diff강화·골격대수술5·스윕전수·멀티셀렉버그·클립보드조사·셸파일럿·결산매칭표·UNMAPPED정정·T-LS6. 전부 csbakk push 완료(최종 6234002).
@@ -36,6 +36,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-19 **0719-4 빈토글 placeholder+Tab 부모열림**(W-EM, push 9556dac): 버그2(Tab 부모 자동열림)=진짜 수복 — setBlockDepth가 부모 collapsed 미변경 → `expandBlock` 액션+`expandNewParentOnIndent`(raw sibling 역탐색으로 진짜 새 부모 찾기) 3개 Tab진입점 적용. 영상 07. 버그1(placeholder 위치·가이드변화·클릭생성)=**이미 정상(W-EF)**, "커서 실종"은 4경로 재현 시도 모두 실패(포커스 항상 새 블록에 붙고 타이핑됨)→무근거 수정 대신 방어 게이트 D4/A3(activeElement+타이핑 검증). 클론캡처 "바보"=이전 수동테스트 잔여자식(placeholder 버그 아님). toggle_enter_gate 13/13(stash 12/13 변별력)·영상 06. 실물=오너 제공 영상 프레임추출 확인(9224 무접촉)
 - 2026-07-19 **닫힌토글 형제 collapsed 계승 수복 + 동작영상**(W-EL, push fec034c): W-EF 후속 — 닫힌 토글 Enter로 생긴 형제가 열린토글로 생성되던 버그. 근본=`makeBlock`이 collapsed 미충전(항상 열림), Editor가 nextType='toggle' 계산해두고 insertBlock에 미전달 → insertBlock에 collapsed 인자 추가+Enter핸들러 3호출부 전달. **동작영상 05**(닫힌부모▶ Enter→형제도 ▶ collapsed:true, ffprobe h264 7s). toggle_enter_gate B3/B4 추가 10/10(stash 8/10 변별력)·keyboard_nav 10/10 무회귀. 실물 실측은 harness 분류기가 실계정 타이핑 차단→오너 명세 폴백
 - 2026-07-19 **동작 증명 영상 5개**(W-EK, push 5672801): 오너 "동작을 영상으로 증명" 요청 → CDP screencast→ffmpeg로 클론 라이브 동작 녹화. 01토글엔터·02키보드네비·03핸들·04다크텍스트+통합 all(35.7s). 좌표/포커스 로그로 정확성 확인(이미지 핸들 top+3 일치 등). 보고서 `<video>` 임베드(readyState4). 오너 "반영 안된거냐" 질문에 실동작 영상으로 종결
 - 2026-07-19 **★오너 선작업 버그 9건 전부 수복·증명 완료**(W-EF~W-EJ, push d796540): ①토글엔터 자식/형제+placeholder+캐럿색(6e4e346) ②핸들위치=JS공식 fallback 회귀(0e9174a) ③키보드네비 5증상=flat siblings 순회 뿌리(6fcf995) ④다크모드 텍스트 어두움=드래그핸들 grabbable stuck(de8e1b5). **종합보고서** — 노션↔클론 시각증거 매칭표(페이지내 임베드·클릭확대), **실동작 8시나리오 지금 라이브 재캡처 전부 PASS**(오너 "반영 안된거냐" 종결). 신규 게이트 toggle_enter 8·keyboard_nav 10·handle_stuck_dark 4. 헤드리스 검증 통과
