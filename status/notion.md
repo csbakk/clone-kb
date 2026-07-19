@@ -19,7 +19,7 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-EY | 1단계 — 폰트 스택 완전일치(한글 fallback)+baseline 정렬+좌측 세로라인 통일 | 🔴 가동 |
+| W-EZ | 2단계 — 버그: 자식있는 토글 첫줄 Enter(본인+자식 하강·위 새토글) · 토글 여백 재발 | 🔴 가동 |
 
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -33,6 +33,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-20 **★1단계 완료 — "삐뚤빼뚤" 근본 규명·수복**(W-EY, push 8d61f8c): 실물 9224 실측(`font_align_probe_real.py`) → ①폰트 스택은 이미 일치(W-BN), mono fallback만 소폭 보정 ②**좌측 어긋남 근본: 클론 전 블록타입이 padding-left:0이라 마커·헤딩·문단·인용이 제각각 x에서 시작. 실물은 통일 공식(리스트/토글 마커 8px·헤딩/문단 6px·인용 8px)** → 그대로 적용, todo 체크박스 gap 7→4px ③**오너 지적(숫자 vs 한글 baseline) 근본: `.blk-marker.num`이 15px·padding-top 0인데 텍스트는 16px/24px+2px — 실물은 마커도 본문과 동일 16px/24px metric** → 교정, glyph top y좌표 0px delta 일치 검증. **픽셀 A/B 전 문서 개선(00 97.4→98.0·01 96.8→97.4·03 97.8→98.3)**·dom 94/94. 재사용 도구 `left_edge_audit.py`(블록별 좌측 x 노션↔클론 대조). 콜아웃 아이콘 offset은 fragile zone이라 정직 보류(delta 기록)
 - 2026-07-20 **🔴 10h 무인 런 개시 — 10페이지 완전정합**(오너 지시): 비교갤러리(RUN-0719-compare10.html, 페이지 링크 추가 b75a61b)로 오너가 디테일 지적 → **세로라인 정렬 근본과제**. 오너 질문 2건 답: ①폰트는 스택·metric 실측 이식으로 거의 완전 일치 가능(서브픽셀만 잔여) ②최하단→최상단 래퍼 전층 복사가 곧 §0 도크트린, 지금까진 리프 단위만 해서 페이지 층 구조가 안 맞았음. 단계: 폰트/정렬 기반(W-EY)→버그(토글첫줄Enter·여백재발)→10페이지 전층 이식→디테일 보고서. 직전 완료: W-EV(이미지/영상 클릭선택+Enter+설정 b481005)·W-EX(상단핸들+크기토글 f9ff4c7)
 - 2026-07-19 밤 **이미지/영상 선택+Enter 구현·설정옵션**(W-EV, push b481005): ffprobe 메타로 확정 — **정직 발견: 오너 "호버 선택"이 아니라 실측은 클릭 선택**(호버는 툴바만, halo는 클릭시 rgba(35,131,226,.14) 4변 6px=클론 기존 `.blk.selected::before`와 일치). 클릭선택→Enter=아래 빈 텍스트블록+setFocus(단일선택·image/video만). **설정 `mediaSelectEnter`(exceptions.ts, 기본 ON, 예외패널 맨아래, localStorage 영속)** — OFF면 halo 유지·Enter만 무동작. 영상19(ON→OFF→ON)·media_select_enter_gate 18/18·video_block 42/42·column_media 16/16 무회귀. 보고서 RUN-0719-image-select-report.html
 - 2026-07-19 **빈 아이템 fwd-delete 삼촌 이동 수복(W-ET 상충 조정)**(W-EU, push 14580c4): W-ET no-op 가드가 21:31 요구(빈아이템 fwd-delete→삼촌 이동)를 막던 것 → 가드 세분화: **빈텍스트&&자식없음이면 삭제+삼촌 맨앞 setFocus, 그 외(내용/접힌자식)는 W-ET no-op 유지**(데이터유실 방지 보존). "컨테이너 경계"와 "빈 블록인가"가 다른 축인데 뭉뚱그려졌던 것. 노션 실측(영상2종 전후프레임): 삼촌 토글/일반 동일 동작. 영상18(3시나리오)·empty_item_fwddelete_uncle_gate 14/14(stash 8/14)·무회귀 전부. 오늘 토글편집 버그 8종+ 전부 종합보고서 RUN-0719-toggle-edit-report.html에 반영
