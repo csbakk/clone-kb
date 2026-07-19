@@ -19,7 +19,7 @@ flowchart LR
 ## 가동 중 에이전트
 | 워커 | 임무 | 상태 |
 |---|---|---|
-| W-FA | 3단계 — 리치텍스트 3페이지(#01·02·03) 전층 이식 + 범용 page_parity_probe 제작 | 🔴 가동 |
+| W-FB | 3단계(2/4) — 풀블록 2페이지(#04·05) 전층 이식 | 🔴 가동 |
 
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -33,6 +33,7 @@ flowchart LR
 | ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-20 **3단계(1/4) 리치텍스트 3페이지 전층 정합**(W-FA, push 7ec89b7): **범용 하네스 `page_parity_probe.py` 제작**(PAGES 레지스트리+real/clone/diff/all, #04~#10 재사용 가능) + 실물탭 CDP wedge 우회 스크립트. 3페이지 전층 덤프·diff — **row-level `p` 불일치 7건은 false positive 판별**(glyph-level left_edge_audit로 0px delta 확인, 방법론 caveat 티켓화). **진짜 발견: 클론 #01의 유령 체크박스 5개(4444/5555/…)는 파일 SoT가 아니라 9226 브라우저 프로필 live store 잔재** → store deleteBlock으로 정리(#02·03은 클린). 티켓 2건: 콜아웃(real=아이콘+텍스트 단일 flex row vs 클론 분리)·코드블록(언어라벨이 리프 텍스트에 인라인). 픽셀 #01 97.43→97.49·#02 93.51·#03 98.02. dom 94/94·smoke 23/23
 - 2026-07-20 **2단계 완료 — 토글 첫줄 Enter 수복·여백 메커니즘 규명**(W-EZ, push 5e3e35f): **버그E** ffprobe로 노션 규칙 확정(닫힌 토글 헤더 첫줄 Enter→헤더·자식 그대로, 위에 빈 토글 1줄) → 근본=Enter 분기가 `off===0`에도 end-of-text 산식 재사용해 헤더 텍스트가 자기 첫자식으로 내려가고 헤더가 빔 → **`insertBlockBefore` 신설**(전 블록타입 일반화). **버그F 재현 성공**: fold-triangle 8회 결정론적(gap 40↔0, 플레이크0)이라 CSS 결함 아니고, **핸들 클릭→`.bhm-menu` backdrop이 열린 상태에서 fold 클릭을 삼켜 메뉴만 닫히고 collapse 불변**이 "여백 생겼다 없어졌다"의 정확한 메커니즘 — 업계표준 바깥클릭 패턴이라 추측 수정 없이 정직 보고(코드 무변경). 신규 게이트 12/12·3/3, 기존 6종 무회귀, 픽셀 bbox=None
 - 2026-07-20 **★1단계 완료 — "삐뚤빼뚤" 근본 규명·수복**(W-EY, push 8d61f8c): 실물 9224 실측(`font_align_probe_real.py`) → ①폰트 스택은 이미 일치(W-BN), mono fallback만 소폭 보정 ②**좌측 어긋남 근본: 클론 전 블록타입이 padding-left:0이라 마커·헤딩·문단·인용이 제각각 x에서 시작. 실물은 통일 공식(리스트/토글 마커 8px·헤딩/문단 6px·인용 8px)** → 그대로 적용, todo 체크박스 gap 7→4px ③**오너 지적(숫자 vs 한글 baseline) 근본: `.blk-marker.num`이 15px·padding-top 0인데 텍스트는 16px/24px+2px — 실물은 마커도 본문과 동일 16px/24px metric** → 교정, glyph top y좌표 0px delta 일치 검증. **픽셀 A/B 전 문서 개선(00 97.4→98.0·01 96.8→97.4·03 97.8→98.3)**·dom 94/94. 재사용 도구 `left_edge_audit.py`(블록별 좌측 x 노션↔클론 대조). 콜아웃 아이콘 offset은 fragile zone이라 정직 보류(delta 기록)
 - 2026-07-20 **🔴 10h 무인 런 개시 — 10페이지 완전정합**(오너 지시): 비교갤러리(RUN-0719-compare10.html, 페이지 링크 추가 b75a61b)로 오너가 디테일 지적 → **세로라인 정렬 근본과제**. 오너 질문 2건 답: ①폰트는 스택·metric 실측 이식으로 거의 완전 일치 가능(서브픽셀만 잔여) ②최하단→최상단 래퍼 전층 복사가 곧 §0 도크트린, 지금까진 리프 단위만 해서 페이지 층 구조가 안 맞았음. 단계: 폰트/정렬 기반(W-EY)→버그(토글첫줄Enter·여백재발)→10페이지 전층 이식→디테일 보고서. 직전 완료: W-EV(이미지/영상 클릭선택+Enter+설정 b481005)·W-EX(상단핸들+크기토글 f9ff4c7)
