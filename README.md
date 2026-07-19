@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-19 05:42). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-19 12:34). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -31,10 +31,10 @@
 
 ```mermaid
 pie showData
-    title 기법 45장
+    title 기법 46장
     "정식 (standard)" : 14
     "검증 (verified)" : 15
-    "실험 (experimental)" : 15
+    "실험 (experimental)" : 16
     "은퇴 (retired)" : 1
 ```
 
@@ -79,7 +79,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 15
+### 실험 (experimental) — 16
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -87,6 +87,7 @@ pie showData
 | 베이스라인-후-디프 (한 번 전수조사 → 이후 diff-only) | canvas | [techniques/baseline-then-diff.md](techniques/baseline-then-diff.md) |
 | 블라인드 A/B 판별 테스트 (사람 눈으로 최종 확인) | — | [techniques/blind-ab-test.md](techniques/blind-ab-test.md) |
 | 캔버스 클립보드 = OS마커 + localStorage JSON 패턴 (크로스툴 가설) | canvas | [techniques/canvas-clipboard-localstorage.md](techniques/canvas-clipboard-localstorage.md) |
+| 클립보드 포맷 상호운용 — 복사/붙여넣기로 원본과 서식 왕복 | — | [techniques/clipboard-format-interop.md](techniques/clipboard-format-interop.md) |
 | 클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나) | canvas | [techniques/clone-documentation-formats.md](techniques/clone-documentation-formats.md) |
 | 좌표-클릭 캡처 (DOM 셀렉터 실패 시 CDP 좌표 마우스) | canvas | [techniques/coordinate-click-capture.md](techniques/coordinate-click-capture.md) |
 | 인터랙션 상태 지도 (노드/컴포넌트 전 버튼→상태 말단까지) | canvas | [techniques/interaction-state-map.md](techniques/interaction-state-map.md) |
