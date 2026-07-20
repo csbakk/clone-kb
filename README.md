@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-20 11:04). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-20 21:37). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -31,10 +31,10 @@
 
 ```mermaid
 pie showData
-    title 기법 47장
+    title 기법 49장
     "정식 (standard)" : 14
     "검증 (verified)" : 16
-    "실험 (experimental)" : 16
+    "실험 (experimental)" : 18
     "은퇴 (retired)" : 1
 ```
 
@@ -80,7 +80,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 16
+### 실험 (experimental) — 18
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -92,10 +92,12 @@ pie showData
 | 클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나) | canvas | [techniques/clone-documentation-formats.md](techniques/clone-documentation-formats.md) |
 | 좌표-클릭 캡처 (DOM 셀렉터 실패 시 CDP 좌표 마우스) | canvas | [techniques/coordinate-click-capture.md](techniques/coordinate-click-capture.md) |
 | 인터랙션 상태 지도 (노드/컴포넌트 전 버튼→상태 말단까지) | canvas | [techniques/interaction-state-map.md](techniques/interaction-state-map.md) |
+| 오너 지적 전수 대장 (_OWNER_BACKLOG.md — grep 조회 전용, 착수·완료 추적) | notion | [techniques/owner-backlog-ledger.md](techniques/owner-backlog-ledger.md) |
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
 | 파리티 감시 데몬 (99% 선언 이후 유지) | — | [techniques/parity-watch-daemon.md](techniques/parity-watch-daemon.md) |
 | 스키마 마이그레이션 안전망 (버전·백업·invariant·게이트) | notion | [techniques/persist-migration-safety-net.md](techniques/persist-migration-safety-net.md) |
 | 픽셀 지문 게이트 (≥99% 점수 재현성) | — | [techniques/pixel-fingerprint-gate.md](techniques/pixel-fingerprint-gate.md) |
+| 안전장치 설계 원칙 — 가용성을 죽이는 보호는 보호가 아니다 (fail-open · 세대백업 · 양방향 동기화 검증) | notion | [techniques/safety-mechanism-design.md](techniques/safety-mechanism-design.md) |
 | Total-Fidelity 클론 (전 서브시스템·전 층 계약 일치 — B 원칙) | canvas | [techniques/total-fidelity-cloning.md](techniques/total-fidelity-cloning.md) |
 | 트윈 미러 하네스 (실물·클론 동시 재생 비교) | — | [techniques/twin-mirror-harness.md](techniques/twin-mirror-harness.md) |
 | 버전-증명 3층 아카이브 (MHTML + PNG + localStorage) | canvas | [techniques/version-archive-3layer.md](techniques/version-archive-3layer.md) |
