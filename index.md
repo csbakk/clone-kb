@@ -24,7 +24,10 @@
 - [실측 CSS 포팅 (골격 동치 후 computed 값 그대로 이식)](techniques/measured-css-porting.md) — standard
 - [모델 매트릭스 diff (카탈로그 전수 검증, GENERATE 비용 0)](techniques/model-matrix-diff.md) — verified
 - [야간 무인 런 SOP (graceful skip · 안전경계 · 큐)](techniques/night-run-sop.md) — standard
+- [오너 지적 전수 대장 (_OWNER_BACKLOG.md — grep 조회 전용, 착수·완료 추적)](techniques/owner-backlog-ledger.md) — experimental
+- [비침습 브라우저 자동화 (오너 기기 공유 시 포커스 안 뺏기 · 포커스 에뮬레이션)](techniques/non-intrusive-browser-automation.md) — verified
 - [스키마 마이그레이션 안전망 (버전·백업·invariant·게이트)](techniques/persist-migration-safety-net.md) — experimental
+- [안전장치 설계 원칙 (가용성-먼저 · fail-open · 세대백업 · 양방향 동기화 검증)](techniques/safety-mechanism-design.md) — experimental
 - [오케스트레이터 모델 라우팅 (fable 오케 / sonnet 빌더 / opus 검증)](techniques/orchestrator-model-routing.md) — standard
 - [osascript 트러스티드 입력 하이브리드 (한글 IME 우회)](techniques/osascript-trusted-hybrid.md) — verified
 - [파리티 CI (교차앱 자동 회귀 파이프라인)](techniques/parity-ci.md) — experimental
