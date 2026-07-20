@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-20 07:09). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-20 10:59). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -31,9 +31,9 @@
 
 ```mermaid
 pie showData
-    title 기법 46장
+    title 기법 47장
     "정식 (standard)" : 14
-    "검증 (verified)" : 15
+    "검증 (verified)" : 16
     "실험 (experimental)" : 16
     "은퇴 (retired)" : 1
 ```
@@ -59,7 +59,7 @@ pie showData
 | 구조-우선 클론 (골격→스타일→동작 순서 원칙) | notion, canvas | [techniques/structure-first-cloning.md](techniques/structure-first-cloning.md) |
 | 서브에이전트 병렬화 규칙 (독립·무충돌만 병렬) | kit, canvas, notion | [techniques/subagent-fanout-rules.md](techniques/subagent-fanout-rules.md) |
 
-### 검증 (verified) — 15
+### 검증 (verified) — 16
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -70,6 +70,7 @@ pie showData
 | 크로스-페이스트 파리티 (라운드트립 diff 0) | canvas | [techniques/cross-paste-parity.md](techniques/cross-paste-parity.md) |
 | 실사용(dogfooding)으로 버그 발견 — BORI 사례 | canvas | [techniques/dogfooding-as-bug-discovery.md](techniques/dogfooding-as-bug-discovery.md) |
 | 모델 매트릭스 diff (카탈로그 전수 검증, GENERATE 비용 0) | canvas | [techniques/model-matrix-diff.md](techniques/model-matrix-diff.md) |
+| 비침습 브라우저 자동화 — 오너 기기를 공유하며 포커스를 뺏지 않기 | notion | [techniques/non-intrusive-browser-automation.md](techniques/non-intrusive-browser-automation.md) |
 | osascript 트러스티드 입력 하이브리드 (한글 IME 우회) | notion | [techniques/osascript-trusted-hybrid.md](techniques/osascript-trusted-hybrid.md) |
 | 호버 중 레코딩 (Clone Inspector + ci_agent) | notion | [techniques/record-during-hover.md](techniques/record-during-hover.md) |
 | RIP 레이어② 인터랙션 크롤러 | canvas, notion | [techniques/rip-crawler.md](techniques/rip-crawler.md) |
