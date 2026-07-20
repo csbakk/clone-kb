@@ -34,8 +34,8 @@ flowchart TD
 각 생성 티켓 전후 오케가 CLI balance+transactions로 크레딧 대조.
 
 ## 3. 이벤트
-- CLI 크레딧 계측 확립(MCP=cafe24 mine 2206cr=실물탭). GEN-ERR-1(0cr)·GEN-PROG(1.5cr)·①E2E(0cr)·②GAP(1.5cr)·③델타(0cr). 총 -3.0cr, 전부 CLI 대조 정확.
-- 발견: 클론 브리지 기본계정=cafe24(16741cr, MCP 추적불가)≠실물탭. GEN-TOAST-1 구조갭. processing-border 오추정 정정.
+- CLI 크레딧 계측 확립(MCP 개인계정=실물탭). GEN-ERR-1(0cr)·GEN-PROG(1.5cr)·①E2E(0cr)·②GAP(1.5cr)·③델타(0cr). 총 -3.0cr, 전부 CLI 대조 정확.
+- 발견: 클론 브리지 기본계정=회사 공용계정(MCP 추적불가)≠실물탭. GEN-TOAST-1 구조갭. processing-border 오추정 정정.
 
 ## 4. 로직 평가
 - **작동한 것**: ①CLI 크레딧 계측 루프(전 balance→작업→후 balance+transactions 항목) 확립·검증 — 생성 작업의 크레딧 통제 인프라 완성, 5티켓 3cr ②저크레딧 원칙(1k·batch1·캡1회)로 생성 대조를 실물에서 안전 실행 ③강제 렌더(window.__loadDoc) 대조로 생성 안 해도 되는 티켓(error·결과노드)은 0cr ④오케 직접 스팟(CDP 강제렌더 독립재현)으로 빌더 자가선언 불신 유지 ⑤빌더가 클론 브리지 계정 불일치를 감지하고 실생성 자제(추적 투명성 우선) — 안전 판단.
