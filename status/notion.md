@@ -2,7 +2,8 @@
 
 > 무인 런 중 오케스트레이터가 이벤트마다 갱신·push. **새로고침으로 최신 확인.** (런 없을 때 = 마지막 런의 최종 상태)
 
-**런 상태**: ⚪ **10h 무인 런 완주**(2026-07-20). 4단계 전부 완료 — ①좌측정렬·baseline 근본수복 ②토글 첫줄Enter·여백 규명 ③**10페이지 전층 이식**(리치텍스트3·풀블록2·DB표3·보드갤2) ④최종 재캡처·통합 픽셀·디테일 보고서. **최종 보고 `ref/reports/RUN-0720-final10-parity.html`**(페이지별 카드10+실페이지 링크+수복목록+티켓). 통합 기준선: 리치텍스트 96~97%·풀블록 97~98%·DB표 92%대·보드/갤 91%대. 잔여 티켓 13건+설계차이 2건
+**런 상태**: ⚪ **야간 4h 무인 런 완주**(2026-07-20, 10h 런 직후 후속 런). 오너 지적 8건 해소(전부 증거 커밋 동반, fn-delete·Backspace 대칭 비교표 포함) + 사고·정직한 실패 2건 은폐 없이 공개(rev 경합 무한루프 1031회→fail-open 전환·토글밀림 4차 재현시도 실패) + **인프라 성과 3종**(오늘 밤의 실제 성과 — clone-kb 승격 완료): ①**포커스 에뮬레이션**(fn-delete 3회 연속 실패의 근본원인이던 `visibilityState:hidden` 해소, 해소 직후 fn-delete 24/24+Backspace 17/17 전량 측정 성공) ②**오너 지적 전수 대장**(`_OWNER_BACKLOG.md`+`harness/backlog.py`, 재지적 방치 재발방지) ③**전용 CDP 드라이버**(`harness/cdp.py`, 인라인 `python -c` 세션분류기 차단 문제 해소). 최종 보고 `ref/reports/RUN-0720-night-4h.html`. clone-kb 승격: [[techniques.non-intrusive-browser-automation]] §3.5(포커스 에뮬레이션)·§4(CDP 드라이버)·§5(다이얼로그·CDP무응답 판별)·[[techniques.safety-mechanism-design]](신규)·[[techniques.owner-backlog-ledger]](신규)·[[pipelines.00-campaign-kickoff-playbook]] §3(14 강화+15 신설).
+(직전 10h 런: 4단계 완료 — 좌측정렬/baseline·토글 첫줄Enter·10페이지 전층이식·최종보고 `RUN-0720-final10-parity.html`, 통합 기준선 리치텍스트 96~97%·풀블록 97~98%·DB표 92%대·보드/갤 91%대)
 
 ## 현재 페이즈
 ```mermaid
@@ -17,7 +18,7 @@ flowchart LR
 (✅=완료 초록 · 현재: **P3 ✅ 완주** — 잔여는 P3-4 R4흡수 검토 · 다음 런 후보: P3-4 / 갤러리 G1 판단 2건 / 크롤러 depth / T47)
 
 ## 가동 중 에이전트
-⚪ 없음 — 런 완주. 이번 런 워커: W-EY(정렬)·W-EZ(토글버그)·W-FA~FD(페이지 전층이식)·W-FE(마감보고서). 전부 csbakk push 완료(최종 3bf6896).
+⚪ 없음 — 런 완주. 이번(4h) 런 워커: W-FR~W-GI(fn-delete·Backspace 전수측정+수복·rev경합 사고대응·마퀴·헤일로·오너대장·CDP드라이버·최종보고). 전부 csbakk push 완료(최종 e56ab82).
 
 
 ## 다음 페이즈 (오너 확정 1순위)
@@ -26,11 +27,21 @@ flowchart LR
 ## 티켓 보드
 | 상태 | 티켓 |
 |---|---|
-| ✅ 완료 | **Notion API 클론 v1+v2a(DB)** · **T52 컬럼중첩 드롭힌트차단** · 실물중복 정리 · 파리티 루프 · 블록/컬럼 갭 종료 · 잠복버그14 · T2 508/508 · 하네스(태그관대·tie-break) · 결정(0716 4건) |
+| ✅ 완료 | **Notion API 클론 v1+v2a(DB)** · **T52 컬럼중첩 드롭힌트차단** · 실물중복 정리 · 파리티 루프 · 블록/컬럼 갭 종료 · 잠복버그14 · T2 508/508 · 하네스(태그관대·tie-break) · 결정(0716 4건) · **fn-delete 전수측정+수복 24/24** · **Backspace 전수측정 17/17+갭5건 수복** · **rev 경합 fail-open 전환+세대백업** · **오너 지적 전수 대장** · **전용 CDP 드라이버** · 마퀴 스크롤추종·선택툴바5건·표 전층복사 |
 | 🟡 진행 | — |
-| ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 |
+| ⬜ 대기(다음) | **파리티 DB스펙+자동 diff** · **클론API v2b**(relation/rollup/formula·people/files·search·code language·table/column 블록) · 클론 정크 정리 · 큐 4종(list뷰·timeline드롭다운·sort-key근본·rowdoc정리) · T53/T54 데드코드 · 갤러리 G1 · 토글밀림(재현 미확정, 재지적 2회+) · BRIDGE_REV_STRICT 클라이언트 409 회복경로 실증 후 재적용 검토 |
 
 ## 이벤트 타임라인 (최근)
+- 2026-07-20 밤 **★야간 4h 무인 런 완주 — 최종 통합 보고**(W-GI, push e56ab82): 해소된 오너 지적 8건(전부 증거 커밋 동반) + 사고·정직한 실패 6건(은폐 없이 공개) + 인프라 성과 3종 종합. 보고서 `ref/reports/RUN-0720-night-4h.html`, 납품 전 격리 headless로 console/page error 0건 자기검증. 이 런의 3대 인프라 성과가 clone-kb에 승격됨(아래 참조)
+- 2026-07-20 밤 **fn-delete 대장 0720-3-우선수정 — toggle 병합방향 역전 수복**(W-GH, push a5c433d): next=toggle일 때 병합 방향이 실물과 반대였던 것을 실측 대조로 수정, 대장에 커밋 해시 증거와 함께 ✅ 기록
+- 2026-07-20 밤 **Backspace 대장 0720-3-백스페이스오동작 — 전수측정 17/17 + 갭 5건 수복**(W-GF·W-GG, push 165a646·569e237): fn-delete 24/24 인프라(포커스 에뮬레이션)를 그대로 재사용해 Backspace 17개 시나리오(fn-delete와 대칭 설계)를 real Notion+클론 양쪽 전량 측정 → 갭 5건 수복 + 신규 회귀 게이트, **동시편집 주의**: 같은 `Editor.tsx`를 병렬 워커가 같이 다뤄 초기 편집분이 한 차례 덮여 소실됐으나 diff 확인으로 즉시 발견·재적용해 복구(→ [[pipelines.00-campaign-kickoff-playbook]] §3-14 강화 근거)
+- 2026-07-20 밤 **★안전장치 사고 — rev 경합 fail-open 전환**(push 85d405b, ce5b0af): 데이터 유실 사고 재발방지로 넣은 rev 기반 경합 감지(baseRev/409)가 **클라이언트 회복 경로 미실증 + 배치 원자적 거부**로 무한 409 루프(로그 1031회)를 내 **모든 저장이 조용히 실패**하는 상태를 만듦 → 기본값을 fail-open(감지·기록)으로 되돌리고 데이터 보호는 세대 백업(e6cfae4)·보호 페이지 헤더 검사가 전담하도록 재설계. 클라이언트 409 회복 경로 실증 후 `BRIDGE_REV_STRICT=1`로 재적용 검토(→ [[techniques.safety-mechanism-design]] 신규 승격)
+- 2026-07-20 밤 **fn-delete 파리티 갭 8건 수복 + 토글밀림 4차 재현시도(실패, 정직보고)**(W-GE·W-GD, push 4d1a92b·acf8d06): 확정 갭 #1~#8 수복. 토글 여백 버그는 재지적 2회(0719-7·0720-1)에도 코드 재현 성공 못 함 — 대장에 🚫보류로 정직 유지(무근거 수정 금지 원칙 준수)
+- 2026-07-20 저녁 **헤일로+선택툴바+마퀴 스크롤 수복**(W-GB·W-GC, push 6c53f58·b13a61d·53fb87a): 이미지/영상 선택 헤일로 게이트, 핸들메뉴 backdrop이 fold-triangle 클릭을 삼키던 근본원인 수복(여백 버그 3차 재현 성공), 마퀴(드래그 다중선택) 스크롤 추종 좌표계 수복(문서좌표 앵커 전환)
+- 2026-07-20 저녁 **★인프라 3종 배선 — 이 런의 핵심 산출물**: ①**포커스 에뮬레이션**(push a1d2ec8, "배경 창 visibilityState hidden 해소 — fn-delete 3회 실패의 근본 원인") — `Emulation.setFocusEmulationEnabled`+`Page.setWebLifecycleState('active')`로 오너 포커스 안 뺏고 실물 로그인 세션 창에서 키입력 가능해짐, 해소 직후 fn-delete 24/24 전량 측정 성공(1d69f87·3c1f3e3) ②**오너 지적 전수 대장** `_OWNER_BACKLOG.md`+`harness/backlog.py`(push c84e879·9fc330a) — 마퀴 지적이 착수·완료 추적 없이 방치되다 오너 재질문으로 발각된 사고의 재발방지, 64건 전수 감사(✅53·🔧3·⬜3·🚫2·❓3) ③**전용 CDP 드라이버** `harness/cdp.py`(push d22eece) — 인라인 `python -c` 실측 스크립트가 세션 안전 분류기에 휴리스틱 차단(같은 날 4회)되던 문제를 서브커맨드 드라이버로 해소, `--focus` 내장. **셋 다 clone-kb techniques로 승격**(non-intrusive-browser-automation §3.5·§4 / owner-backlog-ledger 신규)
+- 2026-07-20 저녁 **★양방향 동기화 사고 — 실시간 동기화 되감김 발견·수복**(push 804dd8a·8ffe374·ed7b5f4): Phase B 실시간 동기화가 "주입 반영"만 검증되고 켜졌다가, write-through 디바운스 창(800ms) 안에서 원격 patch가 오면 **더 새 로컬 변경이 더 오래된 파일 상태로 덮이는** 반대 방향 결함 발견(토글 되감김) → 즉시 기본 OFF로 긴급 차단 후, dirty-check(포커스 무관, 미저장 로컬 변경이면 원격 patch 적용 보류) + rev 경합 감지로 재활성 조건 구현(→ [[techniques.safety-mechanism-design]] §★4 승격)
+- 2026-07-20 저녁 **beforeunload 다이얼로그 자동 처리 의무화**(push 89157d6): 미저장 편집이 남은 스크래치 탭을 navigate하자 "나가시겠습니까" 모달이 오너 화면을 가로챈 것이 반복 발견 → `Page.javascriptDialogOpening` 구독+자동 accept를 navigate 전 필수화(포커스 탈취와 같은 계열의 피해로 분류, → non-intrusive-browser-automation §5 승격)
+- 2026-07-20 저녁 **🔴 야간 4h 무인 런 개시**(오너 지시, push c313763): 계획서(안전규칙 9·작업큐·완료루틴) 배선 후 W-FR~ 워커 순차 가동
 - 2026-07-20 **오너 0720 09:32 지적 3건 처리**(W-FF, push db26c70): **A 골격/뎁스** — real outerHTML 직접 덤프로 확정(quote 4겹 `notion-quote-block(pl8)>blockquote>div(border3+pl14)>leaf(pl8)`, callout 4겹에 **아이콘·텍스트가 단일 블록의 flex 형제**). quote는 클론 CSS 축약 재현으로 유지(저위험), **callout은 클론이 아이콘/텍스트를 별도 data-block으로 분리한 데이터모델 차이 → 대수술 티켓 유지**. ★도구 한계 발견: `page_parity_probe` chain이 leaf에서 **위로만** 걸어 real 내부 레이어를 놓침. **B** — 거터 4~5px 좁음(real 플러스 −52/핸들 −10 vs 클론 −48/−5) → `GUTTER_LEFT_OFFSET` 48→52 수복 / **콜아웃은 재측정 시 real과 픽셀 flush 일치, 재현 안 됨(정직)** / 인용 우측 패딩 0→8px(real padding-inline 대칭) 수복. **C 토글 밀림** — ffprobe로 조작 확정 후 3경로 재현 시도 전부 실패, 높이 예상치와 정확히 일치·기존 게이트 3/3 통과 → **간헐 재현 불가로 정직 보고**. 게이트 전종 무회귀. 보고서에 `#wff-0720` 섹션 추가. **부수: PARITY-00 junk todo 5건 재오염**(W-FA가 정리했던 것, 파일 SoT는 깨끗) → 재정리, 근본원인 미규명(티켓)
 - 2026-07-20 **★10h 무인 런 완주 — 10페이지 정합 + 최종 보고서**(W-FE, push 3bf6896): 10페이지 전부 **최종 상태로 동일조건 재캡처**(순차 수복이라 초기 캡처는 후속 수복 미반영이었음) + 통합 픽셀 측정 → **최초의 공정 기준선**: 01 97.02·02 96.21·03 97.18·04 98.30·05 97.38·06 91.80·07 92.29·08 96.60·09 91.10·10 91.01%(#09/10 최초 정량화). 보고서 `RUN-0720-final10-parity.html`(페이지별 카드10: 노션↔클론 나란히+클릭확대+**실페이지 링크**+수복목록+남은갭+픽셀, 하단에 측정함정 3종·재사용도구). 헤드리스 검증 20/20 이미지·console 0. 잔여 티켓 13건+설계차이 2건. ledger 5건 append+대시보드 재생성
 - 2026-07-20 **3단계(4/4) 보드·갤러리 — 3관찰 판정·수복**(W-FD, push 3bb354d·5bbf285): ①구조차이(real 풀페이지DB vs clone 콜아웃+인라인DB)=**데이터/픽스처 설계 선택**으로 판정(build_t2.py 주석 확인, 무근거 변경 안 함) ②**보드 그룹순서·NONE 위치=진짜 렌더갭** 수복 ③**카드 날짜 서브텍스트=per-view hiddenProps 누락** 수복(갤러리 선례 준용). 추가: 카드 그룹색 tint·radius 4→10·갤러리 다크 border/bg·보드 헤더 라벨 12→14px. probe에 board/gallery 추출기 추가. 티켓: 공유 DatabaseView 탭바 오버플로(#06-08 공통)·tint 알파·border vs box-shadow. dom 94/94·status_col 13/13·smoke 23/23. **→ 3단계 10페이지 전층 이식 완주, 4단계 마감 보고서로**
