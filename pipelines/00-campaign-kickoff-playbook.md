@@ -82,4 +82,4 @@ owner: 박춘순
 - [ ] 게이트 0호(smoke)·측정 하네스 뼈대 먼저
 - [ ] 파일 SoT 여부 결정(웹앱이면 기본 채택)
 - [ ] clone-kb status/<캠페인>.md 개설(🔴)
-- [ ] 리포 루트 `_POLICY.md` 개설(운영 규칙 단일 정본 — §4.5)
+- [ ] 리포 루트 `_POLICY.md` 개설(운영 규칙 단일 정본 — §4.5) — **표준 템플릿 복사: [[pipelines.02-campaign-policy-standard]]**(오너 채택 2026-07-20, notion 실전 검증본)
