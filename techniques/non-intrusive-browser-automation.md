@@ -29,7 +29,7 @@ owner: 박춘순
 | 목적 | 호출 | 포커스 |
 |---|---|---|
 | DOM·computed CSS 계측 | `Runtime.evaluate` | 불필요 |
-| 키 입력 재현 | `Input.dispatchKeyEvent` | 불필요(백그라운드 탭에도 전달) |
+| 키 입력 재현 | `Input.dispatchKeyEvent` | **⚠ 공유 headful 브라우저의 비활성 탭에선 드롭됨**(2026-07-20 실측) → **단명 headless launch**로 |
 | 클릭·드래그 | `Input.dispatchMouseEvent` | 불필요 |
 | 스크린샷 | `Page.captureScreenshot` | 불필요 |
 | **trusted OS 입력**(IME 한글 조합·클립보드 커스텀 MIME) | osascript | **필요 — 사전 승인** |
@@ -58,4 +58,5 @@ owner: 박춘순
 
 ## 실증
 
+- **★실측 정정(2026-07-20, notion W-FH)**: "백그라운드 탭에도 키가 전달된다"는 통념은 **틀렸다** — 공유 headful 브라우저에서 비활성 탭의 `Input.dispatchKeyEvent`는 드롭된다. 마우스·계측·캡처는 백그라운드에서 정상이지만 **키 입력이 필요한 재현/영상은 단명 headless launch가 유일하게 안전한 경로**다(포커스도 안 뺏고 키도 먹는다).
 - **notion(2026-07-20)**: 오너 3회 호소 → 정책 §브라우저에 금지 규칙 + 역할 분리 확립, 가동 중 워커 2명에 즉시 주입. 이후 계측·게이트·재현은 전부 백그라운드로 수행 가능함을 확인.
