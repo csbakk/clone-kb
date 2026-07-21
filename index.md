@@ -38,6 +38,8 @@
 - [포트+프로필 격리 (프로젝트당 전용 CDP 포트·Chrome 프로필)](techniques/port-profile-isolation.md) — standard
 - [호버 중 레코딩 (Clone Inspector + ci_agent)](techniques/record-during-hover.md) — verified
 - [번호매김 회귀 검증 스위트 (_bN_verify.py / *_gate.py)](techniques/regression-harness-suite.md) — standard
+- [★차등 대조 파이프라인 (1단 규칙표 재생 러너 → 2단 조합 퍼저, 실물을 오라클로)](techniques/differential-conformance-pipeline.md) — experimental
+- [게이트 FAIL ≠ 클론 버그 (게이트 오라클도 낡는다)](techniques/gate-oracle-staleness.md) — experimental
 - [RIP 레이어② 인터랙션 크롤러](techniques/rip-crawler.md) — verified
 - [RIP 레이어① CSS/DOM 전수 덤프](techniques/rip-css-dump.md) — standard
 - [RIP 레이어③ 자동 수복 루프](techniques/rip-repair-loop.md) — verified
@@ -60,6 +62,7 @@
 - [Verify-First 루프 (측정→대조→티켓→구현→검증→커밋)](pipelines/verify-first-loop.md) — standard
 
 ## runs/
+- [2026-07-21 notion 저녁 무인10h(2차) — 차등 대조 파이프라인 구축 + 4대축(삭제·Enter·Tab·전환) 전수완료](runs/2026-07-21-notion-run2-differential.md) — done: 커버리지 28.1%→92.7%·게이트 오판정 사건 정정·붙여넣기 클론대조 12/12
 - [2026-07-17 canvas 세션22 — "남은것 다" 라운드(도구파리티·피커재검증·LLM/Audio+핸들/엣지/툴바 RIP·전체체인 스켈레톤) + drawWidth fix](runs/2026-07-17-canvas-remaining-parity.md) — done: state-spec-json 2회재사용·오너결정 체인깊이 B채택(total-fidelity)·0크레딧
 - [2026-07-17 canvas 세션21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) — done: structure-first-cloning canvas 첫 retrofit·RIP 17425→17113·0크레딧
 - [2026-07-17 canvas 세션20 — 복잡 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) — done: 5/5 양쪽 15노드 매칭·좌표재배치 verified 승격·크레딧 375.43cr

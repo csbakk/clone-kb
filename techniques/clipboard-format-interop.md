@@ -4,8 +4,8 @@ title: 클립보드 포맷 상호운용 — 복사/붙여넣기로 원본과 서
 doctype: technique
 status: experimental
 proven_in: []
-related: [techniques.structure-first-cloning, techniques.dom-first-measurement]
-updated: 2026-07-19
+related: [techniques.structure-first-cloning, techniques.dom-first-measurement, techniques.non-intrusive-browser-automation]
+updated: 2026-07-21
 owner: 박춘순
 ---
 
@@ -48,6 +48,10 @@ owner: 박춘순
 1. payload 위치 규명(§1, 4경로 실측).
 2. **PoC 먼저** — 가장 큰 미지수(세션 의존 필드)를 스크래치 왕복으로 실측. 통과 전엔 구현 확대 금지.
 3. 핵심 타입부터 read/write 붙이고 회귀 게이트(왕복 무손실 diff) + 시각 증거(양방향 캡처).
+
+## 5.5 측정용 자매 기법 — 합성 ClipboardEvent (OS 클립보드 안 건드리고 paste/copy 대조)
+
+이 카드의 §2(read/write)가 "클론이 원본과 실제로 상호운용하게 만드는" **제품 기능**이라면, **측정·회귀 대조**에는 OS 클립보드를 아예 건드리지 않는 별도 기법이 붙는다 — [[techniques.non-intrusive-browser-automation]] §6에 전체 내용(코드·함정·핸들클릭 선택법 포함)을 등록했다. 요지: `new ClipboardEvent('paste', {clipboardData, ...})`를 대상 엘리먼트에 직접 dispatch하면 OS 클립보드 무접촉으로 `onPaste` 핸들러를 재현할 수 있다(단 `preventDefault()` 안 부르는 네이티브 기본동작 의존 분기는 이 경로가 안 먹어 폴백 필요). notion에서 붙여넣기 클론 대조 12/12를 이 방식으로 완주(2026-07-21, W-IP).
 
 ## 실증 대기
 

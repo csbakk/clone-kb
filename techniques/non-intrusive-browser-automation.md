@@ -4,8 +4,8 @@ title: 비침습 브라우저 자동화 — 오너 기기를 공유하며 포커
 doctype: technique
 status: verified
 proven_in: [notion]
-related: [techniques.dom-first-measurement, techniques.pixel-diff-baseline, techniques.regression-harness-suite]
-updated: 2026-07-20
+related: [techniques.dom-first-measurement, techniques.pixel-diff-baseline, techniques.regression-harness-suite, techniques.clipboard-format-interop]
+updated: 2026-07-21
 owner: 박춘순
 ---
 
@@ -35,6 +35,24 @@ owner: 박춘순
 | **trusted OS 입력**(IME 한글 조합·클립보드 커스텀 MIME) | osascript | **필요 — 사전 승인** |
 
 마지막 줄만 예외다. 그 경우 **작업 전 오너에게 알리고 최소 시간만 점유 후 반환**한다.
+
+### 2.5 ★키 입력 방식 사다리 — CDP `commands` 파라미터가 중간 단계를 메운다 (2026-07-21 확정)
+
+위 표의 마지막 줄("trusted OS 입력만 osascript")은 실제로는 **극단 두 개(①무접촉 CDP ②창 전면화 osascript)만 있는 이분법**처럼 읽히기 쉬운데, 그 사이에 **셋째 단계**가 있다는 게 notion 캠페인에서 새로 확정됐다. 아래로 내려갈수록 오너 작업 방해가 커진다 — **①②로 안 되는 것만 ③으로 내려간다.**
+
+1. **일반 CDP 키** `Input.dispatchKeyEvent` — 앱(JS) 키 핸들러는 untrusted 이벤트도 발화한다. Enter·Backspace·화살표·Escape·슬래시메뉴 등 대부분 이걸로 충분(배경 탭이면 §3.5 포커스 에뮬레이션 병행).
+2. **★CDP `commands` 파라미터** `Input.dispatchKeyEvent {commands:['Paste']}` — **브라우저 네이티브 편집 커맨드를 OS 포커스 없이 직접 발동**한다. untrusted 제약을 우회하면서도 창을 전면화하지 않아 오너 작업과 완전 무충돌. 실측 검증: Bold/Italic/Underline(클론)·**Paste·Undo(실물, 2026-07-21)**. 후보 커맨드는 Copy/Cut/SelectAll/Redo 등 Blink `EditorCommand` 전부.
+   ```python
+   cdp.send("Input.dispatchKeyEvent", {
+       "type": "rawKeyDown", "key": "v", "windowsVirtualKeyCode": 86,
+       "nativeVirtualKeyCode": 86, "modifiers": 4, "commands": ["Paste"],
+   })
+   cdp.send("Input.dispatchKeyEvent", {"type": "keyUp", "key": "v", ...})
+   ```
+   ⚠ **한계**: 앱 자체 구현 단축키(예: Notion `Cmd+K` 링크 팝오버)는 네이티브 커맨드가 아니라 이 경로에 없다 — 그건 ①(JS 핸들러라 발화)로. Paste/Copy는 **OS 클립보드를 오너와 공유**하는 자원이므로 반드시 set→검증→즉시실행, 종료 시 오너 원본 복원(save/restore 쌍으로 감싼다).
+3. **osascript trusted 키 — 최후 수단**(IME 한글 조합 등 진짜 OS 입력 스택이 필요한 것만). OS 최전면 앱으로 창 전면화가 강제된다 → 사전 승인 필요, 최소 점유 후 즉시 복귀.
+
+**배경(왜 이 단계를 새로 확정했나)**: 붙여넣기 측정을 처음엔 ③(osascript)으로 하다가 오너 키입력과 상호 오염되는 사고가 났다("PST01") — 오너가 무인화를 지시했고, `commands` 파라미터가 실물 노션에서 OS 포커스 무접촉으로 정상 동작함을 실측 확정했다. **③으로 하던 작업 대부분이 ②로 대체 가능함이 이때 드러났다** — 서식·클립보드 측정이 통째로 무인화됐다.
 
 ### 3. ★headless 기본 — 전 축 동등 (실측 확정, 클론 창 전용)
 포커스 문제의 **근본 해결**은 headless다. 그리고 **측정 신뢰도를 깎지 않는다**:
@@ -94,6 +112,32 @@ cdp.py mouse --port 9224 --title <탭식별> --focus --seq '[["press",x,y],["mov
 - **`beforeunload` 다이얼로그 자동 처리 의무**: 미저장 편집이 남은 탭을 navigate하면 "나가시겠습니까" 모달이 **오너 화면**에 뜬다(포커스 탈취와 같은 계열의 피해 — 오너가 직접 눌러 치워야 함). `Page.javascriptDialogOpening` 구독 + `Page.handleJavaScriptDialog {accept:true}` 등록을 navigate 전에 반드시 걸고, 가능하면 navigate 전에 저장까지 기다린다.
 - **CDP 무응답 ≠ 데드락**: `evaluate`가 응답 없어 보인다고 곧바로 렌더러 데드락으로 단정하지 마라 — 탭이 HTTP 5xx 오류 페이지 등에 물려 있을 수 있다. 먼저 그 탭의 **title/URL부터 확인**하고, 그래도 진짜 무응답이면 데드락으로 판정한다(브라우저/페이지 두 레벨 모두 재확인 후 판정 — [[pipelines.00-campaign-kickoff-playbook]] §3 참고).
 
+### 6. ★합성 ClipboardEvent + 핸들클릭 블록선택 — OS 클립보드도 무접촉으로 (2026-07-21, notion)
+
+붙여넣기(paste) 동작을 클론 쪽에서 대량 재현·대조할 때, §2.5의 `commands:['Paste']`조차 **OS 클립보드를 오너와 공유**한다는 부담이 남는다. 클론(로그인 세션 불필요, 오너 데이터와 무관)에서는 한 단계 더 무접촉하게 갈 수 있다.
+
+- **합성 ClipboardEvent 우선**: `new DataTransfer()` + `new ClipboardEvent('paste', {clipboardData, bubbles:true, cancelable:true})`를 대상 엘리먼트에 dispatch — OS 클립보드를 전혀 건드리지 않는다. 앱의 `onPaste` 핸들러가 `e.clipboardData.getData(...)`만 읽는 구현이면 100% 재현 가능.
+  ```js
+  const dt = new DataTransfer();
+  dt.setData('text/plain', plain);
+  if (html) dt.setData('text/html', html);
+  const ev = new ClipboardEvent('paste', { clipboardData: dt, bubbles: true, cancelable: true });
+  el.dispatchEvent(ev);
+  ```
+- ⚠ **함정 — preventDefault 안 부르는 분기는 이 경로가 안 먹는다**: `onPaste`가 마크다운도 리치HTML도 아닌 "순수 단문 텍스트"라 브라우저 네이티브 삽입에 의존하는 분기는, JS로 dispatch한 합성(untrusted) paste 이벤트에 대해 **Blink가 기본 동작(clipboardData→DOM 삽입)을 실행하지 않는다**(실측 확인). 이 분기만 §2.5의 `commands:['Paste']`(OS 클립보드 save/restore로 감싼 채)로 폴백한다. 즉 합성 이벤트가 "대부분"을 커버하고, 네이티브 기본동작 의존 분기만 사다리 한 단 아래로 내려간다 — 이분법이 아니라 **분기별 최소단계 선택**.
+- **Copy도 같은 원리**: `new ClipboardEvent('copy', {...})`를 `window`에 dispatch하면 `onCopy` 핸들러가 `dt.setData(...)`로 채운 값을 그대로 읽어낼 수 있다(`dt.getData()`로 검증) — 클립보드 내용 자체를 오너와 공유하지 않고 앱의 copy 로직을 통째로 검증 가능.
+
+**★핸들클릭 블록선택 — Escape 대신**: "내부 블록 복사"(선택 스코프가 필요한 조작)를 측정할 때, 좌측 여백 클릭(`leftMarginClick`)으로 블록을 선택하려는 시도는 **halo(선택 하이라이트)가 안 켜진다**(실측: `haloSelected:false`). 반면 블록 좌측의 **핸들(⋮⋮) 클릭**은 신뢰성 있게 halo를 켠다(`haloSelected:true`, menuOpen은 false로 유지 — 메뉴가 아니라 선택만 원할 때는 그냥 클릭, 메뉴가 필요하면 별도 처리). 셀렉터 패턴: `.blk-gutter-portal[data-block="<id>"] .blk-handle`(hover로 포탈을 먼저 띄운 뒤 클릭 — `page.mouse.move()` 2회로 hover 이벤트 강제 후 `handle.wait_for(state="visible")`).
+```python
+box = page.locator(f'.editor .blk[data-block="{block_id}"]').bounding_box()
+page.mouse.move(box["x"]+10, box["y"]+10)
+page.mouse.move(box["x"]+12, box["y"]+10)  # 2회 move로 hover 트리거
+handle = page.locator(f'.blk-gutter-portal[data-block="{block_id}"] .blk-handle')
+handle.wait_for(state="visible", timeout=3000)
+handle.click(modifiers=["Shift"] if shift else [])
+```
+이 선택법이 확립되기 전엔 Escape 기반 스코프 처리가 선택 상태를 오염시켜(다른 블록까지 딸려가거나 선택이 안 켜짐) 대조 결과를 신뢰할 수 없었다 — 핸들클릭으로 전환한 뒤에야 붙여넣기 클론 대조 12/12가 완주됐다.
+
 ## 적용 체크리스트
 
 - [ ] 브리프/정책에 "포커스 탈취 금지" 명문화 (워커는 새 컨텍스트라 매번 읽어야 함)
@@ -105,6 +149,9 @@ cdp.py mouse --port 9224 --title <탭식별> --focus --seq '[["press",x,y],["mov
 - [ ] 실측 스크립트는 인라인 `python -c` 대신 **전용 CDP 드라이버**(§4) 서브커맨드로
 - [ ] 드래그·마퀴 재현은 매 `mousemove`에 `buttons` 필드 명시(§3.6)
 - [ ] navigate 전 `Page.javascriptDialogOpening` 구독 등록(§5)
+- [ ] 키 입력이 필요하면 **사다리 순서로**(§2.5): ①일반 CDP 키 → ②`commands` 파라미터(OS 클립보드 공유 자원이면 save/restore 필수) → ③osascript(최후, 사전승인)
+- [ ] 클론 대상 붙여넣기/복사 측정은 **합성 ClipboardEvent 우선**(§6, OS 클립보드 무접촉) — preventDefault 안 부르는 네이티브 기본동작 의존 분기만 §2.5로 폴백
+- [ ] 블록 선택이 필요하면 좌측 여백 클릭이 아니라 **핸들(⋮⋮) 클릭**(§6, halo 신뢰성 실측 확인)
 
 ## 크로스캠페인 정본
 
@@ -116,3 +163,5 @@ cdp.py mouse --port 9224 --title <탭식별> --focus --seq '[["press",x,y],["mov
 - **★실측 정정(2026-07-20, notion W-FH)**: "백그라운드 탭에도 키가 전달된다"는 통념은 **틀렸다** — 공유 headful 브라우저에서 비활성 탭의 `Input.dispatchKeyEvent`는 드롭된다. 마우스·계측·캡처는 백그라운드에서 정상이지만 **키 입력이 필요한 재현/영상은 단명 headless launch 또는 포커스 에뮬레이션이 안전한 경로**다(대상에 따라 §3 vs §3.5).
 - **notion(2026-07-20)**: 오너 3회 호소 → 정책 §브라우저에 금지 규칙 + 역할 분리 확립, 가동 중 워커 2명에 즉시 주입. 이후 계측·게이트·재현은 전부 백그라운드로 수행 가능함을 확인.
 - **전용 CDP 드라이버(§4)**: 도입 전 하루 4회 세션 안전 분류기 오탐 → 도입 후(`harness/cdp.py`) 재발 0.
+- **★키 입력 사다리 확장(2026-07-21, notion)**: osascript(③)로 하던 붙여넣기 측정이 오너 키입력과 상호 오염된 사고(PST01) 이후, `Input.dispatchKeyEvent{commands:['Paste']}`(②)가 실물 노션에서 OS 포커스 무접촉으로 동작함을 실측 확정(Paste·Undo 원복 확인) — ③으로 하던 작업 대부분이 ②로 대체돼 서식·클립보드 측정이 통째로 무인화됐다.
+- **합성 ClipboardEvent + 핸들클릭(2026-07-21, notion W-IP/W-IK)**: 붙여넣기 클론 대조 12/12 완주(합성 ClipboardEvent 9행 + §2.5 폴백 3행), 좌측여백 클릭(`haloSelected:false`)이 아닌 핸들클릭(`haloSelected:true`)으로 내부복사 선택 스코프를 확정한 뒤에야 대조가 신뢰 가능해졌다.

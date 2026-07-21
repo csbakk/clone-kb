@@ -1,6 +1,6 @@
 # clone-kb — 클론 시스템 무기고 (기법 레지스트리 + 평가 원장)
 
-> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-20 21:37). 직접 편집 금지 — 카드/원장을 고치고 재생성.
+> **자동 생성 대시보드** (`scripts/gen_dashboard.py`, 2026-07-21 23:26). 직접 편집 금지 — 카드/원장을 고치고 재생성.
 > 운영: 평시=AI 직접 커밋(근거 포함) · **승격/은퇴=Issue 제안→오너 승인** · status=standard만 skills/ 보유 가능(강등 시 스킬도 제거).
 
 ## 🔴 라이브 상태판 (무인 런 추적)
@@ -11,6 +11,7 @@
 
 | 날짜 | 런 | 캠페인 | 상태 | 로딩 기법 수 |
 |---|---|---|---|---|
+| 2026-07-21 | [notion 2026-07-21 저녁 무인 10h(2차) — 차등 대조 파이프라인 구축 + 4대축(삭제·Enter·Tab·전환) 전수 완료](runs/2026-07-21-notion-run2-differential.md) | notion | done | 6 |
 | 2026-07-17 | [canvas 세션 20 — 복잡 노드 연결 워크플로우 5주제 매칭(T1~T5) 실물↔클론 완성](runs/2026-07-17-canvas-complexwf.md) | canvas | done | 7 |
 | 2026-07-17 | [canvas 세션 22 — "남은것 다" 라운드(도구 파리티·피커 재검증·LLM/Audio RIP·전체체인 스켈레톤·핸들/엣지/툴바 RIP) + drawWidth 기본값 fix](runs/2026-07-17-canvas-remaining-parity.md) | canvas | done | 7 |
 | 2026-07-17 | [canvas 세션 21 — 구조-우선 원칙 소급 레트로핏(핸들·헤더·라이트박스·프롬프트 골격 6타입)](runs/2026-07-17-canvas-structfirst.md) | canvas | done | 6 |
@@ -25,16 +26,15 @@
 | 2026-07-14 | [canvas 세션 14 — 생성 파리티 트랙 + CLI 크레딧 계측](runs/2026-07-14-canvas-s14-gen-parity-track.md) | canvas | done | 6 |
 | 2026-07-13 | [canvas 세션 10 — P1 크로스-페이스트 파일럿](runs/2026-07-13-canvas-p1-crosspaste.md) | canvas | done | 6 |
 | 2026-07-13 | [notion RUN4 — P3 수복 자동체인 (분류기 계층화 + rip_repair)](runs/2026-07-13-notion-p3-repair-chain.md) | notion | done | 5 |
-| 2026-07-13 | [notion RUN5 — 동영상 블록 파리티 + RIP 2층 대조 + 정렬기 매칭 v2](runs/2026-07-13-notion-run5-video-block.md) | notion | done | 6 |
 
 ## 기법 상태 분포
 
 ```mermaid
 pie showData
-    title 기법 49장
+    title 기법 51장
     "정식 (standard)" : 14
     "검증 (verified)" : 16
-    "실험 (experimental)" : 18
+    "실험 (experimental)" : 20
     "은퇴 (retired)" : 1
 ```
 
@@ -80,7 +80,7 @@ pie showData
 | URL 이탈 가드 (크롤러 실수 네비게이션 방어) | canvas | [techniques/url-escape-guard.md](techniques/url-escape-guard.md) |
 | G1 비주얼 판정 시트 (bbox 오버레이 + 크롭) | notion, canvas | [techniques/visual-triage-sheet.md](techniques/visual-triage-sheet.md) |
 
-### 실험 (experimental) — 18
+### 실험 (experimental) — 20
 
 | 기법 | 실증 | 카드 |
 |---|---|---|
@@ -91,6 +91,8 @@ pie showData
 | 클립보드 포맷 상호운용 — 복사/붙여넣기로 원본과 서식 왕복 | — | [techniques/clipboard-format-interop.md](techniques/clipboard-format-interop.md) |
 | 클론 문서화·시각화 포맷 가이드 (언제 무엇을 쓰나) | canvas | [techniques/clone-documentation-formats.md](techniques/clone-documentation-formats.md) |
 | 좌표-클릭 캡처 (DOM 셀렉터 실패 시 CDP 좌표 마우스) | canvas | [techniques/coordinate-click-capture.md](techniques/coordinate-click-capture.md) |
+| 차등 대조 파이프라인 (1단 규칙표 재생 러너 → 2단 조합 퍼저, 실물을 오라클로) | notion | [techniques/differential-conformance-pipeline.md](techniques/differential-conformance-pipeline.md) |
+| 게이트 FAIL ≠ 클론 버그 — 게이트 오라클도 낡는다 | notion | [techniques/gate-oracle-staleness.md](techniques/gate-oracle-staleness.md) |
 | 인터랙션 상태 지도 (노드/컴포넌트 전 버튼→상태 말단까지) | canvas | [techniques/interaction-state-map.md](techniques/interaction-state-map.md) |
 | 오너 지적 전수 대장 (_OWNER_BACKLOG.md — grep 조회 전용, 착수·완료 추적) | notion | [techniques/owner-backlog-ledger.md](techniques/owner-backlog-ledger.md) |
 | 파리티 CI (교차앱 자동 회귀 파이프라인) | — | [techniques/parity-ci.md](techniques/parity-ci.md) |
